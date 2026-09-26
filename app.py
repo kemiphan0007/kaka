@@ -1,10 +1,22 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, session, redirect
 import sqlite3
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import os
+from functools import wraps
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "ganti-ini-nanti")
+
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "ganti-password-ini")
+
+def login_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get("is_admin"):
+            return redirect("/admin/login")
+        return f(*args, **kwargs)
+    return decorated
 def create_invoice(order_number, name, email, address, package, price):
 
     os.makedirs("invoices", exist_ok=True)
@@ -216,7 +228,28 @@ def view_payment_proof(order_number):
         return "Payment proof file not found", 404
 
     return send_file(filepath)
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    if request.method == "POST":
+        if request.form.get("password") == ADMIN_PASSWORD:
+            session["is_admin"] = True
+            return redirect("/admin/orders")
+        return "Password salah", 401
+    return '''
+        <form method="post" style="max-width:300px;margin:100px auto;font-family:sans-serif">
+            <h3>Admin Login</h3>
+            <input type="password" name="password" placeholder="Password"
+                   style="width:100%;padding:8px;margin-bottom:10px">
+            <button type="submit" style="width:100%;padding:8px">Login</button>
+        </form>
+    '''
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop("is_admin", None)
+    return redirect("/admin/login")
 @app.route("/admin/orders")
+@login_required
 def admin_orders():
 
     conn = sqlite3.connect("shop.db")
