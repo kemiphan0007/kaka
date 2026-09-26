@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout - SR17018 Powder</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #171717;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .checkout-box {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .summary {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .summary h2 {
+            margin-top: 0;
+        }
+
+        .summary p {
+            margin: 8px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .place-order {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .place-order:hover {
+            background: #333;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="checkout-box">
+
+        <h1>Checkout</h1>
+
+        <div class="summary">
+
+            <h2>Order Summary</h2>
+
+            <p>
+                <strong>Product:</strong>
+                SR17018 Powder Product
+            </p>
+
+            <p>
+                <strong>Package:</strong>
+                <span id="package-name">
+                    {{ package }}
+                </span>
+            </p>
+
+            <p>
+                <strong>Price:</strong>
+                <span id="package-price">
+                    {{ price }}
+                </span>
+            </p>
+
+        </div>
+
+
+        <form method="POST" action="/place-order">
+
+            <input type="hidden" name="package" value="{{ package }}">
+            <input type="hidden" name="price" value="{{ price }}">
+        
+            <div class="form-group">
+        
+                <label for="name">
+                    Full Name
+                </label>
+        
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your full name"
+                    required>
+        
+            </div>
+        
+        
+            <div class="form-group">
+        
+                <label for="email">
+                    Email
+                </label>
+        
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required>
+        
+            </div>
+        
+        
+            <div class="form-group">
+        
+                <label for="address">
+                    Shipping Address
+                </label>
+        
+                <textarea
+                    id="address"
+                    name="address"
+                    placeholder="Your complete shipping address"
+                    required></textarea>
+        
+            </div>
+        
+        
+            <button
+                type="submit"
+                class="place-order">
+        
+                PLACE ORDER
+        
+            </button>
+        
+        </form>
+        <a href="/" class="back">
+            ← Back to Product
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ke-miphan เคมีภัณฑ์ - Thailand</title>
+<link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='Logo.jpeg') }}">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #edeef1, #868b94);
+            color: #171717;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* IMAGE SPOILERS */
+
+        .spoilers-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .spoilers-title h2 {
+            margin-bottom: 8px;
+        }
+
+        .spoilers-title p {
+            color: #777;
+        }
+
+        .spoilers {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .spoiler-card {
+            width: 30%;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .spoiler-card img {
+            width: 100%;
+            display: block;
+        }
+
+        /* PRODUCT INFO */
+
+        .product-info {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .product-info h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        /* PACK OPTIONS */
+
+        .options {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .option {
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    padding: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.option input {
+    display: none;
+}
+
+.option:has(input:checked) {
+    border-color: #111;
+    background: #f5f5f5;
+}
+        .option:hover {
+            border-color: #111;
+        }
+
+        .option h2 {
+            margin-top: 0;
+        }
+
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .bonus {
+            color: #d60000;
+            font-weight: bold;
+        }
+
+        /* BUY BUTTON */
+
+        .buy-button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background: #333;
+        }
+
+        @media (max-width: 700px) {
+
+            .product {
+                padding: 20px;
+            }
+
+            .spoilers {
+                gap: 8px;
+            }
+
+            .product-info h1 {
+                font-size: 30px;
+            }
+
+            .options {
+                flex-direction: column;
+            }
+
+            .spoiler-card {
+                width: 33%;
+            }
+        }
+        .contact-section {
+    margin-top: 80px;
+    padding: 40px 20px 60px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    color: #571a93;
+}
+
+.contact-section h2 {
+    margin: 0 0 12px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.contact-section p {
+    margin: 0 0 18px;
+    color: #0a0909;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-email {
+    color: #29167e;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-email:hover {
+    text-decoration: underline;
+}
+.shipping-section {
+    margin-top: 60px;
+    padding: 60px 25px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.shipping-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.shipping-label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    color: #530505;
+}
+
+.shipping-section h2 {
+    margin: 0 0 15px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.shipping-intro {
+    max-width: 550px;
+    margin: 0 auto 40px;
+    color: #451515;
+    line-height: 1.6;
+}
+
+.shipping-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.shipping-item {
+    padding: 10px;
+}
+
+.shipping-item strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.shipping-item span {
+    display: block;
+    color: #750606;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.shipping-note {
+    margin-top: 35px;
+    color: #531616;
+    font-size: 11px;
+}
+@media (max-width: 700px) {
+
+.shipping-features {
+    grid-template-columns: 1fr 1fr;
+}
+
+}
+
+
+.support-links {
+display: flex;
+justify-content: center;
+gap: 20px;
+margin-top: 35px;
+}
+
+.support-card {
+width: 240px;
+min-height: 130px;
+padding: 24px;
+
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+background: #ffffff;
+border: 1px solid #d8d8d8;
+border-radius: 14px;
+
+text-decoration: none;
+
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+transition: all 0.2s ease;
+}
+
+.support-card:hover {
+transform: translateY(-3px);
+border-color: #412626;
+box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+}
+
+.support-card span {
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 2px;
+color: #392828;
+}
+
+.support-card strong {
+margin-top: 25px;
+font-size: 14px;
+font-weight: 600;
+color: #222;
+}
+
+
+@media (max-width: 600px) {
+
+    .support-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .support-card {
+        width: 100%;
+        max-width: 340px;
+    }
+
+}
+
+
+/* FOOTER */
+
+.site-footer {
+    width: 100%;
+    margin-top: 70px;
+    padding: 35px 20px;
+    border-top: 1px solid #e5e5e5;
+    background: #f8f8f9;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-brand {
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #411bcc;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #222;
+    text-decoration: underline;
+}
+
+.footer-copy {
+    color: #462e2e;
+    font-size: 11px;
+}
+
+
+/* FOOTER MOBILE */
+
+@media (max-width: 600px) {
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+     .site-header {
+    width: 100%;
+    padding: 0,5px 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-logo {
+    display: inline-block;
+}
+
+.brand-logo img {
+    display: block;
+    width: 208px;
+    height: 140px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 165px;
+}
+
+.header-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 115px;
+    height: 40px;
+    padding: 0 18px;
+
+    text-decoration: none;
+    color: #222;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+
+    transition: all 0.2s ease;
+}
+
+.header-nav a:hover {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+@media (max-width: 600px) {
+
+    .site-header {
+        padding: 15px 12px;
+    }
+
+    .brand-logo img {
+        width: 150px;
+        height: 120px;
+    }
+
+    .header-nav {
+        gap: 16px;
+        margin-right: 12px;
+    }
+
+    .header-nav a {
+        min-width: auto;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 9px;
+        letter-spacing: 0.7px;
+    }
+
+}
+    </style>
+<header class="site-header">
+
+    <a href="/" class="brand-logo">
+        <img src="{{ url_for('static', filename='Logo.jpeg') }}" alt="Ke-miphan Thailand">
+    </a>
+
+    <nav class="header-nav">
+
+        <a href="/track-order">
+            TRACK ORDER
+        </a>
+
+        <a href="#orders" class="cart-button">
+            CART
+        </a>
+
+    </nav>
+
+</header>
+
+<div class="container">
+
+    <div class="product">
+
+        <!-- SPOILER CARDS -->
+
+        <div class="spoilers-title">
+
+            <h2>Ke-miphan (เคมีภัณฑ์)</h2>
+
+            <p>
+                has been a recognized name in the market since 2021, best known for our kratom-based products. 
+                We previously also offered extract MIT. 
+                Today, we are entering a new chapter with the launch of SR17018, developed after nearly a year of dedicated research and market study, and supported by our new investment partner.
+            </p>
+
+        </div>
+
+       <div class="spoilers">
+
+    <div class="spoiler-card">
+        <img src="{{ url_for('static', filename='img01.jpeg') }}"
+             alt="Ke-miphan Thailand">
+    </div>
+
+    <div class="spoiler-card">
+        <img src="{{ url_for('static', filename='img02.jpeg') }}"
+             alt="Ke-miphan Thailand">
+    </div>
+
+    <div class="spoiler-card">
+        <img src="{{ url_for('static', filename='img03.jpeg') }}"
+             alt="Ke-miphan Thailand">
+    </div>
+
+</div>
+        </div>
+
+
+        <!-- PRODUCT -->
+
+        <div class="product-info">
+
+            <h1>SR17018</h1>
+
+            <div class="subtitle">
+                Origin From Thailand, made using synthetic researched methode, learned from expert chemist in China. 
+            </div>
+
+            <p class="description">
+                Every product is tested and lab-verified before we sell it.
+                We test regularly and publish fresh lab results every month.
+            </p>
+
+
+            <!-- OPTIONS -->
+
+           <!-- OPTIONS -->
+
+<div class="options">
+
+    <label class="option">
+        <input type="radio" name="package" value="50">
+
+        <div class="option-content">
+            <h2>50g Sample</h2>
+
+            <div class="price">
+                $350
+            </div>
+
+            <p>
+                50g SR17018 Powder
+            </p>
+        </div>
+    </label>
+
+
+    <label class="option" id="orders">
+        <input type="radio" name="package" value="4650">
+
+        <div class="option-content">
+            <h2>1kg Bulk</h2>
+
+            <div class="price">
+                $4650
+            </div>
+
+            <p>
+                1kg SR17018 Powder Bulk
+            </p>
+
+            <div class="bonus">
+                + Get a FREE Bonus Pack (100g)
+            </div>
+        </div>
+    </label>
+
+</div>
+
+
+            <!-- BUY -->
+
+            <script>
+                function buyNow() {
+                
+                    const selected = document.querySelector('input[name="package"]:checked');
+                
+                    if (!selected) {
+                        alert("Please select a package first.");
+                        return;
+                    }
+                
+                    const option = selected.closest(".option");
+                
+                    if (option) {
+                        const title = option.querySelector("h2").innerText;
+                        const price = option.querySelector(".price").innerText;
+                
+                        alert("You selected: " + title + " — " + price);
+                    }
+                }
+                </script>
+
+        </div>
+<!-- BUY -->
+
+<button type="button" class="buy-button" onclick="buyNow()">
+    BUY NOW
+</button>
+
+<script>
+function buyNow() {
+
+const selected = document.querySelector('input[name="package"]:checked');
+
+if (!selected) {
+    alert("Please select a package first.");
+    return;
+}
+
+const option = selected.closest(".option");
+
+if (option) {
+    const title = option.querySelector("h2").innerText;
+    const price = option.querySelector(".price").innerText;
+
+    window.location.href =
+        "/checkout?package=" +
+        encodeURIComponent(title) +
+        "&price=" +
+        encodeURIComponent(price);
+}
+}
+</script>
+    </div>
+
+</div>
+<section class="contact-section">
+
+    <div class="contact-content">
+
+        <span class="contact-label">
+            CUSTOMER SUPPORT
+        </span>
+
+        <h2>
+            We're Here to Help.
+        </h2>
+
+        <p>
+            Have a question about your order or otherwise?
+            <br>
+            Our customer service team is available online 24 hours a day.
+        </p>
+
+        <div class="support-links">
+
+            <a href="/refund" class="support-card">
+
+                <span>
+                    REFUND & RETURNS
+                </span>
+
+                <strong>
+                    View our policy →
+                </strong>
+
+            </a>
+
+
+            <a href="/payment" class="support-card">
+
+                <span>
+                    PAYMENT METHOD
+                </span>
+
+                <strong>
+                    Bitcoin (BTC) →
+                </strong>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="shipping-section">
+
+    <div class="shipping-content">
+
+        <span class="shipping-label">
+            INTERNATIONAL SHIPPING
+        </span>
+
+        <h2>
+            Delivered Worldwide.
+        </h2>
+
+        <p class="shipping-intro">
+            Every order is carefully packed and shipped
+            through DHL Express by air.
+        </p>
+
+        <div class="shipping-features">
+
+            <div class="shipping-item">
+                <strong>DHL Express</strong>
+                <span>Air delivery with tracking</span>
+            </div>
+
+            <div class="shipping-item">
+                <strong>Up to 5 Business Days*</strong>
+                <span>Estimated international delivery</span>
+            </div>
+
+            <div class="shipping-item">
+                <strong>Shipping Covered</strong>
+                <span>Shipping costs are covered by us</span>
+            </div>
+
+            <div class="shipping-item">
+                <strong>Duties & Taxes Covered</strong>
+                <span>Covered by our store</span>
+            </div>
+
+        </div>
+
+        <p class="shipping-note">
+            *Estimated delivery time may vary depending on destination
+            and customs clearance.
+        </p>
+
+    </div>
+
+</section>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            Ke-miphan (เคมีภัณฑ์) Thailand
+        </div>
+
+        <div class="footer-links">
+            <a href="/refund">Refund & Returns</a>
+            <a href="/payment">Payment Method</a>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 Ke-miphan (เคมีภัณฑ์) Thailand. All rights reserved.
+        </div>
+
+    </div>
+
+</footer>
+</body>
+</html>

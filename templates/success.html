@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Received</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #171717;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .success-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .order-info {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 25px;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+        .order-number {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #777;
+}
+.invoice-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 6px;
+}
+
+.invoice-button:hover {
+    background: #444;
+}
+.payment-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 24px;
+    background: #222;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 6px;
+}
+
+.payment-button:hover {
+    background: #444;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="success-box">
+
+        <h1>Order Received! 🎉</h1>
+        <p class="order-number">
+    Order #{{ order_number }}
+    <a
+    href="/invoice/{{ order_number }}"
+    target="_blank"
+    class="invoice-button"
+>
+    VIEW INVOICE
+</a>
+<a
+    href="/payment"
+    class="payment-button"
+>
+    PROCEED TO PAYMENT
+</a>
+</p>
+
+        <p>
+            Thank you for your order.
+            We have successfully received your order details.
+        </p>
+
+        <div class="order-info">
+
+            <p>
+                <strong>Name:</strong> {{ name }}
+            </p>
+
+            <p>
+                <strong>Email:</strong> {{ email }}
+            </p>
+
+            <p>
+                <strong>Package:</strong> {{ package }}
+            </p>
+
+            <p>
+                <strong>Price:</strong> {{ price }}
+            </p>
+
+        </div>
+
+        <a href="/" class="back-button">
+            Back to Store
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

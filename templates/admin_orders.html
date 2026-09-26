@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Orders — MYSHOP</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f5;
+            color: #222;
+        }
+
+        .admin-container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .admin-header {
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .admin-header p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .orders-box {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #f8f8f8;
+            text-align: left;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #fff3cd;
+            color: #856404;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 50px;
+            color: #888;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <div class="admin-header">
+        <h1>Admin Orders</h1>
+        <p>MYSHOP — Order Management</p>
+    </div>
+
+    <div class="orders-box">
+
+        {% if orders %}
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Package</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Payment Proof</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for order in orders %}
+
+                <tr>
+
+                    <td>
+                        {{ order["order_number"] }}
+                    </td>
+
+                    <td>
+                        {{ order["name"] }}
+                    </td>
+
+                    <td>
+                        {{ order["email"] }}
+                    </td>
+
+                    <td>
+                        {{ order["address"] }}
+                    </td>
+
+                    <td>
+                        {{ order["package"] }}
+                    </td>
+
+                    <td>
+                        {{ order["price"] }}
+                    </td>
+
+                    <td>
+                        <span class="status">
+                            {{ order["status"] }}
+                        </span>
+                    </td>
+                    <td>
+    {% if order.payment_proof %}
+        <a
+            href="/payment-proof/{{ order.order_number }}"
+            target="_blank"
+        >
+            VIEW PROOF
+        </a>
+    {% else %}
+        —
+    {% endif %}
+</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <div class="empty">
+            No orders found.
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
