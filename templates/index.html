@@ -671,7 +671,150 @@ if (option) {
 }
 </script>
     </div>
+<section class="product-catalog">
+    <h2>PRODUCT CATALOG</h2>
+    <p class="catalog-subtitle">KEMIPHAN · PRODUCTS &amp; PRICING</p>
 
+    <div class="catalog-item">
+        <h3>Moringa Powder</h3>
+        <p class="description">Organic</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$100</strong>
+            <a href="/checkout?package=Moringa%20Powder%20-%20100g%20Sample&amp;price=100">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$750</strong>
+            <a href="/checkout?package=Moringa%20Powder%20-%201kg%20Bulk&amp;price=750">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>Spatholobus littoralis Powder</h3>
+        <p class="description">Flavonoids, saponins, tannins</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$250</strong>
+            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%20100g%20Sample&amp;price=250">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$2,700</strong>
+            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%201kg%20Bulk&amp;price=2700">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>MIT 88% Alkaloids 97%</h3>
+        <p class="description">Research chemical</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$250</strong>
+            <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%20100g%20Sample&amp;price=250">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$2,050</strong>
+            <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%201kg%20Bulk&amp;price=2050">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>SR-14968</h3>
+        <p class="description">Research chemical</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$500</strong>
+            <a href="/checkout?package=SR-14968%20-%20100g%20Sample&amp;price=500">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$4,500</strong>
+            <a href="/checkout?package=SR-14968%20-%201kg%20Bulk&amp;price=4500">ORDER NOW</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.product-catalog {
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 25px;
+    color: #222;
+    font-family: Arial, sans-serif;
+}
+.product-catalog h2 {
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+.catalog-subtitle {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+}
+.catalog-item {
+    padding: 22px 0;
+    border-top: 1px solid #e5e5e5;
+}
+.catalog-item h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+.description {
+    color: #777;
+    font-size: 13px;
+    margin: 0 0 16px;
+}
+.product-option {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 0;
+    border-top: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+.product-option strong {
+    white-space: nowrap;
+}
+.product-option a {
+    display: inline-block;
+    padding: 10px 13px;
+    background: #222;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: .5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+.product-option a:hover {
+    background: #444;
+}
+@media (max-width: 520px) {
+    .product-catalog {
+        padding: 18px;
+    }
+    .product-option {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+    }
+    .product-option a {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+}
+</style>
 </div>
 <section class="contact-section">
 
