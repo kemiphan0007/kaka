@@ -324,10 +324,10 @@ def payment_proof():
                 abort(404)
 
         return render_template(
-            "payment_verification.html",
-            order=order,
-            order_number=order_number,
-        )
+    "payment_proof.html",
+    order=order,
+    order_number=order_number,
+)
 
     order_number = form_value("order_number")
     uploaded = (
