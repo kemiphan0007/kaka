@@ -5,50 +5,28 @@ import logging
 from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 
+from flask import (
+    Flask, request, render_template, redirect,
+    url_for, flash, abort, jsonify
+)
+from werkzeug.utils import secure_filename
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from werkzeug.utils import secure_filename
-from flask import (
-    Flask,
-    request,
-    render_template,
-    redirect,
-    url_for,
-    flash,
-    abort,
-    jsonify,
-)
-
-# ============================================================
-# CONFIGURATION
-# ============================================================
 
 app = Flask(__name__)
-app.secret_key = os.environ.get(
-    "FLASK_SECRET_KEY",
-    "CHANGE_ME_TO_A_LONG_RANDOM_SECRET_IN_VERCEL",
-)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-secret")
 app.config["MAX_CONTENT_LENGTH"] = 5 * 1024 * 1024
 
 logging.basicConfig(level=logging.INFO)
 
-ALLOWED_PROOF_EXTENSIONS = {
-    ".jpg", ".jpeg", ".png", ".webp", ".pdf"
-}
 PRODUCT_NAME = "SR17018 Powder Product"
+ALLOWED_PROOF_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".pdf"}
 
-
-# ============================================================
-# DATABASE
-# ============================================================
 
 def get_db():
     database_url = os.environ.get("DATABASE_URL")
-
     if not database_url:
-        raise RuntimeError(
-            "Environment variable DATABASE_URL belum diatur."
-        )
+        raise RuntimeError("DATABASE_URL belum diatur.")
 
     return psycopg2.connect(
         database_url,
@@ -78,10 +56,6 @@ def fetch_all(sql, params=()):
         conn.close()
 
 
-# ============================================================
-# HELPERS
-# ============================================================
-
 def form_value(*names, default=""):
     for name in names:
         value = request.form.get(name)
@@ -95,9 +69,8 @@ def parse_price(value):
         raise ValueError("Harga tidak tersedia.")
 
     cleaned = re.sub(r"[^0-9,.]", "", str(value).strip())
-
     if not cleaned:
-        raise ValueError("Harga tidak tersedia.")
+        raise ValueError("Format harga tidak valid.")
 
     if "," in cleaned and "." in cleaned:
         if cleaned.rfind(",") > cleaned.rfind("."):
@@ -106,10 +79,11 @@ def parse_price(value):
             cleaned = cleaned.replace(",", "")
     elif "," in cleaned:
         parts = cleaned.split(",")
-        if len(parts[-1]) == 2:
-            cleaned = "".join(parts[:-1]) + "." + parts[-1]
-        else:
-            cleaned = "".join(parts)
+        cleaned = (
+            "".join(parts[:-1]) + "." + parts[-1]
+            if len(parts[-1]) == 2
+            else "".join(parts)
+        )
     elif "." in cleaned and len(cleaned.split(".")) > 2:
         parts = cleaned.split(".")
         cleaned = "".join(parts[:-1]) + "." + parts[-1]
@@ -136,28 +110,15 @@ def new_order_number():
 
 def get_order(order_number):
     return fetch_one(
-        """
-        SELECT *
-        FROM public.orders
-        WHERE order_number = %s
-        LIMIT 1
-        """,
+        "SELECT * FROM public.orders WHERE order_number = %s LIMIT 1",
         (order_number,),
     )
 
-
-# ============================================================
-# HOME
-# ============================================================
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-
-# ============================================================
-# CHECKOUT
-# ============================================================
 
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
@@ -170,7 +131,6 @@ def checkout():
             or request.args.get("package_name")
             or ""
         ).strip()
-
         price = (
             request.args.get("price")
             or request.args.get("total_amount")
@@ -184,10 +144,6 @@ def checkout():
     )
 
 
-# ============================================================
-# PLACE ORDER
-# ============================================================
-
 @app.route("/place-order", methods=["POST"])
 def place_order():
     name = form_value("name", "customer_name")
@@ -198,12 +154,6 @@ def place_order():
     quantity_text = form_value("quantity", default="1")
 
     if not all([name, email, address, package, price]):
-        app.logger.warning(
-            "Order missing required fields: name=%s email=%s "
-            "address=%s package=%s price=%s",
-            bool(name), bool(email), bool(address),
-            bool(package), bool(price),
-        )
         return (
             "Data pesanan belum lengkap. Periksa nama, email, "
             "alamat, paket, dan harga.",
@@ -212,82 +162,70 @@ def place_order():
 
     try:
         quantity = int(quantity_text)
-
         if quantity < 1 or quantity > 10000:
-            raise ValueError("Jumlah pesanan tidak valid.")
+            raise ValueError("Jumlah tidak valid.")
 
         unit_price = parse_price(price)
         total_amount = unit_price * quantity
-
-    except (ValueError, TypeError) as exc:
-        app.logger.warning("Harga/jumlah tidak valid: %s", exc)
+    except (ValueError, TypeError):
         return "Harga atau jumlah pesanan tidak valid.", 400
 
     order_number = new_order_number()
-    conn = None
 
     try:
         conn = get_db()
-
-        with conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    """
-                    INSERT INTO public.orders (
-                        order_number,
-                        customer_name,
-                        customer_email,
-                        shipping_address,
-                        product_name,
-                        package_name,
-                        quantity,
-                        total_amount,
-                        payment_status,
-                        order_status,
-                        name,
-                        email,
-                        address,
-                        package,
-                        price,
-                        status
+        try:
+            with conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        """
+                        INSERT INTO public.orders (
+                            order_number,
+                            customer_name,
+                            customer_email,
+                            shipping_address,
+                            product_name,
+                            package_name,
+                            quantity,
+                            total_amount,
+                            payment_status,
+                            order_status,
+                            name,
+                            email,
+                            address,
+                            package,
+                            price,
+                            status
+                        )
+                        VALUES (
+                            %s, %s, %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s, %s, %s, %s
+                        )
+                        """,
+                        (
+                            order_number,
+                            name,
+                            email,
+                            address,
+                            PRODUCT_NAME,
+                            package,
+                            quantity,
+                            total_amount,
+                            "pending",
+                            "order_placed",
+                            name,
+                            email,
+                            address,
+                            package,
+                            price,
+                            "Pending Payment",
+                        ),
                     )
-                    VALUES (
-                        %s, %s, %s, %s, %s, %s, %s, %s,
-                        %s, %s, %s, %s, %s, %s, %s, %s
-                    )
-                    """,
-                    (
-                        order_number,
-                        name,
-                        email,
-                        address,
-                        PRODUCT_NAME,
-                        package,
-                        quantity,
-                        total_amount,
-                        "pending",
-                        "order_placed",
-                        name,
-                        email,
-                        address,
-                        package,
-                        price,
-                        "Pending Payment",
-                    ),
-                )
-
-    except Exception:
-        app.logger.exception(
-            "Gagal menyimpan order %s", order_number
-        )
-        return (
-            "Pesanan gagal disimpan. Periksa Runtime Logs Vercel.",
-            500,
-        )
-
-    finally:
-        if conn is not None:
+        finally:
             conn.close()
+    except Exception:
+        app.logger.exception("Gagal menyimpan order %s", order_number)
+        return "Pesanan gagal disimpan. Periksa Runtime Logs Vercel.", 500
 
     return render_template(
         "success.html",
@@ -300,9 +238,7 @@ def place_order():
         quantity=quantity,
         total_amount=total_amount,
     )
-
-
-# ============================================================
+    # ============================================================
 # INVOICE
 # ============================================================
 
@@ -356,9 +292,7 @@ def payment_proof_page(order_number):
     try:
         order = get_order(order_number)
     except Exception:
-        app.logger.exception(
-            "Gagal mengambil pesanan untuk bukti pembayaran"
-        )
+        app.logger.exception("Gagal mengambil pesanan")
         return "Gagal mengambil pesanan.", 500
 
     if not order:
@@ -377,8 +311,8 @@ def payment_proof():
         order_number = (
             request.args.get("order_number") or ""
         ).strip()
-        order = None
 
+        order = None
         if order_number:
             try:
                 order = get_order(order_number)
@@ -417,12 +351,10 @@ def payment_proof():
         )
 
     file_bytes = uploaded.read()
-
     if not file_bytes:
         return "File bukti pembayaran kosong.", 400
 
     conn = None
-
     try:
         conn = get_db()
 
@@ -500,11 +432,8 @@ def track_order():
         order=order,
         searched=searched,
     )
-
-
-# ============================================================
+    # ============================================================
 # ADMIN ORDERS
-# Protect this route with authentication before public launch.
 # ============================================================
 
 @app.route("/admin/orders")
@@ -530,7 +459,7 @@ def admin_orders():
 
 # ============================================================
 # REFUND REQUEST
-# This submits a request; it does not issue money automatically.
+# Catatan: route ini mengirim permintaan, bukan refund otomatis.
 # ============================================================
 
 @app.route("/refund", methods=["GET", "POST"])
@@ -549,7 +478,7 @@ def refund():
             order = get_order(order_number)
         except Exception:
             app.logger.exception(
-                "Gagal mengambil pesanan untuk refund"
+                "Gagal memeriksa pesanan untuk refund"
             )
             return "Gagal memeriksa pesanan.", 500
 
@@ -570,7 +499,7 @@ def refund():
 
 
 # ============================================================
-# HEALTH CHECK
+# DATABASE HEALTH CHECK
 # ============================================================
 
 @app.route("/health")
@@ -591,7 +520,7 @@ def health():
 
 
 # ============================================================
-# ERROR HANDLER
+# ERROR HANDLERS
 # ============================================================
 
 @app.errorhandler(404)
