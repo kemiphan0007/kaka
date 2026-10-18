@@ -157,8 +157,6 @@ def index():
 
 # ============================================================
 # CHECKOUT
-# Compatible with checkout.html fields:
-# package, price, name, email, address
 # ============================================================
 
 @app.route("/checkout", methods=["GET", "POST"])
@@ -201,17 +199,14 @@ def place_order():
 
     if not all([name, email, address, package, price]):
         app.logger.warning(
-            "Order data incomplete: name=%s email=%s address=%s "
-            "package=%s price=%s",
-            bool(name),
-            bool(email),
-            bool(address),
-            bool(package),
-            bool(price),
+            "Order missing required fields: name=%s email=%s "
+            "address=%s package=%s price=%s",
+            bool(name), bool(email), bool(address),
+            bool(package), bool(price),
         )
         return (
-            "Data pesanan belum lengkap. "
-            "Periksa nama, email, alamat, paket, dan harga.",
+            "Data pesanan belum lengkap. Periksa nama, email, "
+            "alamat, paket, dan harga.",
             400,
         )
 
@@ -225,9 +220,7 @@ def place_order():
         total_amount = unit_price * quantity
 
     except (ValueError, TypeError) as exc:
-        app.logger.warning(
-            "Harga atau jumlah tidak valid: %s", exc
-        )
+        app.logger.warning("Harga/jumlah tidak valid: %s", exc)
         return "Harga atau jumlah pesanan tidak valid.", 400
 
     order_number = new_order_number()
@@ -285,11 +278,10 @@ def place_order():
 
     except Exception:
         app.logger.exception(
-            "Gagal menyimpan pesanan %s", order_number
+            "Gagal menyimpan order %s", order_number
         )
         return (
-            "Pesanan gagal disimpan. "
-            "Periksa Runtime Logs Vercel untuk detail error.",
+            "Pesanan gagal disimpan. Periksa Runtime Logs Vercel.",
             500,
         )
 
@@ -329,7 +321,7 @@ def invoice(order_number):
 
 
 # ============================================================
-# PAYMENT PAGE
+# PAYMENT
 # ============================================================
 
 @app.route("/payment", methods=["GET", "POST"])
@@ -385,7 +377,6 @@ def payment_proof():
         order_number = (
             request.args.get("order_number") or ""
         ).strip()
-
         order = None
 
         if order_number:
@@ -513,7 +504,7 @@ def track_order():
 
 # ============================================================
 # ADMIN ORDERS
-# Add authentication before using this route in production.
+# Protect this route with authentication before public launch.
 # ============================================================
 
 @app.route("/admin/orders")
@@ -539,7 +530,7 @@ def admin_orders():
 
 # ============================================================
 # REFUND REQUEST
-# Does not issue a refund automatically.
+# This submits a request; it does not issue money automatically.
 # ============================================================
 
 @app.route("/refund", methods=["GET", "POST"])
@@ -600,7 +591,7 @@ def health():
 
 
 # ============================================================
-# ERROR HANDLERS
+# ERROR HANDLER
 # ============================================================
 
 @app.errorhandler(404)
