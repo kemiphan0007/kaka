@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Verification - MYSHOP</title>
 
     <style>
@@ -78,47 +80,42 @@
 </head>
 
 <body>
-
 <div class="container">
-
     <h1>PAYMENT VERIFICATION</h1>
 
     <div class="subtitle">
         Submit your payment proof for order verification.
     </div>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form action="/payment-proof" method="POST"
+          enctype="multipart/form-data">
 
-        <label>ORDER NUMBER</label>
-
+        <label for="order_number">ORDER NUMBER</label>
         <input
             type="text"
+            id="order_number"
             name="order_number"
+            value="{{ order_number or (order.order_number if order else '') }}"
             placeholder="Example: SN-20260923-235324"
             required
         >
 
-        <label>PAYMENT PROOF</label>
-
+        <label for="payment_proof">PAYMENT PROOF</label>
         <input
             type="file"
+            id="payment_proof"
             name="payment_proof"
-            accept="image/*,.pdf"
+            accept="image/jpeg,image/png,image/webp,.pdf"
             required
         >
 
-        <button type="submit">
-            SUBMIT PAYMENT PROOF
-        </button>
-
+        <button type="submit">SUBMIT PAYMENT PROOF</button>
     </form>
 
     <div class="notice">
         Your payment proof will be reviewed by our administration.
         Payment is not considered confirmed until verification is completed.
     </div>
-
 </div>
-
 </body>
 </html>
