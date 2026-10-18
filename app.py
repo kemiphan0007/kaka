@@ -1,168 +1,112 @@
 import os
-import io
+import re
 import uuid
-from datetime import datetime, timezone
+import logging
+from decimal import Decimal, InvalidOperation
+from datetime import datetime
+from io import BytesIO
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
-from werkzeug.utils import secure_filename
-from flask import Flask, render_template, request, send_file
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
+from flask import (
+    Flask,
+    request,
+    render_template,
+    redirect,
+    url_for,
+    flash,
+    abort,
+)
 
 app = Flask(__name__)
-app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-this-secret")
+
+logging.basicConfig(level=logging.INFO)
 
 
-# ==========================================
-# DATABASE: SUPABASE POSTGRESQL
-# ==========================================
+# =========================================================
+# DATABASE
+# =========================================================
 
 def get_db():
-    database_url = os.environ.get("DATABASE_URL", "").strip()
+    database_url = os.environ.get("DATABASE_URL")
 
     if not database_url:
         raise RuntimeError(
-            "DATABASE_URL belum diatur di Vercel Environment Variables."
+            "Environment variable DATABASE_URL belum diatur."
         )
 
     return psycopg2.connect(
         database_url,
+        cursor_factory=RealDictCursor,
+        connect_timeout=10,
         sslmode="require",
-        connect_timeout=10
     )
 
 
-def init_db():
+def fetch_one(query, params=()):
     conn = get_db()
-
     try:
-        with conn:
-            with conn.cursor() as cur:
-                cur.execute("""
-                    CREATE TABLE IF NOT EXISTS orders (
-                        id BIGSERIAL PRIMARY KEY,
-                        order_number TEXT UNIQUE NOT NULL,
-                        name TEXT NOT NULL,
-                        email TEXT NOT NULL,
-                        address TEXT NOT NULL,
-                        package TEXT NOT NULL,
-                        price TEXT NOT NULL,
-                        status TEXT NOT NULL DEFAULT 'Pending Payment',
-                        payment_proof BYTEA,
-                        payment_proof_name TEXT,
-                        created_at TIMESTAMPTZ DEFAULT NOW()
-                    )
-                """)
-
-                # Menambahkan kolom untuk tabel versi lama.
-                cur.execute("""
-                    ALTER TABLE orders
-                    ADD COLUMN IF NOT EXISTS payment_proof BYTEA
-                """)
-
-                cur.execute("""
-                    ALTER TABLE orders
-                    ADD COLUMN IF NOT EXISTS payment_proof_name TEXT
-                """)
-
-                cur.execute("""
-                    ALTER TABLE orders
-                    ADD COLUMN IF NOT EXISTS created_at
-                    TIMESTAMPTZ DEFAULT NOW()
-                """)
-
-                cur.execute("""
-                    CREATE UNIQUE INDEX IF NOT EXISTS
-                    orders_order_number_idx
-                    ON orders(order_number)
-                """)
+        with conn.cursor() as cur:
+            cur.execute(query, params)
+            return cur.fetchone()
     finally:
         conn.close()
 
 
-# ==========================================
-# INVOICE PDF
-# ==========================================
-
-def create_invoice(
-    order_number, name, email, address,
-    package, price, status="Pending Payment"
-):
-    buffer = io.BytesIO()
-    pdf = canvas.Canvas(buffer, pagesize=A4)
-    width, height = A4
-
-    def line(y, text, font="Helvetica", size=10):
-        pdf.setFont(font, size)
-        pdf.drawString(
-            50, y,
-            str(text or "").replace("\n", " ")[:90]
-        )
-
-    line(height - 60, "KE-MIPHAN RESEARCH",
-         "Helvetica-Bold", 20)
-    line(height - 78, "Thailand")
-    line(height - 125, "INVOICE", "Helvetica-Bold", 18)
-    line(height - 145, f"Order #{order_number}")
-
-    line(height - 190, "BILL TO", "Helvetica-Bold", 11)
-    line(height - 208, name)
-    line(height - 224, email)
-    line(height - 240, address)
-
-    line(height - 285, "ORDER DETAILS", "Helvetica-Bold", 11)
-    line(height - 305, "Package")
-    line(height - 305, "Price")
-    pdf.line(50, height - 315, 545, height - 315)
-
-    line(height - 335, package)
-    line(height - 335, price)
-    pdf.line(50, height - 350, 545, height - 350)
-
-    line(height - 380, f"TOTAL: {price}",
-         "Helvetica-Bold", 12)
-
-    line(height - 430, "PAYMENT", "Helvetica-Bold", 11)
-    line(height - 450, "Bitcoin (BTC)")
-    line(height - 470, "Wallet Address",
-         "Helvetica-Bold", 9)
-    line(
-        height - 488,
-        "bc1qx8s2ch385tn3fm05elan67ahy0exj2t5z4y27p",
-        size=8
-    )
-    line(height - 515, f"Payment Status: {status}")
-
-    pdf.save()
-    buffer.seek(0)
-    return buffer
+def fetch_all(query, params=()):
+    conn = get_db()
+    try:
+        with conn.cursor() as cur:
+            cur.execute(query, params)
+            return cur.fetchall()
+    finally:
+        conn.close()
 
 
-# ==========================================
+def execute_query(query, params=()):
+    conn = get_db()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute(query, params)
+    finally:
+        conn.close()
+
+
+def parse_price(value):
+    """Mengubah '$4,650' menjadi Decimal('4650')."""
+    cleaned = re.sub(r"[^0-9.]", "", str(value or ""))
+
+    try:
+        amount = Decimal(cleaned)
+        if not amount.is_finite() or amount <= 0:
+            raise InvalidOperation
+        return amount
+    except (InvalidOperation, ValueError):
+        raise ValueError("Harga tidak valid.")
+
+
+# =========================================================
 # HOME & CHECKOUT
-# ==========================================
+# =========================================================
 
 @app.route("/")
-def home():
+def index():
     return render_template("index.html")
 
 
-@app.route("/checkout")
+@app.route("/checkout", methods=["GET", "POST"])
 def checkout():
-    package = request.args.get("package", "")
-    price = request.args.get("price", "")
+    if request.method == "POST":
+        return redirect(url_for("checkout"))
 
-    return render_template(
-        "checkout.html",
-        package=package,
-        price=price
-    )
+    return render_template("checkout.html")
 
 
-# ==========================================
-# CREATE ORDER
-# ==========================================
+# =========================================================
+# PLACE ORDER
+# =========================================================
 
 @app.route("/place-order", methods=["POST"])
 def place_order():
@@ -172,159 +116,241 @@ def place_order():
     package = (request.form.get("package") or "").strip()
     price = (request.form.get("price") or "").strip()
 
-    if not all([name, email, address, package, price]):
-        return "Semua data pesanan wajib diisi.", 400
+    try:
+        quantity = int(request.form.get("quantity") or "1")
+        total_amount = parse_price(price)
+
+        if quantity < 1:
+            raise ValueError("Jumlah minimal satu.")
+
+    except (ValueError, TypeError):
+        return "Jumlah atau harga pesanan tidak valid.", 400
+
+    if not all([name, email, address, package]):
+        return "Nama, email, alamat, dan paket wajib diisi.", 400
 
     order_number = (
         "SN-"
-        + datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+        + datetime.utcnow().strftime("%Y%m%d-%H%M%S")
         + "-"
         + uuid.uuid4().hex[:6].upper()
     )
 
     try:
-        init_db()
         conn = get_db()
 
         try:
             with conn:
                 with conn.cursor() as cur:
-                    cur.execute("""
-                        INSERT INTO orders (
-                            order_number, name, email,
-                            address, package, price, status
+                    cur.execute(
+                        """
+                        INSERT INTO public.orders (
+                            order_number,
+                            customer_name,
+                            customer_email,
+                            shipping_address,
+                            product_name,
+                            package_name,
+                            quantity,
+                            total_amount,
+                            payment_status,
+                            order_status,
+                            name,
+                            email,
+                            address,
+                            package,
+                            price,
+                            status
                         )
-                        VALUES (%s, %s, %s, %s, %s, %s, %s)
-                    """, (
-                        order_number,
-                        name,
-                        email,
-                        address,
-                        package,
-                        price,
-                        "Pending Payment"
-                    ))
+                        VALUES (
+                            %s, %s, %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s, %s, %s, %s
+                        )
+                        """,
+                        (
+                            order_number,
+                            name,
+                            email,
+                            address,
+                            "SR17018 Powder Product",
+                            package,
+                            quantity,
+                            total_amount,
+                            "pending",
+                            "order_placed",
+                            name,
+                            email,
+                            address,
+                            package,
+                            price,
+                            "Pending Payment",
+                        ),
+                    )
         finally:
             conn.close()
 
     except Exception:
-        app.logger.exception("Gagal menyimpan order")
-        return "Pesanan gagal disimpan. Silakan coba lagi.", 500
+        app.logger.exception(
+            "Gagal menyimpan order %s", order_number
+        )
+        return (
+            "Pesanan gagal disimpan. Silakan coba kembali.",
+            500,
+        )
 
     return render_template(
         "success.html",
+        order_number=order_number,
         name=name,
         email=email,
         address=address,
         package=package,
         price=price,
-        order_number=order_number
+        quantity=quantity,
     )
 
 
-# ==========================================
-# VIEW / DOWNLOAD INVOICE
-# ==========================================
+# =========================================================
+# INVOICE
+# =========================================================
 
 @app.route("/invoice/<order_number>")
-def view_invoice(order_number):
+def invoice(order_number):
     try:
-        init_db()
-        conn = get_db()
-
-        try:
-            with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                cur.execute("""
-                    SELECT order_number, name, email,
-                           address, package, price, status
-                    FROM orders
-                    WHERE order_number = %s
-                """, (order_number,))
-                order = cur.fetchone()
-        finally:
-            conn.close()
-
+        order = fetch_one(
+            """
+            SELECT *
+            FROM public.orders
+            WHERE order_number = %s
+            LIMIT 1
+            """,
+            (order_number,),
+        )
     except Exception:
         app.logger.exception("Gagal mengambil invoice")
-        return "Layanan invoice sedang bermasalah.", 500
+        return "Gagal mengambil data invoice.", 500
 
     if not order:
-        return "Invoice tidak ditemukan.", 404
+        abort(404)
 
-    pdf_file = create_invoice(
-        order["order_number"],
-        order["name"],
-        order["email"],
-        order["address"],
-        order["package"],
-        order["price"],
-        order["status"]
-    )
-
-    return send_file(
-        pdf_file,
-        mimetype="application/pdf",
-        as_attachment=False,
-        download_name=f"{order_number}.pdf"
-    )
+    return render_template("invoice.html", order=order)
 
 
-# ==========================================
-# UPLOAD PAYMENT PROOF
-# ==========================================
+# =========================================================
+# PAYMENT PAGE
+# =========================================================
 
-@app.route("/payment-proof", methods=["GET", "POST"])
+@app.route("/payment", methods=["GET", "POST"])
+def payment():
+    order_number = (
+        request.values.get("order_number") or ""
+    ).strip()
+
+    if not order_number:
+        return render_template("payment.html")
+
+    try:
+        order = fetch_one(
+            """
+            SELECT *
+            FROM public.orders
+            WHERE order_number = %s
+            LIMIT 1
+            """,
+            (order_number,),
+        )
+    except Exception:
+        app.logger.exception("Gagal mengambil data pembayaran")
+        return "Gagal mengambil data pembayaran.", 500
+
+    if not order:
+        abort(404)
+
+    return render_template("payment.html", order=order)
+
+
+# =========================================================
+# PAYMENT PROOF PAGE
+# =========================================================
+
+@app.route("/payment-proof/<order_number>", methods=["GET"])
+def payment_proof_page(order_number):
+    try:
+        order = fetch_one(
+            """
+            SELECT *
+            FROM public.orders
+            WHERE order_number = %s
+            LIMIT 1
+            """,
+            (order_number,),
+        )
+    except Exception:
+        app.logger.exception("Gagal mengambil pesanan")
+        return "Gagal mengambil pesanan.", 500
+
+    if not order:
+        abort(404)
+
+    return render_template("payment_proof.html", order=order)
+
+
+# =========================================================
+# SUBMIT PAYMENT PROOF
+# =========================================================
+
+@app.route("/payment-proof", methods=["POST"])
 def payment_proof():
-    if request.method == "GET":
-        return render_template("payment_proof.html")
-
     order_number = (
         request.form.get("order_number") or ""
     ).strip()
 
-    uploaded = request.files.get("payment_proof")
+    uploaded_file = request.files.get("payment_proof")
 
-    if not order_number or not uploaded:
-        return "Nomor order dan bukti pembayaran wajib diisi.", 400
+    if not order_number or not uploaded_file:
+        return "Nomor pesanan dan bukti pembayaran wajib diisi.", 400
 
-    if not uploaded.filename:
-        return "File tidak valid.", 400
+    if not uploaded_file.filename:
+        return "Pilih file bukti pembayaran.", 400
 
-    filename = secure_filename(uploaded.filename)
+    filename = os.path.basename(uploaded_file.filename)
+    extension = os.path.splitext(filename)[1].lower()
 
-    if not filename:
-        return "Nama file tidak valid.", 400
+    if extension not in {".jpg", ".jpeg", ".png", ".webp", ".pdf"}:
+        return "Format file tidak didukung.", 400
 
-    file_bytes = uploaded.read()
+    file_bytes = uploaded_file.read()
 
     if not file_bytes:
-        return "File kosong.", 400
+        return "File bukti pembayaran kosong.", 400
 
-    if len(file_bytes) > 8 * 1024 * 1024:
-        return "Ukuran file maksimal 8 MB.", 413
+    if len(file_bytes) > 5 * 1024 * 1024:
+        return "Ukuran file maksimal 5 MB.", 400
 
     try:
-        init_db()
+        # Mengasumsikan payment_proof bertipe BYTEA.
+        # Pastikan tipe kolom Supabase sesuai sebelum deploy.
         conn = get_db()
 
         try:
             with conn:
                 with conn.cursor() as cur:
-                    cur.execute("""
-                        UPDATE orders
+                    cur.execute(
+                        """
+                        UPDATE public.orders
                         SET payment_proof = %s,
-                            payment_proof_name = %s,
-                            status = %s
+                            payment_proof_name = %s
                         WHERE order_number = %s
-                    """, (
-                        psycopg2.Binary(file_bytes),
-                        filename,
-                        "Payment Verification",
-                        order_number
-                    ))
+                        """,
+                        (
+                            psycopg2.Binary(file_bytes),
+                            filename,
+                            order_number,
+                        ),
+                    )
 
                     if cur.rowcount == 0:
-                        return "Nomor order tidak ditemukan.", 404
+                        abort(404)
         finally:
             conn.close()
 
@@ -332,149 +358,149 @@ def payment_proof():
         app.logger.exception("Gagal menyimpan bukti pembayaran")
         return "Bukti pembayaran gagal disimpan.", 500
 
-    return "Bukti pembayaran berhasil dikirim."
-
-
-# ==========================================
-# VIEW PAYMENT PROOF
-# ==========================================
-
-@app.route("/payment-proof/<order_number>")
-def view_payment_proof(order_number):
-    try:
-        init_db()
-        conn = get_db()
-
-        try:
-            with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                cur.execute("""
-                    SELECT payment_proof, payment_proof_name
-                    FROM orders
-                    WHERE order_number = %s
-                """, (order_number,))
-                order = cur.fetchone()
-        finally:
-            conn.close()
-
-    except Exception:
-        app.logger.exception("Gagal mengambil bukti pembayaran")
-        return "Layanan bukti pembayaran sedang bermasalah.", 500
-
-    if not order or not order["payment_proof"]:
-        return "Bukti pembayaran tidak ditemukan.", 404
-
-    return send_file(
-        io.BytesIO(bytes(order["payment_proof"])),
-        mimetype="application/octet-stream",
-        as_attachment=True,
-        download_name=secure_filename(
-            order["payment_proof_name"] or "payment-proof"
-        )
+    flash("Bukti pembayaran berhasil dikirim.", "success")
+    return redirect(
+        url_for("invoice", order_number=order_number)
     )
 
 
-# ==========================================
-# ADMIN ORDERS
-# ==========================================
+# =========================================================
+# TRACK ORDER
+# =========================================================
 
-@app.route("/admin/orders")
-def admin_orders():
-    # Tambahkan autentikasi admin sebelum situs digunakan publik.
-    try:
-        init_db()
-        conn = get_db()
-
-        try:
-            with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                cur.execute("""
-                    SELECT * FROM orders
-                    ORDER BY id DESC
-                """)
-                orders = cur.fetchall()
-        finally:
-            conn.close()
-
-    except Exception:
-        app.logger.exception("Gagal mengambil daftar order")
-        return "Daftar pesanan sedang bermasalah.", 500
-
-    return render_template(
-        "admin_orders.html",
-        orders=orders
-    )
-
-
-# ==========================================
-# OTHER PAGES
-# ==========================================
-
-@app.route("/refund")
-def refund():
-    return render_template("refund.html")
-
-
-@app.route("/payment")
-def payment():
-    return render_template("payment.html")
-
-
-@app.route("/track-order")
+@app.route("/track-order", methods=["GET", "POST"])
 def track_order():
-    order_number = (
-        request.args.get("order_number") or ""
-    ).strip()
-
     order = None
+    searched = False
 
-    if order_number:
-        try:
-            init_db()
-            conn = get_db()
+    if request.method == "POST":
+        searched = True
+        order_number = (
+            request.form.get("order_number") or ""
+        ).strip()
 
+        if order_number:
             try:
-                with conn.cursor(cursor_factory=RealDictCursor) as cur:
-                    cur.execute("""
-                        SELECT * FROM orders
-                        WHERE order_number = %s
-                    """, (order_number,))
-                    order = cur.fetchone()
-            finally:
-                conn.close()
-
-        except Exception:
-            app.logger.exception("Gagal melacak order")
-            return "Pelacakan pesanan sedang bermasalah.", 500
+                order = fetch_one(
+                    """
+                    SELECT *
+                    FROM public.orders
+                    WHERE order_number = %s
+                    LIMIT 1
+                    """,
+                    (order_number,),
+                )
+            except Exception:
+                app.logger.exception("Gagal melacak pesanan")
+                return "Gagal melacak pesanan.", 500
 
     return render_template(
         "track_order.html",
-        order=order
+        order=order,
+        searched=searched,
     )
 
 
-# ==========================================
+# =========================================================
+# ADMIN ORDERS
+# =========================================================
+
+@app.route("/admin/orders")
+def admin_orders():
+    # Tambahkan autentikasi admin sebelum menggunakan route ini
+    # di website produksi.
+    try:
+        orders = fetch_all(
+            """
+            SELECT *
+            FROM public.orders
+            ORDER BY created_at DESC NULLS LAST
+            LIMIT 500
+            """
+        )
+    except Exception:
+        app.logger.exception("Gagal mengambil daftar pesanan")
+        return "Gagal mengambil daftar pesanan.", 500
+
+    return render_template("admin_orders.html", orders=orders)
+
+
+# =========================================================
+# REFUND
+# =========================================================
+
+@app.route("/refund", methods=["GET", "POST"])
+def refund():
+    if request.method == "POST":
+        order_number = (
+            request.form.get("order_number") or ""
+        ).strip()
+        reason = (request.form.get("reason") or "").strip()
+
+        if not order_number or not reason:
+            return "Nomor pesanan dan alasan refund wajib diisi.", 400
+
+        try:
+            order = fetch_one(
+                """
+                SELECT *
+                FROM public.orders
+                WHERE order_number = %s
+                LIMIT 1
+                """,
+                (order_number,),
+            )
+        except Exception:
+            app.logger.exception("Gagal memeriksa permintaan refund")
+            return "Gagal memeriksa pesanan.", 500
+
+        if not order:
+            return "Pesanan tidak ditemukan.", 404
+
+        # Belum mengubah status pesanan secara otomatis.
+        # Proses refund harus diverifikasi oleh admin.
+        return render_template(
+            "refund.html",
+            order=order,
+            reason=reason,
+            submitted=True,
+        )
+
+    return render_template("refund.html", submitted=False)
+
+
+# =========================================================
 # HEALTH CHECK
-# ==========================================
+# =========================================================
 
 @app.route("/health")
 def health():
     try:
-        conn = get_db()
-        conn.close()
-
-        return {
-            "status": "ok",
-            "database": "connected"
-        }, 200
-
+        fetch_one("SELECT 1 AS ok")
+        return {"status": "ok", "database": "connected"}, 200
     except Exception:
-        app.logger.exception("Health check gagal")
+        app.logger.exception("Health check database gagal")
+        return {"status": "error", "database": "unavailable"}, 500
 
-        return {
-            "status": "error",
-            "database": "unavailable"
-        }, 503
+
+# =========================================================
+# ERROR HANDLERS
+# =========================================================
+
+@app.errorhandler(404)
+def not_found(error):
+    return "Halaman atau pesanan tidak ditemukan.", 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    app.logger.exception("Internal server error")
+    return "Terjadi kesalahan pada server.", 500
 
 
 if __name__ == "__main__":
-    init_db()
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", "5000")),
+        debug=False,
+    )
