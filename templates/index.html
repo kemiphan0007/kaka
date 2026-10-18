@@ -790,7 +790,192 @@ if (option) {
         </div>
 
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - {{ order.order_number }}</title>
 
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: Arial, sans-serif;
+            color: #222;
+            background: #f4f4f4;
+        }
+
+        .invoice {
+            max-width: 700px;
+            margin: auto;
+            padding: 35px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.08);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 2px solid #222;
+            padding-bottom: 20px;
+        }
+
+        h1 { margin: 0 0 8px; }
+        .muted { color: #777; overflow-wrap: anywhere; }
+
+        .section { margin-top: 25px; }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .row span:last-child {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .invoice { box-shadow: none; padding: 0; }
+            .actions { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .invoice { padding: 22px; }
+            .top { flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="invoice">
+    <div class="top">
+        <div>
+            <h1>INVOICE</h1>
+            <div class="muted">Order confirmation</div>
+        </div>
+        <div>
+            <strong>Order Number</strong>
+            <div>{{ order.order_number }}</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Customer Details</h3>
+
+        <div class="row">
+            <span>Name</span>
+            <span>{{ order.customer_name or order.name or '-' }}</span>
+        </div>
+
+        <div class="row">
+            <span>Email</span>
+            <span>{{ order.customer_email or order.email or '-' }}</span>
+        </div>
+
+        <div class="row">
+            <span>Shipping Address</span>
+            <span>{{ order.shipping_address or order.address or '-' }}</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Order Details</h3>
+
+        <div class="row">
+            <span>Product</span>
+            <span>{{ order.product_name or 'SR17018 Powder Product' }}</span>
+        </div>
+
+        <div class="row">
+            <span>Package</span>
+            <span>{{ order.package_name or order.package or '-' }}</span>
+        </div>
+
+        <div class="row">
+            <span>Quantity</span>
+            <span>{{ order.quantity or 1 }}</span>
+        </div>
+
+        <div class="row total">
+            <span>Total</span>
+            <span>
+                {% if order.total_amount is defined and order.total_amount is not none %}
+                    {{ order.total_amount }}
+                {% else %}
+                    {{ order.price or '-' }}
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="row">
+            <span>Payment Status</span>
+            <span>{{ order.payment_status or order.status or 'Pending Payment' }}</span>
+        </div>
+
+        <div class="row">
+            <span>Order Status</span>
+            <span>{{ order.order_status or 'order_placed' }}</span>
+        </div>
+    </div>
+
+    <p class="muted">
+        Please keep this invoice for your records.
+        Payment is confirmed only after verification by our administration.
+    </p>
+
+    <div class="actions">
+        <button class="button" onclick="window.print()">Print / Save PDF</button>
+        <a class="button" href="/">Back to Store</a>
+        <a class="button"
+           href="{{ url_for('payment', order_number=order.order_number) }}">
+            Proceed to Payment
+        </a>
+    </div>
+</div>
+</body>
+</html>
 </footer>
 </body>
 </html>
