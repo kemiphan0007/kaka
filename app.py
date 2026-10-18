@@ -298,11 +298,11 @@ def payment_proof_page(order_number):
     if not order:
         abort(404)
 
-    return render_template(
-        "payment_verification.html",
-        order=order,
-        order_number=order_number,
-    )
+  return render_template(
+    "payment_proof.html",
+    order=order,
+    order_number=order_number,
+)
 
 
 @app.route("/payment-proof", methods=["GET", "POST"])
