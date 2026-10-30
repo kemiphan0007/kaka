@@ -6,9 +6,7 @@
     <title>Invoice - Ke-miphan Thailand</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -35,36 +33,12 @@
             border-bottom: 2px solid #222;
         }
 
-        .brand h1 {
-            margin: 0 0 8px;
-            font-size: 25px;
-        }
-
-        .brand p {
-            margin: 0;
-            color: #777;
-            font-size: 12px;
-        }
-
-        .invoice-title {
-            text-align: right;
-        }
-
-        .invoice-title h2 {
-            margin: 0 0 8px;
-            font-size: 27px;
-        }
-
-        .invoice-title p {
-            margin: 0;
-            color: #777;
-            font-size: 12px;
-        }
-
-        .section {
-            margin-top: 30px;
-        }
-
+        .brand h1 { margin: 0 0 8px; font-size: 25px; }
+        .brand p { margin: 0; color: #777; font-size: 12px; }
+        .invoice-title { text-align: right; }
+        .invoice-title h2 { margin: 0 0 8px; font-size: 27px; }
+        .invoice-title p { margin: 0; color: #777; font-size: 12px; }
+        .section { margin-top: 30px; }
         .section h3 {
             margin-bottom: 12px;
             font-size: 14px;
@@ -80,21 +54,9 @@
             font-size: 13px;
         }
 
-        .customer-info strong {
-            display: inline-block;
-            min-width: 115px;
-        }
-
-        .table-wrap {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-        }
-
+        .customer-info strong { display: inline-block; min-width: 115px; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
         th {
             padding: 13px 10px;
             background: #222;
@@ -102,17 +64,12 @@
             text-align: left;
             white-space: nowrap;
         }
-
         td {
             padding: 15px 10px;
             border-bottom: 1px solid #eee;
             vertical-align: top;
         }
-
-        .right {
-            text-align: right;
-            white-space: nowrap;
-        }
+        .right { text-align: right; white-space: nowrap; }
 
         .total-box {
             max-width: 350px;
@@ -152,27 +109,29 @@
 
         .actions {
             display: flex;
+            flex-wrap: wrap;
             gap: 12px;
             margin-top: 30px;
         }
 
         .button {
-            flex: 1;
+            flex: 1 1 180px;
             display: block;
             padding: 15px;
+            border: 0;
             border-radius: 7px;
             background: #222;
             color: white;
             text-decoration: none;
             text-align: center;
+            font-family: inherit;
             font-size: 13px;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        .button.secondary {
-            background: #eee;
-            color: #222;
-        }
+        .button.secondary { background: #eee; color: #222; }
+        .button.coa { background: #174ea6; color: #fff; }
 
         .footer {
             margin-top: 40px;
@@ -185,53 +144,30 @@
         }
 
         @media(max-width: 600px) {
-            .invoice {
-                padding: 22px 15px;
-            }
-
-            .invoice-header {
-                flex-direction: column;
-            }
-
-            .invoice-title {
-                text-align: left;
-            }
-
-            .actions {
-                flex-direction: column;
-            }
-
-            .customer-info strong {
-                min-width: 95px;
-            }
+            .invoice { padding: 22px 15px; }
+            .invoice-header { flex-direction: column; }
+            .invoice-title { text-align: left; }
+            .actions { flex-direction: column; }
+            .customer-info strong { min-width: 95px; }
+            .button { flex-basis: auto; width: 100%; }
         }
 
         @media print {
-            body {
-                padding: 0;
-                background: white;
-            }
-
+            body { padding: 0; background: white; }
             .invoice {
                 max-width: none;
                 margin: 0;
                 padding: 15px;
                 box-shadow: none;
             }
-
-            .actions {
-                display: none;
-            }
+            .actions { display: none; }
         }
     </style>
 </head>
 
 <body>
-
 <div class="invoice">
-
     <div class="invoice-header">
-
         <div class="brand">
             <h1>Ke-miphan</h1>
             <p>เคมีภัณฑ์ Thailand</p>
@@ -243,47 +179,22 @@
             <p>Order Number:</p>
             <strong>{{ order.order_number }}</strong>
         </div>
-
     </div>
 
     <div class="section">
-
         <h3>Customer Information</h3>
-
         <div class="customer-info">
-
-            <div>
-                <strong>Name:</strong>
-                {{ order.customer_name or order.name or '-' }}
-            </div>
-
-            <div>
-                <strong>Email:</strong>
-                {{ order.customer_email or order.email or '-' }}
-            </div>
-
-            <div>
-                <strong>Address:</strong>
-                {{ order.shipping_address or order.address or '-' }}
-            </div>
-
-            <div>
-                <strong>Order Date:</strong>
-                {{ order.created_at or '-' }}
-            </div>
-
+            <div><strong>Name:</strong> {{ order.customer_name or order.name or '-' }}</div>
+            <div><strong>Email:</strong> {{ order.customer_email or order.email or '-' }}</div>
+            <div><strong>Address:</strong> {{ order.shipping_address or order.address or '-' }}</div>
+            <div><strong>Order Date:</strong> {{ order.created_at or '-' }}</div>
         </div>
-
     </div>
 
     <div class="section">
-
         <h3>Order Details</h3>
-
         <div class="table-wrap">
-
             <table>
-
                 <thead>
                     <tr>
                         <th>Product</th>
@@ -293,102 +204,54 @@
                         <th class="right">Subtotal</th>
                     </tr>
                 </thead>
-
                 <tbody>
-
                     {% if items %}
-
                         {% for item in items %}
-
                         <tr>
                             <td>{{ item.product_name or '-' }}</td>
-
                             <td>{{ item.package_name or '-' }}</td>
-
-                            <td class="right">
-                                {{ item.quantity or 1 }}
-                            </td>
-
-                            <td class="right">
-                                ${{ "{:,.2f}".format(item.unit_price|float) }}
-                            </td>
-
-                            <td class="right">
-                                ${{ "{:,.2f}".format(item.subtotal|float) }}
-                            </td>
+                            <td class="right">{{ item.quantity or 1 }}</td>
+                            <td class="right">${{ "{:,.2f}".format(item.unit_price|float) }}</td>
+                            <td class="right">${{ "{:,.2f}".format(item.subtotal|float) }}</td>
                         </tr>
-
                         {% endfor %}
-
                     {% else %}
-
                         <tr>
                             <td>{{ order.product_name or 'Product' }}</td>
-
-                            <td>
-                                {{ order.package_name or order.package or '-' }}
-                            </td>
-
-                            <td class="right">
-                                {{ order.quantity or 1 }}
-                            </td>
-
-                            <td class="right">
-                                ${{ "{:,.2f}".format(
-                                    (order.price or order.total_amount)|float
-                                ) }}
-                            </td>
-
-                            <td class="right">
-                                ${{ "{:,.2f}".format(order.total_amount|float) }}
-                            </td>
+                            <td>{{ order.package_name or order.package or '-' }}</td>
+                            <td class="right">{{ order.quantity or 1 }}</td>
+                            <td class="right">${{ "{:,.2f}".format((order.price or order.total_amount)|float) }}</td>
+                            <td class="right">${{ "{:,.2f}".format(order.total_amount|float) }}</td>
                         </tr>
-
                     {% endif %}
-
                 </tbody>
-
             </table>
-
         </div>
-
     </div>
 
     <div class="total-box">
-
         <div class="total-line">
             <span>Payment Status</span>
-
-            <span class="status">
-                {{ order.payment_status or order.status or 'Pending' }}
-            </span>
+            <span class="status">{{ order.payment_status or order.status or 'Pending' }}</span>
         </div>
-
         <div class="grand-total">
             <span>TOTAL</span>
-
-            <span>
-                ${{ "{:,.2f}".format(order.total_amount|float) }}
-            </span>
+            <span>${{ "{:,.2f}".format(order.total_amount|float) }}</span>
         </div>
-
     </div>
 
     <div class="actions">
-
-        <a
-            href="{{ url_for('payment', order_number=order.order_number) }}"
-            class="button">
+        <a href="{{ url_for('payment', order_number=order.order_number) }}" class="button">
             PROCEED TO PAYMENT
         </a>
 
-        <button
-            type="button"
-            class="button secondary"
-            onclick="window.print()">
+        <a href="{{ url_for('coa', order_number=order.order_number) }}" class="button coa">
+            VIEW / DOWNLOAD COA
+        </a>
+
+        <button type="button" class="button secondary" onclick="window.print()">
             PRINT INVOICE
         </button>
-
     </div>
 
     <div class="footer">
@@ -396,8 +259,6 @@
         Ke-miphan (เคมีภัณฑ์) Thailand<br>
         Please keep this invoice for your records.
     </div>
-
 </div>
-
 </body>
 </html>
