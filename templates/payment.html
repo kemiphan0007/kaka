@@ -203,19 +203,20 @@
         }
 
         #qrcode {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px auto;
         }
 
         #qrcode img {
-        width: 280px;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 10px;
+            width: 280px;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
         }
+
         .qr-caption {
             color: #777;
             font-size: 12px;
@@ -410,12 +411,13 @@
         <div class="qr-section">
             <strong>SCAN TO PAY</strong>
 
-           <div id="qrcode">
-    <img
-        src="{{ url_for('static', filename='payment_codeqr.jpeg') }}"
-        alt="Bitcoin Payment QR Code"
-    >
-</div>
+            <div id="qrcode">
+                <img
+                    src="{{ url_for('static', filename='payment_codeqr.jpeg') }}"
+                    alt="Bitcoin Payment QR Code"
+                >
+            </div>
+
             <div class="qr-caption">
                 Scan to open the Bitcoin payment address in your wallet.
                 Enter the BTC equivalent of your USD invoice manually.
@@ -531,8 +533,6 @@
 
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <script>
     const btcAddress =
         "bc1qx8s2ch385tn3fm05elan67ahy0exj2t5z4y27p";
@@ -542,6 +542,7 @@
 
         function copied() {
             button.innerText = "COPIED";
+
             setTimeout(() => {
                 button.innerText = "COPY ADDRESS";
             }, 2000);
@@ -570,22 +571,6 @@
 
             document.body.removeChild(input);
         }
-    }
-
-    const qrContainer = document.getElementById("qrcode");
-
-    if (typeof QRCode !== "undefined") {
-        qrContainer.innerHTML = "";
-
-        new QRCode(qrContainer, {
-            text: "bitcoin:" + btcAddress,
-            width: 180,
-            height: 180,
-            correctLevel: QRCode.CorrectLevel.M
-        });
-    } else {
-        qrContainer.innerHTML =
-            '<span class="qr-caption">QR Code unavailable. Please copy the BTC address above.</span>';
     }
 </script>
 
