@@ -844,6 +844,7 @@ if (option) {
         <h3>
             R&amp;D System™ AT121
             <span class="new-product-badge">NEW PRODUCT</span>
+            <span class="limited-badge">LIMITED</span>
         </h3>
         <p class="description">R&amp;D System</p>
 
@@ -877,20 +878,23 @@ if (option) {
         </div>
     </div>
 
-    <div class="catalog-item">
-        <h3>Spatholobus littoralis Powder</h3>
+    <div class="catalog-item sold-out-product">
+        <h3>
+            Spatholobus littoralis Powder
+            <span class="sold-out-badge">SOLD OUT</span>
+        </h3>
         <p class="description">Flavonoids, saponins, tannins</p>
 
-        <div class="product-option">
+        <div class="product-option sold-out-option">
             <span>Sample · 100g</span>
             <strong>$250</strong>
-            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%20100g%20Sample&amp;price=250">ORDER NOW</a>
+            <span class="sold-out-label" aria-label="Sold out">SOLD OUT</span>
         </div>
 
-        <div class="product-option">
+        <div class="product-option sold-out-option">
             <span>Bulk · 1kg</span>
             <strong>$2,150</strong>
-            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%201kg%20Bulk&amp;price=2150">ORDER NOW</a>
+            <span class="sold-out-label" aria-label="Sold out">SOLD OUT</span>
         </div>
     </div>
 
@@ -969,6 +973,48 @@ if (option) {
     vertical-align: middle;
     white-space: nowrap;
 }
+
+.limited-badge,
+.sold-out-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.limited-badge {
+    background: #fff1dc;
+    color: #995800;
+}
+
+.sold-out-badge {
+    background: #fde8e8;
+    color: #b42323;
+}
+
+.sold-out-option {
+    color: #888;
+}
+
+.sold-out-label {
+    display: inline-block;
+    min-width: 94px;
+    padding: 10px 12px;
+    border: 1px solid #e5bcbc;
+    border-radius: 4px;
+    background: #f8eeee;
+    color: #a52b2b;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .7px;
+    text-align: center;
+    cursor: not-allowed;
+}
 .description {
     color: #777;
     font-size: 13px;
@@ -1013,7 +1059,9 @@ if (option) {
         text-align: center;
     }
 
-    .new-product-badge {
+    .new-product-badge,
+    .limited-badge,
+    .sold-out-badge {
         margin-left: 5px;
         padding: 4px 7px;
         font-size: 8px;
