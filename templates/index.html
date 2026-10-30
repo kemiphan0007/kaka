@@ -485,7 +485,33 @@ button, input { font: inherit; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
-  </style>
+  
+
+/* Kemiphan Molecular Signature — subtle decorative watermark */
+body { position: relative; isolation: isolate; }
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.052;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221100%22%20height%3D%22850%22%20viewBox%3D%220%200%201100%20850%22%20fill%3D%22none%22%3E%0A%3Cg%20stroke%3D%22%236EA8E8%22%20stroke-width%3D%221.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-opacity%3D%220.62%22%3E%0A%20%3Cpath%20d%3D%22M690%20120%20L770%2074%20L850%20120%20L850%20212%20L770%20258%20L690%20212%20Z%20M770%2074%20L770%2028%20M850%20120%20L920%2080%20M850%20212%20L920%20252%20M690%20212%20L620%20252%20M690%20120%20L620%2080%22%2F%3E%0A%20%3Cpath%20d%3D%22M770%2092%20L834%20129%20L834%20203%20L770%20240%20L706%20203%20L706%20129%20Z%22%20stroke-opacity%3D%22.36%22%2F%3E%0A%20%3Cpath%20d%3D%22M920%2080%20L1000%20126%20L1000%20218%20L920%20252%20M620%2080%20L540%20126%20L540%20218%20L620%20252%22%2F%3E%0A%20%3Cpath%20d%3D%22M260%20500%20L340%20454%20L420%20500%20L420%20592%20L340%20638%20L260%20592%20Z%20M340%20454%20L340%20390%20M420%20500%20L492%20458%20M420%20592%20L492%20634%20M260%20592%20L188%20634%20M260%20500%20L188%20458%22%2F%3E%0A%20%3Cpath%20d%3D%22M340%20472%20L404%20509%20L404%20583%20L340%20620%20L276%20583%20L276%20509%20Z%22%20stroke-opacity%3D%22.34%22%2F%3E%0A%20%3Cpath%20d%3D%22M492%20458%20L566%20500%20L566%20592%20L492%20634%20M188%20458%20L114%20500%20L114%20592%20L188%20634%22%2F%3E%0A%20%3Cpath%20d%3D%22M770%20258%20L770%20342%20L690%20388%20L610%20342%20M492%20634%20L492%20712%20L570%20758%22%2F%3E%0A%3C%2Fg%3E%0A%3Cg%20fill%3D%22%238FC5FF%22%20fill-opacity%3D%22.72%22%3E%0A%20%3Ccircle%20cx%3D%22770%22%20cy%3D%2228%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22920%22%20cy%3D%2280%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%221000%22%20cy%3D%22126%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%221000%22%20cy%3D%22218%22%20r%3D%223%22%2F%3E%0A%20%3Ccircle%20cx%3D%22540%22%20cy%3D%22126%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22540%22%20cy%3D%22218%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22610%22%20cy%3D%22342%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22690%22%20cy%3D%22388%22%20r%3D%223%22%2F%3E%0A%20%3Ccircle%20cx%3D%22340%22%20cy%3D%22390%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22492%22%20cy%3D%22458%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22566%22%20cy%3D%22500%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22566%22%20cy%3D%22592%22%20r%3D%223%22%2F%3E%0A%20%3Ccircle%20cx%3D%22114%22%20cy%3D%22500%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22114%22%20cy%3D%22592%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22188%22%20cy%3D%22634%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22570%22%20cy%3D%22758%22%20r%3D%223%22%2F%3E%0A%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right -70px top 8px;
+    background-size: min(88vw, 1040px) auto;
+    mix-blend-mode: multiply;
+}
+body > * { position: relative; z-index: 1; }
+@media (max-width: 700px) {
+    body::after {
+        opacity: 0.038;
+        background-position: right -180px top 90px;
+        background-size: 760px auto;
+    }
+}
+
+</style>
 </head>
 <body>
 <header class="site-header">
