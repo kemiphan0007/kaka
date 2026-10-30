@@ -1,348 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="theme-color" content="#080d19">
     <title>Refund & Returns - Ke-miphan Research Thailand</title>
 
     <style>
-
-        * {
-            box-sizing: border-box;
+        :root {
+            --ink: #111827;
+            --muted: #667085;
+            --blue: #285cff;
+            --blue-soft: #edf2ff;
+            --navy: #080d19;
+            --line: #e7ebf2;
+            --surface: #ffffff;
+            --page: #f4f6fb;
         }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f7f8fc, #eef1f7);
-            color: #171717;
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(40, 92, 255, .10), transparent 38rem),
+                var(--page);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .page {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 25px;
+        a { color: inherit; }
+
+        .topbar {
+            width: min(1180px, calc(100% - 48px));
+            height: 66px;
+            margin: 18px auto 0;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+            background: rgba(8, 13, 25, .96);
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 18px;
+            box-shadow: 0 16px 42px rgba(9, 18, 42, .16);
         }
+
+        .brand {
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .13em;
+        }
+
+        .brand span { color: #6f91ff; }
 
         .back-link {
-            display: inline-block;
-            margin-bottom: 60px;
-            color: #777;
-            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #c7d2e8;
             text-decoration: none;
+            font-size: 12px;
+            font-weight: 650;
+            transition: color .2s ease;
         }
 
-        .back-link:hover {
-            color: #111;
+        .back-link:hover { color: #fff; }
+
+        .page {
+            width: min(920px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 82px 0 34px;
         }
 
         .header {
+            max-width: 720px;
+            margin: 0 auto 42px;
             text-align: center;
-            margin-bottom: 70px;
         }
 
-        .label {
-            display: block;
-            margin-bottom: 15px;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            color: #999;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 20px;
+            color: #4168e8;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: #9bb0ff;
         }
 
         .header h1 {
-            margin: 0 0 18px;
-            font-size: 42px;
-            font-weight: 600;
-            letter-spacing: -1px;
+            margin: 0 0 17px;
+            color: #101828;
+            font-size: clamp(38px, 6vw, 58px);
+            line-height: 1.02;
+            letter-spacing: -.055em;
+            font-weight: 760;
         }
 
         .header p {
-            max-width: 600px;
+            max-width: 610px;
             margin: 0 auto;
-            color: #777;
+            color: #667085;
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .policy {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid #e5e5e5;
-            border-radius: 20px;
-            padding: 45px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+            padding: 12px 48px;
+            overflow: hidden;
+            background: rgba(255,255,255,.92);
+            border: 1px solid rgba(220, 226, 238, .95);
+            border-radius: 24px;
+            box-shadow: 0 24px 70px rgba(20, 35, 75, .07);
         }
 
         .policy-section {
-            padding: 0 0 35px;
-            margin-bottom: 35px;
-            border-bottom: 1px solid #e8e8e8;
+            position: relative;
+            padding: 31px 0 32px 54px;
+            border-bottom: 1px solid var(--line);
         }
 
         .policy-section:last-child {
-            padding-bottom: 0;
-            margin-bottom: 0;
-            border-bottom: none;
+            border-bottom: 0;
+        }
+
+        .section-number {
+            position: absolute;
+            top: 32px;
+            left: 0;
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            color: var(--blue);
+            background: var(--blue-soft);
+            border: 1px solid #dce5ff;
+            border-radius: 11px;
+            font-size: 11px;
+            font-weight: 800;
         }
 
         .policy-section h2 {
             margin: 0 0 12px;
-            font-size: 20px;
-            font-weight: 600;
+            color: #111827;
+            font-size: 18px;
+            line-height: 1.35;
+            font-weight: 750;
+            letter-spacing: -.02em;
         }
 
         .policy-section p {
             margin: 0;
-            color: #666;
+            color: #667085;
             font-size: 14px;
-            line-height: 1.8;
+            line-height: 1.85;
+        }
+
+        .policy-section p + p { margin-top: 13px; }
+
+        .policy-section strong {
+            color: #263a70;
+            font-weight: 750;
         }
 
         .policy-section ul {
-            margin: 15px 0 0;
-            padding-left: 20px;
-            color: #666;
+            margin: 14px 0 0;
+            padding: 0;
+            list-style: none;
         }
 
         .policy-section li {
-            margin-bottom: 8px;
+            position: relative;
+            margin: 9px 0;
+            padding-left: 23px;
+            color: #667085;
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.65;
+        }
+
+        .policy-section li::before {
+            content: "";
+            position: absolute;
+            top: .58em;
+            left: 2px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--blue);
+            box-shadow: 0 0 0 4px #edf2ff;
         }
 
         .highlight {
-            margin-top: 50px;
+            margin: 30px 0 18px;
             padding: 30px;
-            border-radius: 16px;
-            background: #f4f5f8;
             text-align: center;
+            border: 1px solid #dce5ff;
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at 100% 0%, rgba(75, 115, 255, .12), transparent 48%),
+                #f5f7ff;
+        }
+
+        .highlight-tag {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: #4168e8;
+            font-size: 9px;
+            font-weight: 850;
+            letter-spacing: .2em;
+            text-transform: uppercase;
         }
 
         .highlight h2 {
             margin: 0 0 10px;
-            font-size: 19px;
+            color: #111827;
+            font-size: 20px;
+            letter-spacing: -.025em;
         }
 
         .highlight p {
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto;
-            color: #777;
-            font-size: 14px;
-            line-height: 1.7;
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.8;
         }
 
+        .policy-contact { margin-top: 15px !important; }
+
+        .policy-contact a {
+            color: #285cff;
+            font-weight: 750;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        .policy-contact a:hover { text-decoration: underline; }
+
         .footer {
-            margin-top: 50px;
+            padding: 28px 0 10px;
             text-align: center;
-            color: #999;
-            font-size: 12px;
+            color: #98a2b3;
+            font-size: 11px;
+            letter-spacing: .02em;
         }
 
         @media (max-width: 700px) {
+            .topbar {
+                width: calc(100% - 28px);
+                height: 58px;
+                margin-top: 12px;
+                padding: 0 16px;
+                border-radius: 15px;
+            }
+
+            .brand { font-size: 11px; }
+            .back-link { font-size: 11px; }
 
             .page {
-                padding: 45px 18px;
+                width: calc(100% - 28px);
+                padding: 58px 0 24px;
             }
 
-            .back-link {
-                margin-bottom: 45px;
-            }
-
-            .header {
-                margin-bottom: 45px;
-            }
-
-            .header h1 {
-                font-size: 32px;
-            }
+            .header { margin-bottom: 30px; }
+            .header h1 { font-size: clamp(35px, 10vw, 44px); }
+            .header p { font-size: 13px; line-height: 1.75; }
 
             .policy {
-                padding: 30px 22px;
-                border-radius: 16px;
+                padding: 5px 22px;
+                border-radius: 19px;
             }
 
             .policy-section {
-                padding-bottom: 28px;
-                margin-bottom: 28px;
+                padding: 27px 0 28px 43px;
             }
 
+            .section-number {
+                top: 27px;
+                width: 29px;
+                height: 29px;
+                border-radius: 9px;
+                font-size: 10px;
+            }
+
+            .policy-section h2 { font-size: 16px; }
+            .policy-section p,
+            .policy-section li { font-size: 13px; }
+
+            .highlight {
+                margin: 23px 0 15px;
+                padding: 24px 18px;
+                border-radius: 15px;
+            }
+
+            .highlight h2 { font-size: 18px; }
+            .highlight p { font-size: 12px; }
         }
-        .policy-contact {
-    margin-top: 15px;
-    font-size: 13px;
-    color: #666;
-}
 
-.policy-contact a {
-    color: #222;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.policy-contact a:hover {
-    text-decoration: underline;
-}
-
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                transition-duration: .01ms !important;
+                animation-duration: .01ms !important;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="/">KE<span>·</span>MIPHAN</a>
+        <a href="/" class="back-link"><span aria-hidden="true">←</span> Back to Store</a>
+    </nav>
 
     <main class="page">
-
-        <a href="/" class="back-link">
-            ← Back to Store
-        </a>
-
         <header class="header">
-
-            <span class="label">
-                CUSTOMER POLICY
-            </span>
-
-            <h1>
-                Refund & Returns
-            </h1>
-
+            <span class="eyebrow">Customer Policy</span>
+            <h1>Refund &amp; Returns</h1>
             <p>
                 We want every order to arrive safely and exactly as expected.
                 If there is a problem with your order (product), our team is here to help.
             </p>
-
         </header>
 
-
-        <section class="policy">
-
-
+        <section class="policy" aria-label="Refund and returns policy">
             <div class="policy-section">
-
-                <h2>
-                    Damaged product
-                </h2>
-
+                <span class="section-number" aria-hidden="true">01</span>
+                <h2>Damaged product</h2>
                 <p>
                     If your product arrive damaged, please contact us within
                     <strong>48 hours of delivery</strong>.
                 </p>
-
-                <p style="margin-top: 15px;">
+                <p>
                     Please provide your order details along with clear photos
                     of the damaged product and packaging. We will review the claim
                     and, where applicable, arrange a replacement, refund, or
                     another appropriate resolution.
                 </p>
-
             </div>
 
-
             <div class="policy-section">
-
-                <h2>
-                    Incorrect Order
-                </h2>
-
+                <span class="section-number" aria-hidden="true">02</span>
+                <h2>Incorrect Order</h2>
                 <p>
                     If you receive an incorrect product or your order does not
                     match what you purchased, please contact us within
                     <strong>7 days of delivery</strong>.
                 </p>
-
-                <p style="margin-top: 15px;">
+                <p>
                     After reviewing the issue, we will arrange an appropriate
                     resolution.
                 </p>
-
             </div>
 
-
             <div class="policy-section">
-
-                <h2>
-                    Refunds
-                </h2>
-
+                <span class="section-number" aria-hidden="true">03</span>
+                <h2>Refunds</h2>
                 <p>
                     When a refund is approved, the refund will be issued to the
                     <strong>original payment method (Crypto method)</strong> used for the purchase.
                 </p>
-
-                <p style="margin-top: 15px;">
+                <p>
                     The time required for the refund to appear may vary depending
                     on the payment provider.
                 </p>
-
             </div>
 
-
             <div class="policy-section">
-
-                <h2>
-                    How to Contact Us
-                </h2>
-
+                <span class="section-number" aria-hidden="true">04</span>
+                <h2>How to Contact Us</h2>
                 <p>
                     When contacting our support team about an order issue,
                     please include:
                 </p>
-
                 <ul>
-
                     <li>Your order information</li>
-
                     <li>Your name and email address</li>
-
                     <li>A description of the issue</li>
-
-                    <li>
-                        Photos or other supporting information when applicable
-                    </li>
-
+                    <li>Photos or other supporting information when applicable</li>
                 </ul>
-
-                <p style="margin-top: 20px;">
+                <p>
                     We will review your request and get back to you as soon
                     as possible.
                 </p>
-
             </div>
 
-
             <div class="highlight">
-
-                <h2>
-                    Our Goal
-                </h2>
-
+                <span class="highlight-tag">Customer Care</span>
+                <h2>Our Goal</h2>
                 <p>
                     We carefully inspect and package every product before it
                     leaves our facility. If something goes wrong, please let us
                     know so we can help resolve the issue.
                 </p>
                 <p class="policy-contact">
-    For refund and return inquiries, please contact us at
-    <a href="mailto:support@kemiphan.com">
-        support@kemiphan.com
-</a>
-        Our support team is available 24/7 to assist you.
-</p>
-
+                    For refund and return inquiries, please contact us at
+                    <a href="mailto:support@kemiphan.com">support@kemiphan.com</a>.
+                    Our support team is available 24/7 to assist you.
+                </p>
             </div>
-
-
         </section>
 
-
-        <div class="footer">
-
+        <footer class="footer">
             © Ke-miphan (เคมีภัณฑ์) Thailand
-
-        </div>
-
+        </footer>
     </main>
-
 </body>
-
 </html>
