@@ -3,184 +3,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice - {{ order.order_number }}</title>
+    <title>Invoice - Ke-miphan Thailand</title>
 
     <style>
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
             padding: 30px 15px;
+            background: #f1f2f4;
             font-family: Arial, sans-serif;
             color: #222;
-            background: #f4f4f4;
         }
 
         .invoice {
-            max-width: 700px;
-            margin: auto;
-            padding: 35px;
-            background: white;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 40px;
+            background: #fff;
             border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0,0,0,.08);
+            box-shadow: 0 8px 30px rgba(0,0,0,.06);
         }
 
-        .top {
+        .invoice-header {
             display: flex;
             justify-content: space-between;
             gap: 20px;
+            padding-bottom: 25px;
             border-bottom: 2px solid #222;
-            padding-bottom: 20px;
         }
 
-        h1 { margin: 0 0 8px; }
-        .muted { color: #777; overflow-wrap: anywhere; }
+        .brand h1 {
+            margin: 0 0 8px;
+            font-size: 25px;
+        }
 
-        .section { margin-top: 25px; }
-        .row {
+        .brand p {
+            margin: 0;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .invoice-title {
+            text-align: right;
+        }
+
+        .invoice-title h2 {
+            margin: 0 0 8px;
+            font-size: 27px;
+        }
+
+        .invoice-title p {
+            margin: 0;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section h3 {
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .customer-info {
+            padding: 18px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            line-height: 1.8;
+            font-size: 13px;
+        }
+
+        .customer-info strong {
+            display: inline-block;
+            min-width: 115px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            padding: 13px 10px;
+            background: #222;
+            color: white;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .right {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .total-box {
+            max-width: 350px;
+            margin: 25px 0 0 auto;
+            padding: 20px;
+            background: #f7f7f7;
+            border-radius: 8px;
+        }
+
+        .total-line {
             display: flex;
             justify-content: space-between;
-            gap: 20px;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
+            gap: 15px;
+            margin-bottom: 12px;
+            font-size: 13px;
         }
 
-        .row span:last-child {
-            text-align: right;
-            overflow-wrap: anywhere;
-        }
-
-        .total {
-            font-size: 20px;
+        .grand-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ccc;
+            font-size: 19px;
             font-weight: bold;
-            border-bottom: 0;
         }
 
         .status {
             display: inline-block;
             padding: 7px 12px;
-            background: #f0f0f0;
-            border-radius: 20px;
-            font-size: 13px;
+            background: #fff3cd;
+            color: #856404;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .actions {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             margin-top: 30px;
         }
 
         .button {
-            display: inline-block;
-            padding: 12px 18px;
+            flex: 1;
+            display: block;
+            padding: 15px;
+            border-radius: 7px;
             background: #222;
             color: white;
             text-decoration: none;
-            border: 0;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .button.secondary {
+            background: #eee;
+            color: #222;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        @media(max-width: 600px) {
+            .invoice {
+                padding: 22px 15px;
+            }
+
+            .invoice-header {
+                flex-direction: column;
+            }
+
+            .invoice-title {
+                text-align: left;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .customer-info strong {
+                min-width: 95px;
+            }
         }
 
         @media print {
-            body { background: white; padding: 0; }
-            .invoice { box-shadow: none; padding: 0; }
-            .actions { display: none; }
-        }
+            body {
+                padding: 0;
+                background: white;
+            }
 
-        @media (max-width: 480px) {
-            .invoice { padding: 22px; }
-            .top { flex-direction: column; }
+            .invoice {
+                max-width: none;
+                margin: 0;
+                padding: 15px;
+                box-shadow: none;
+            }
+
+            .actions {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
+
 <div class="invoice">
-    <div class="top">
-        <div>
-            <h1>INVOICE</h1>
-            <div class="muted">Order confirmation</div>
+
+    <div class="invoice-header">
+
+        <div class="brand">
+            <h1>Ke-miphan</h1>
+            <p>เคมีภัณฑ์ Thailand</p>
+            <p>Official Order Invoice</p>
         </div>
-        <div>
-            <strong>Order Number</strong>
-            <div>{{ order.order_number }}</div>
+
+        <div class="invoice-title">
+            <h2>INVOICE</h2>
+            <p>Order Number:</p>
+            <strong>{{ order.order_number }}</strong>
         </div>
+
     </div>
 
     <div class="section">
-        <h3>Customer Details</h3>
 
-        <div class="row">
-            <span>Name</span>
-            <span>{{ order.customer_name or order.name or '-' }}</span>
+        <h3>Customer Information</h3>
+
+        <div class="customer-info">
+
+            <div>
+                <strong>Name:</strong>
+                {{ order.customer_name or order.name or '-' }}
+            </div>
+
+            <div>
+                <strong>Email:</strong>
+                {{ order.customer_email or order.email or '-' }}
+            </div>
+
+            <div>
+                <strong>Address:</strong>
+                {{ order.shipping_address or order.address or '-' }}
+            </div>
+
+            <div>
+                <strong>Order Date:</strong>
+                {{ order.created_at or '-' }}
+            </div>
+
         </div>
 
-        <div class="row">
-            <span>Email</span>
-            <span>{{ order.customer_email or order.email or '-' }}</span>
-        </div>
-
-        <div class="row">
-            <span>Shipping Address</span>
-            <span>{{ order.shipping_address or order.address or '-' }}</span>
-        </div>
     </div>
 
     <div class="section">
+
         <h3>Order Details</h3>
 
-        <div class="row">
-            <span>Product</span>
-            <span>{{ order.product_name or 'SR17018 Powder Product' }}</span>
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Package</th>
+                        <th class="right">Qty</th>
+                        <th class="right">Unit Price</th>
+                        <th class="right">Subtotal</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% if items %}
+
+                        {% for item in items %}
+
+                        <tr>
+                            <td>{{ item.product_name or '-' }}</td>
+
+                            <td>{{ item.package_name or '-' }}</td>
+
+                            <td class="right">
+                                {{ item.quantity or 1 }}
+                            </td>
+
+                            <td class="right">
+                                ${{ "{:,.2f}".format(item.unit_price|float) }}
+                            </td>
+
+                            <td class="right">
+                                ${{ "{:,.2f}".format(item.subtotal|float) }}
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+                            <td>{{ order.product_name or 'Product' }}</td>
+
+                            <td>
+                                {{ order.package_name or order.package or '-' }}
+                            </td>
+
+                            <td class="right">
+                                {{ order.quantity or 1 }}
+                            </td>
+
+                            <td class="right">
+                                ${{ "{:,.2f}".format(
+                                    (order.price or order.total_amount)|float
+                                ) }}
+                            </td>
+
+                            <td class="right">
+                                ${{ "{:,.2f}".format(order.total_amount|float) }}
+                            </td>
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
         </div>
 
-        <div class="row">
-            <span>Package</span>
-            <span>{{ order.package_name or order.package or '-' }}</span>
-        </div>
+    </div>
 
-        <div class="row">
-            <span>Quantity</span>
-            <span>{{ order.quantity or 1 }}</span>
-        </div>
+    <div class="total-box">
 
-        <div class="row total">
-            <span>Total</span>
-            <span>
-                {% if order.total_amount is defined and order.total_amount is not none %}
-                    {{ order.total_amount }}
-                {% else %}
-                    {{ order.price or '-' }}
-                {% endif %}
+        <div class="total-line">
+            <span>Payment Status</span>
+
+            <span class="status">
+                {{ order.payment_status or order.status or 'Pending' }}
             </span>
         </div>
 
-        <div class="row">
-            <span>Payment Status</span>
-            <span>{{ order.payment_status or order.status or 'Pending Payment' }}</span>
+        <div class="grand-total">
+            <span>TOTAL</span>
+
+            <span>
+                ${{ "{:,.2f}".format(order.total_amount|float) }}
+            </span>
         </div>
 
-        <div class="row">
-            <span>Order Status</span>
-            <span>{{ order.order_status or 'order_placed' }}</span>
-        </div>
     </div>
-
-    <p class="muted">
-        Please keep this invoice for your records.
-        Payment is confirmed only after verification by our administration.
-    </p>
 
     <div class="actions">
-        <button class="button" onclick="window.print()">Print / Save PDF</button>
-        <a class="button" href="/">Back to Store</a>
-        <a class="button"
-           href="{{ url_for('payment', order_number=order.order_number) }}">
-            Proceed to Payment
+
+        <a
+            href="{{ url_for('payment', order_number=order.order_number) }}"
+            class="button">
+            PROCEED TO PAYMENT
         </a>
+
+        <button
+            type="button"
+            class="button secondary"
+            onclick="window.print()">
+            PRINT INVOICE
+        </button>
+
     </div>
+
+    <div class="footer">
+        Thank you for your order.<br>
+        Ke-miphan (เคมีภัณฑ์) Thailand<br>
+        Please keep this invoice for your records.
+    </div>
+
 </div>
+
 </body>
 </html>
