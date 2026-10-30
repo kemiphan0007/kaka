@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -774,20 +774,20 @@ color: #222;
 
             <script>
                 function buyNow() {
-                
+
                     const selected = document.querySelector('input[name="package"]:checked');
-                
+
                     if (!selected) {
                         alert("Please select a package first.");
                         return;
                     }
-                
+
                     const option = selected.closest(".option");
-                
+
                     if (option) {
                         const title = option.querySelector("h2").innerText;
                         const price = option.querySelector(".price").innerText;
-                
+
                         alert("You selected: " + title + " — " + price);
                     }
                 }
@@ -859,7 +859,7 @@ if (option) {
         <div class="product-option">
             <span>Bulk · 1kg</span>
             <strong>$2,150</strong>
-            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%201kg%20Bulk&amp;price=2700">ORDER NOW</a>
+            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%201kg%20Bulk&amp;price=2150">ORDER NOW</a>
         </div>
     </div>
 
