@@ -43,15 +43,30 @@ ALLOWED_PROOF_EXTENSIONS = {
 # ============================================================
 
 PRODUCT_CATALOG = {
-    "R&D System AT121 - 10g Sample": {
-        "product_name": "R&D System™ AT121",
-        "package_name": "10g Sample",
-        "unit_price": Decimal("850"),
+    "R&D System PZM21 - 50g Bulk": {
+        "product_name": "R&D System™ PZM21",
+        "package_name": "50g Bulk",
+        "unit_price": Decimal("3700"),
     },
-    "R&D System AT121 - 100g Bulk": {
-        "product_name": "R&D System™ AT121",
+    "AT121 Research Chemical - 10g Sample": {
+        "product_name": "AT121 Research Chemical",
+        "package_name": "10g Sample",
+        "unit_price": Decimal("900"),
+    },
+    "AT121 Research Chemical - 50g Bulk": {
+        "product_name": "AT121 Research Chemical",
+        "package_name": "50g Bulk",
+        "unit_price": Decimal("4100"),
+    },
+    "AT121 Research Chemical - 100g Bulk": {
+        "product_name": "AT121 Research Chemical",
         "package_name": "100g Bulk",
-        "unit_price": Decimal("6800"),
+        "unit_price": Decimal("7000"),
+    },
+    "RO64-6198 Research Chemical - 50g Bulk": {
+        "product_name": "RO64-6198 Research Chemical",
+        "package_name": "50g Bulk",
+        "unit_price": Decimal("5600"),
     },
     "SR17018 - 50g Sample": {
         "product_name": "SR17018",
