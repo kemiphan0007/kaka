@@ -380,38 +380,51 @@ button, input { font: inherit; }
 .company-action.secondary:hover { color: var(--blue); border-color: var(--blue); background: #f7f9ff; }
 .company-disclaimer { max-width: 760px; margin: 20px auto 0; color: #929aaa; font-size: 10px; line-height: 1.7; text-align: center; }
 
-/* Support and shipping */
-.contact-section, .shipping-section { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 76px 24px; border-top: 1px solid var(--line); text-align: center; }
-.contact-content, .shipping-content { max-width: 900px; margin: 0 auto; }
-.contact-section h2, .shipping-section h2 { margin: 0 0 14px; color: var(--ink); font-size: clamp(30px, 4vw, 44px); font-weight: 560; letter-spacing: -.05em; }
-.contact-section p, .shipping-intro { max-width: 570px; margin: 0 auto 20px; color: var(--muted); font-size: 13px; line-height: 1.8; }
-.support-links { display: flex; justify-content: center; gap: 14px; margin-top: 34px; }
-.support-card {
-  width: 260px;
-  min-height: 126px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid #e5eaf3;
-  border-radius: 17px;
-  background: #fff;
-  text-align: left;
-  text-decoration: none;
-  box-shadow: 0 10px 30px rgba(12,24,48,.04);
-  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+/* Support and shipping — editorial premium treatment */
+.contact-section, .shipping-section {
+  position: relative; isolation: isolate; overflow: hidden;
+  width: min(1240px, calc(100% - 48px)); margin: 0 auto;
+  padding: clamp(64px, 8vw, 104px) clamp(22px, 5vw, 64px);
+  border-top: 1px solid rgba(15,23,42,.07);
 }
-.support-card:hover { transform: translateY(-4px); border-color: rgba(36,87,255,.4); box-shadow: 0 18px 40px rgba(12,24,48,.09); }
-.support-card span { color: var(--blue); font-size: 9px; font-weight: 800; letter-spacing: .15em; }
-.support-card strong { margin-top: 22px; color: var(--ink); font-size: 14px; font-weight: 650; }
-.shipping-section { padding-top: 70px; padding-bottom: 70px; }
-.shipping-intro { margin-bottom: 35px; }
-.shipping-features { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; text-align: center; }
-.shipping-item { padding: 20px 12px; border: 1px solid #e7ebf3; border-radius: 15px; background: #fff; }
-.shipping-item strong { display: block; margin-bottom: 8px; color: #182033; font-size: 12px; }
-.shipping-item span { display: block; color: #788295; font-size: 11px; line-height: 1.6; }
-.shipping-note { margin-top: 24px; color: #929aaa; font-size: 10px; }
-
+.contact-section::before, .shipping-section::before {
+  content: ""; position: absolute; z-index: -1; inset: 0;
+  background: radial-gradient(circle at 85% 18%, rgba(53,104,255,.09), transparent 29%),
+              radial-gradient(circle at 8% 90%, rgba(53,104,255,.055), transparent 28%);
+  pointer-events: none;
+}
+.contact-content { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); align-items: center; gap: clamp(32px,6vw,82px); max-width: 1080px; margin: 0 auto; }
+.contact-copy { text-align: left; }
+.contact-label, .shipping-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; color: var(--blue); font-size: 10px; font-weight: 850; letter-spacing: .2em; }
+.contact-label::before, .shipping-label::before { content: ""; width: 22px; height: 1px; background: var(--blue); }
+.contact-section h2, .shipping-section h2 { margin: 0 0 16px; color: var(--ink); font-size: clamp(34px, 4.6vw, 56px); font-weight: 590; line-height: 1.04; letter-spacing: -.06em; }
+.contact-section .contact-copy p, .shipping-intro { max-width: 470px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.9; }
+.support-links { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.support-card { position: relative; min-height: 205px; padding: 25px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; overflow: hidden; border: 1px solid rgba(222,229,241,.95); border-radius: 22px; background: rgba(255,255,255,.88); text-align: left; text-decoration: none; box-shadow: 0 18px 55px rgba(12,24,48,.055); transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.support-card::after { content: ""; position: absolute; width: 150px; height: 150px; right: -65px; bottom: -75px; border: 1px solid rgba(36,87,255,.12); border-radius: 50%; box-shadow: 0 0 0 18px rgba(36,87,255,.025), 0 0 0 38px rgba(36,87,255,.018); }
+.support-card:hover { transform: translateY(-5px); border-color: rgba(36,87,255,.42); box-shadow: 0 24px 58px rgba(12,24,48,.10); }
+.support-icon { width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid #e4eaff; border-radius: 14px; color: var(--blue); background: #f3f6ff; }
+.support-card span { margin-top: 20px; color: var(--blue); font-size: 9px; font-weight: 850; letter-spacing: .16em; }
+.support-card strong { margin-top: 9px; color: var(--ink); font-size: 16px; font-weight: 700; letter-spacing: -.02em; }
+.support-arrow { position: absolute; right: 23px; bottom: 24px; color: var(--blue); font-size: 20px; transition: transform .25s ease; }
+.support-card:hover .support-arrow { transform: translate(3px,-3px); }
+.shipping-section { width: 100%; max-width: none; padding: clamp(68px,8vw,100px) max(24px,calc((100% - 1120px)/2)); background: #f0f4fb; }
+.shipping-content { max-width: 1120px; margin: 0 auto; }
+.shipping-heading { display: grid; grid-template-columns: 1fr minmax(220px,.7fr); align-items: end; gap: 30px; margin-bottom: 36px; }
+.shipping-intro { justify-self: end; max-width: 390px; padding-bottom: 5px; }
+.shipping-visual { position: relative; display: grid; grid-template-columns: minmax(0,1.15fr) minmax(280px,.85fr); align-items: center; gap: 28px; min-height: 250px; margin-bottom: 18px; padding: 26px 34px; overflow: hidden; border: 1px solid rgba(213,222,239,.9); border-radius: 26px; background: linear-gradient(112deg,#081226 0%,#101e3c 58%,#0b1530 100%); box-shadow: 0 24px 65px rgba(10,24,52,.13); }
+.shipping-visual::after { content: ""; position: absolute; inset: 0; opacity: .25; background-image: linear-gradient(rgba(130,160,230,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(130,160,230,.08) 1px,transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(90deg,transparent,#000 45%,#000); pointer-events: none; }
+.shipping-visual-copy { position: relative; z-index: 1; color: #fff; }
+.shipping-kicker { display: block; margin-bottom: 12px; color: #91aaff; font-size: 9px; font-weight: 800; letter-spacing: .2em; }
+.shipping-visual-copy strong { display: block; max-width: 380px; font-size: clamp(23px,3vw,34px); line-height: 1.15; letter-spacing: -.045em; }
+.shipping-visual-copy span:last-child { display: block; margin-top: 12px; color: rgba(235,241,255,.65); font-size: 11px; line-height: 1.7; }
+.globe-art { position: relative; z-index: 1; width: 100%; max-width: 390px; justify-self: center; }
+.shipping-features { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.shipping-item { min-height: 145px; padding: 20px 17px; border: 1px solid #e2e8f2; border-radius: 18px; background: rgba(255,255,255,.92); box-shadow: 0 10px 28px rgba(12,24,48,.035); }
+.shipping-item-icon { width: 35px; height: 35px; display: grid; place-items: center; margin-bottom: 17px; border-radius: 11px; color: var(--blue); background: #eef3ff; }
+.shipping-item strong { display: block; margin-bottom: 7px; color: #182033; font-size: 12px; line-height: 1.4; }
+.shipping-item span { display: block; color: #788295; font-size: 10px; line-height: 1.65; }
+.shipping-note { margin: 18px 0 0; color: #8993a5; font-size: 10px; line-height: 1.7; text-align: right; }
 /* Footer */
 .site-footer { margin-top: 40px; padding: 42px 24px; color: rgba(255,255,255,.65); background: #080c15; }
 .footer-content { width: min(1120px, 100%); margin: 0 auto; text-align: center; }
@@ -461,7 +474,7 @@ button, input { font: inherit; }
   .option h2 { font-size: 12px; }
   .option p { font-size: 10px; }
   .buy-button { min-height: 50px; }
-  .product-catalog, .company-identity, .contact-section, .shipping-section { width: calc(100% - 32px); }
+  .product-catalog, .company-identity, .contact-section { width: calc(100% - 32px); }
   .product-catalog { margin: 72px auto; }
   .catalog-item { padding: 23px 16px; }
   .catalog-item h3 { font-size: 17px; line-height: 1.5; }
@@ -469,11 +482,21 @@ button, input { font: inherit; }
   .product-option a, .sold-out-label { grid-column: 1 / -1; width: 100%; }
   .company-identity { margin-bottom: 70px; }
   .company-details { grid-template-columns: 1fr; }
-  .company-actions, .support-links { flex-direction: column; align-items: stretch; }
-  .company-action, .support-card { width: 100%; }
-  .support-card { min-height: 108px; }
+  .company-actions { flex-direction: column; align-items: stretch; }
+  .company-action { width: 100%; }
+  .contact-content { grid-template-columns: 1fr; gap: 28px; }
+  .contact-copy { text-align: center; }
+  .contact-label { justify-content: center; }
+  .contact-section .contact-copy p { margin-inline: auto; }
+  .support-card { min-height: 175px; padding: 19px; }
+  .shipping-section { padding: 58px 16px; }
+  .shipping-heading { grid-template-columns: 1fr; gap: 12px; text-align: center; }
+  .shipping-heading .shipping-label { justify-content: center; }
+  .shipping-intro { justify-self: center; text-align: center; }
+  .shipping-visual { grid-template-columns: 1fr; gap: 8px; padding: 25px 22px 12px; }
+  .globe-art { max-width: 300px; }
   .shipping-features { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .contact-section, .shipping-section { padding: 58px 8px; }
+  .shipping-note { text-align: center; }
   .footer-links { flex-wrap: wrap; gap: 14px 20px; }
 }
 @media (max-width: 380px) {
@@ -1143,104 +1166,82 @@ if (option) {
 
 </section>
 
-<section class="contact-section">
-
+<section class="contact-section" aria-labelledby="support-heading">
     <div class="contact-content">
-
-        <span class="contact-label">
-            CUSTOMER SUPPORT
-        </span>
-
-        <h2>
-            We're Here to Help.
-        </h2>
-
-        <p>
-            Have a question about your order or otherwise?
-            <br>
-            Our customer service team is available online 24 hours a day.
-        </p>
-
+        <div class="contact-copy">
+            <span class="contact-label">CUSTOMER SUPPORT</span>
+            <h2 id="support-heading">We're Here to Help.</h2>
+            <p>Have a question about your order or otherwise?<br>Our customer service team is available online 24 hours a day.</p>
+        </div>
         <div class="support-links">
-
             <a href="/refund" class="support-card">
-
-                <span>
-                    REFUND & RETURNS
+                <span class="support-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>
                 </span>
-
-                <strong>
-                    View our policy →
-                </strong>
-
+                <span>REFUND &amp; RETURNS</span>
+                <strong>View our policy</strong>
+                <b class="support-arrow" aria-hidden="true">↗</b>
             </a>
-
-
             <a href="/payment" class="support-card">
-
-                <span>
-                    PAYMENT METHOD
+                <span class="support-icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h3"/></svg>
                 </span>
-
-                <strong>
-                    Bitcoin (BTC) →
-                </strong>
-
+                <span>PAYMENT METHOD</span>
+                <strong>Bitcoin (BTC)</strong>
+                <b class="support-arrow" aria-hidden="true">↗</b>
             </a>
+        </div>
+    </div>
+</section>
 
+<section class="shipping-section" aria-labelledby="shipping-heading">
+    <div class="shipping-content">
+        <div class="shipping-heading">
+            <div>
+                <span class="shipping-label">INTERNATIONAL SHIPPING</span>
+                <h2 id="shipping-heading">Delivered Worldwide.</h2>
+            </div>
+            <p class="shipping-intro">Every order is carefully packed and shipped through DHL Express by air.</p>
         </div>
 
-    </div>
-
-</section>
-<section class="shipping-section">
-
-    <div class="shipping-content">
-
-        <span class="shipping-label">
-            INTERNATIONAL SHIPPING
-        </span>
-
-        <h2>
-            Delivered Worldwide.
-        </h2>
-
-        <p class="shipping-intro">
-            Every order is carefully packed and shipped
-            through DHL Express by air.
-        </p>
+        <div class="shipping-visual">
+            <div class="shipping-visual-copy">
+                <span class="shipping-kicker">GLOBAL DELIVERY NETWORK</span>
+                <strong>From our store to your destination.</strong>
+                <span>International air delivery with DHL Express tracking.</span>
+            </div>
+            <svg class="globe-art" viewBox="0 0 420 220" role="img" aria-label="Stylized globe with international shipping route">
+                <defs><linearGradient id="globeStroke" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9db5ff"/><stop offset="1" stop-color="#3568ff"/></linearGradient><radialGradient id="globeFill"><stop offset="0" stop-color="#3568ff" stop-opacity=".22"/><stop offset="1" stop-color="#3568ff" stop-opacity=".015"/></radialGradient></defs>
+                <circle cx="210" cy="110" r="91" fill="url(#globeFill)" stroke="url(#globeStroke)" stroke-opacity=".65" stroke-width="1.2"/>
+                <ellipse cx="210" cy="110" rx="42" ry="91" fill="none" stroke="#91aaff" stroke-opacity=".42"/>
+                <ellipse cx="210" cy="110" rx="75" ry="91" fill="none" stroke="#91aaff" stroke-opacity=".25"/>
+                <path d="M120 110h180M137 70h146M137 150h146" stroke="#91aaff" stroke-opacity=".35" fill="none"/>
+                <path d="M91 143C145 20 256 23 324 91" stroke="#6e95ff" stroke-width="2" stroke-dasharray="5 6" fill="none"/>
+                <circle cx="91" cy="143" r="5" fill="#fff" stroke="#6e95ff" stroke-width="3"/><circle cx="324" cy="91" r="5" fill="#fff" stroke="#6e95ff" stroke-width="3"/>
+                <path d="m314 81 10 10-13 2" fill="none" stroke="#9db5ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
 
         <div class="shipping-features">
-
             <div class="shipping-item">
-                <strong>DHL Express</strong>
-                <span>Air delivery with tracking</span>
+                <span class="shipping-item-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v11H3zM14 11h4l3 3v4h-7z"/><circle cx="7.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></span>
+                <strong>DHL Express</strong><span>Air delivery with tracking</span>
             </div>
-
             <div class="shipping-item">
-                <strong>Up to 5 Business Days*</strong>
-                <span>Estimated international delivery</span>
+                <span class="shipping-item-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <strong>Up to 5 Business Days*</strong><span>Estimated international delivery</span>
             </div>
-
             <div class="shipping-item">
-                <strong>Shipping Covered</strong>
-                <span>Shipping costs are covered by us</span>
+                <span class="shipping-item-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span>
+                <strong>Shipping Covered</strong><span>Shipping costs are covered by us</span>
             </div>
-
             <div class="shipping-item">
-                <strong>Duties & Taxes Covered</strong>
-                <span>Covered by our store</span>
+                <span class="shipping-item-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v13H4zM8 7V4h8v3M8 12h8M8 16h5"/></svg></span>
+                <strong>Duties &amp; Taxes Covered</strong><span>Covered by our store</span>
             </div>
-
         </div>
-
-        <p class="shipping-note">
-            *Estimated delivery time may vary depending on destination
-            and customs clearance.
-        </p>
-
+        <p class="shipping-note">*Estimated delivery time may vary depending on destination and customs clearance.</p>
     </div>
-
 </section>
 <footer class="site-footer">
 
