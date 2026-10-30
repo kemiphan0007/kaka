@@ -43,6 +43,16 @@ ALLOWED_PROOF_EXTENSIONS = {
 # ============================================================
 
 PRODUCT_CATALOG = {
+    "R&D System AT121 - 10g Sample": {
+        "product_name": "R&D System™ AT121",
+        "package_name": "10g Sample",
+        "unit_price": Decimal("850"),
+    },
+    "R&D System AT121 - 1kg Bulk": {
+        "product_name": "R&D System™ AT121",
+        "package_name": "1kg Bulk",
+        "unit_price": Decimal("6800"),
+    },
     "SR17018 - 50g Sample": {
         "product_name": "SR17018",
         "package_name": "50g Sample",
@@ -62,16 +72,6 @@ PRODUCT_CATALOG = {
         "product_name": "Moringa Powder",
         "package_name": "1kg Bulk",
         "unit_price": Decimal("750"),
-    },
-    "Spatholobus littoralis Powder - 100g Sample": {
-        "product_name": "Spatholobus littoralis Powder",
-        "package_name": "100g Sample",
-        "unit_price": Decimal("250"),
-    },
-    "Spatholobus littoralis Powder - 1kg Bulk": {
-        "product_name": "Spatholobus littoralis Powder",
-        "package_name": "1kg Bulk",
-        "unit_price": Decimal("2150"),
     },
     "MIT 88% Alkaloids 97% - 100g Sample": {
         "product_name": "MIT 88% Alkaloids 97%",
