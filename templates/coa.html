@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Specification Record | Kemiphan</title>
+  <style>
+    :root { --navy:#101d35; --blue:#245cff; --muted:#68758b; --line:#dce4ef; --pale:#f3f6fb; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:#edf1f7; color:#172238; font-family:Arial,Helvetica,sans-serif; }
+    .toolbar { max-width:900px; margin:24px auto 12px; display:flex; justify-content:flex-end; gap:10px; padding:0 18px; }
+    .toolbar button { border:0; border-radius:999px; padding:12px 20px; background:var(--navy); color:white; font-weight:700; cursor:pointer; }
+    .toolbar a { color:var(--navy); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:11px 18px; background:white; font-weight:700; }
+    .sheet { width:min(900px, calc(100% - 36px)); margin:0 auto 36px; background:white; padding:54px 62px 48px; border:1px solid #e6ebf3; box-shadow:0 18px 60px rgba(24,42,72,.09); position:relative; overflow:hidden; }
+    .topline { height:5px; background:linear-gradient(90deg,var(--blue),#7da2ff); margin-bottom:28px; }
+    .brand { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; padding-bottom:24px; }
+    .brand-name { color:var(--navy); font-size:27px; letter-spacing:2px; font-weight:800; }
+    .brand-kicker { color:var(--blue); font-size:10px; letter-spacing:2px; font-weight:800; margin-top:7px; }
+    .brand-note { max-width:300px; text-align:right; color:var(--muted); font-size:11px; line-height:1.6; }
+    h1 { text-align:center; margin:12px 0 7px; font-size:25px; letter-spacing:1.5px; color:var(--navy); }
+    .subtitle { text-align:center; color:var(--muted); font-size:11px; letter-spacing:1.2px; margin-bottom:30px; }
+    .meta { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:28px; }
+    .meta-card { background:var(--pale); border:1px solid #e4eaf4; border-radius:10px; padding:14px 16px; min-height:66px; }
+    .label { color:#8290a5; font-size:9px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; margin-bottom:7px; }
+    .value { color:#1b2940; font-size:13px; font-weight:700; overflow-wrap:anywhere; }
+    h2 { font-size:14px; color:var(--navy); margin:26px 0 9px; }
+    .intro { color:#56647a; font-size:12px; line-height:1.65; margin:0 0 18px; }
+    table { width:100%; border-collapse:collapse; font-size:12px; }
+    th { background:#eaf0ff; color:#1d376f; text-align:left; font-size:10px; letter-spacing:.7px; text-transform:uppercase; padding:12px 10px; border:1px solid #d6e0f3; }
+    td { padding:13px 10px; border:1px solid var(--line); vertical-align:top; }
+    .notice { margin-top:22px; padding:14px 16px; border-left:3px solid var(--blue); background:#f5f8ff; color:#53627a; font-size:10px; line-height:1.65; }
+    .footer { display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-top:44px; padding-top:18px; border-top:1px solid var(--line); }
+    .footer strong { color:var(--navy); font-size:12px; }
+    .footer small { display:block; color:var(--muted); font-size:9px; line-height:1.6; margin-top:5px; }
+    .doc-id { text-align:right; color:var(--muted); font-size:9px; line-height:1.7; }
+    @media (max-width:640px) { .sheet{padding:30px 20px}.brand{display:block}.brand-note{text-align:left;margin-top:12px}.meta{grid-template-columns:1fr}.footer{display:block}.doc-id{text-align:left;margin-top:16px}table{font-size:10px}th,td{padding:9px 7px} }
+    @page { size:A4; margin:14mm; }
+    @media print { body{background:white}.toolbar{display:none}.sheet{width:100%;margin:0;padding:8mm 7mm;border:0;box-shadow:none}.meta-card{break-inside:avoid}table{break-inside:auto}tr{break-inside:avoid;break-after:auto}.notice{break-inside:avoid} }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <a href="{{ url_for('invoice', order_number=order.order_number) }}">Back to Invoice</a>
+    <button type="button" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+  <main class="sheet">
+    <div class="topline"></div>
+    <header class="brand">
+      <div>
+        <div class="brand-name">KEMIPHAN</div>
+        <div class="brand-kicker">PRODUCT DOCUMENTATION</div>
+      </div>
+      <div class="brand-note">Company-issued product specification record<br>Generated from the order details recorded by Kemiphan</div>
+    </header>
+    <h1>PRODUCT SPECIFICATION RECORD</h1>
+    <div class="subtitle">COA-STYLE DOCUMENT · SELLER-DECLARED SPECIFICATIONS</div>
+    <section class="meta">
+      <div class="meta-card"><div class="label">Document Date</div><div class="value">{{ document_date }}</div></div>
+      <div class="meta-card"><div class="label">Order Number</div><div class="value">{{ order.order_number }}</div></div>
+      <div class="meta-card"><div class="label">Customer</div><div class="value">{{ order.customer_name or order.name or 'Customer' }}</div></div>
+      <div class="meta-card"><div class="label">Document Issuer</div><div class="value">Kemiphan</div></div>
+    </section>
+    <h2>Analysis / Specification Summary</h2>
+    <p class="intro">The following product names and declared specification values are associated with the items recorded in this order.</p>
+    <table>
+      <thead><tr><th style="width:39%">Analyte / Product</th><th style="width:25%">Package</th><th style="width:12%">Qty</th><th style="width:24%">Declared Value</th></tr></thead>
+      <tbody>
+        {% for item in coa_items %}
+        <tr>
+          <td>{{ item.analyte }}</td>
+          <td>{{ item.package_name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{% if item.declared_value %}{{ item.declared_value }}{% else %}Not provided{% endif %}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="notice"><strong>Important disclosure:</strong> Values shown in this document are specifications declared by the seller and supplied for product information. They are not represented as independent laboratory measurements, HPLC results, or certification by a third-party laboratory. No third-party laboratory signature, stamp, or accreditation is implied.</div>
+    <footer class="footer">
+      <div><strong>KEMIPHAN</strong><small>Product Documentation<br>Document date: {{ document_date }}</small></div>
+      <div class="doc-id">ORDER REFERENCE<br><strong>{{ order.order_number }}</strong><br>Generated electronically</div>
+    </footer>
+  </main>
+</body>
+</html>
