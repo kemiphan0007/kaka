@@ -117,8 +117,6 @@ PRODUCT_CATALOG = {
 # bukan hasil uji laboratorium independen.
 # ============================================================
 
-COA_DOCUMENT_DATE = "29 October 2026"
-
 COA_SPECIFICATIONS = {
     "R&D System™ PZM21": "99.4%",
     "AT121 Research Chemical": "99.63%",
@@ -684,11 +682,38 @@ def coa(order_number):
             "declared_value": COA_SPECIFICATIONS.get(product_name),
         })
 
+    # Use the order creation date so the document date always matches
+    # the customer's actual order, rather than a fixed hard-coded date.
+    order_date = order.get("created_at") or order.get("order_date") or order.get("date")
+    parsed_date = None
+
+    if isinstance(order_date, datetime):
+        parsed_date = order_date
+    elif order_date:
+        try:
+            parsed_date = datetime.fromisoformat(str(order_date).replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            try:
+                parsed_date = datetime.strptime(str(order_date)[:10], "%Y-%m-%d")
+            except (TypeError, ValueError):
+                parsed_date = None
+
+    # Older records may not have a populated created_at value.
+    if parsed_date is None:
+        match = re.match(r"SN-(\\d{8})-", str(order_number))
+        if match:
+            try:
+                parsed_date = datetime.strptime(match.group(1), "%Y%m%d")
+            except ValueError:
+                parsed_date = None
+
+    document_date = parsed_date.strftime("%d %B %Y") if parsed_date else "Date not available"
+
     return render_template(
         "coa.html",
         order=order,
         coa_items=coa_items,
-        document_date=COA_DOCUMENT_DATE,
+        document_date=document_date,
     )
 
 
