@@ -1,157 +1,341 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Order Received</title>
+    <title>Order Successful | Kemiphan</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #171717;
+            padding: 30px 16px;
+            background: #f5f7f6;
+            color: #26332d;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .container {
-            max-width: 600px;
-            margin: 80px auto;
-            padding: 20px;
+            max-width: 760px;
+            margin: 0 auto;
         }
 
-        .success-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            background: #e5f5eb;
+            color: #168447;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .header {
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 28px;
         }
 
         h1 {
-            margin-bottom: 15px;
+            margin: 0 0 10px;
+            font-size: 26px;
+            color: #176b43;
         }
 
-        p {
-            color: #555;
+        .subtitle {
+            color: #68756e;
             line-height: 1.6;
+            margin: 0;
         }
 
-        .order-info {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 12px;
-            text-align: left;
-        }
-
-        .back-button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 25px;
-            background: #111;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-        }
         .order-number {
-    margin-top: 10px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #777;
-}
-.invoice-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 24px;
-    background: #222;
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    border-radius: 6px;
-}
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #f0f6f2;
+            text-align: center;
+        }
 
-.invoice-button:hover {
-    background: #444;
-}
-.payment-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 24px;
-    background: #222;
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    border-radius: 6px;
-}
+        .order-number small {
+            display: block;
+            color: #718078;
+            margin-bottom: 6px;
+        }
 
-.payment-button:hover {
-    background: #444;
-}
+        .order-number strong {
+            color: #176b43;
+            font-size: 19px;
+            overflow-wrap: anywhere;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 28px 0 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e8ece9;
+        }
+
+        .customer-details {
+            line-height: 1.8;
+            color: #526057;
+            overflow-wrap: anywhere;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 480px;
+        }
+
+        th, td {
+            padding: 13px 10px;
+            border-bottom: 1px solid #edf0ee;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f7f9f7;
+            color: #536158;
+            font-weight: 600;
+        }
+
+        .number {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .total-row td {
+            font-weight: bold;
+            font-size: 17px;
+            color: #176b43;
+            border-bottom: none;
+            padding-top: 20px;
+        }
+
+        .notice {
+            margin-top: 24px;
+            padding: 15px;
+            background: #fff8e8;
+            border-left: 4px solid #e7ad36;
+            border-radius: 6px;
+            color: #72551c;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 180px;
+            display: inline-block;
+            padding: 14px 18px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #176b43;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #edf3ef;
+            color: #176b43;
+        }
+
+        .btn:hover {
+            opacity: 0.88;
+        }
+
+        .footer {
+            text-align: center;
+            color: #8a948e;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 16px 10px;
+            }
+
+            .card {
+                padding: 22px 16px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
 <body>
-
 <div class="container">
+    <div class="card">
 
-    <div class="success-box">
+        <div class="header">
+            <div class="success-icon">✓</div>
 
-        <h1>Order Received! 🎉</h1>
-        <p class="order-number">
-    Order #{{ order_number }}
-    <a
-    href="/invoice/{{ order_number }}"
-    target="_blank"
-    class="invoice-button"
->
-    VIEW INVOICE
-</a>
-<a
-    href="/payment?order_number={{ order_number }}"
-    class="payment-button"
->
-    PROCEED TO PAYMENT
-</a>
-</p>
+            <h1>Order Successfully Placed!</h1>
 
-        <p>
-            Thank you for your order.
-            We have successfully received your order details.
-        </p>
-
-        <div class="order-info">
-
-            <p>
-                <strong>Name:</strong> {{ name }}
+            <p class="subtitle">
+                Thank you for your order. Your order has been received
+                and is being processed.
             </p>
 
-            <p>
-                <strong>Email:</strong> {{ email }}
-            </p>
-
-            <p>
-                <strong>Package:</strong> {{ package }}
-            </p>
-
-            <p>
-                <strong>Price:</strong> {{ price }}
-            </p>
-
+            <div class="order-number">
+                <small>YOUR ORDER NUMBER</small>
+                <strong>{{ order_number }}</strong>
+            </div>
         </div>
 
-        <a href="/" class="back-button">
-            Back to Store
-        </a>
+        <h2>Customer Information</h2>
+
+        <div class="customer-details">
+            <strong>Name:</strong>
+            {{ name or '' }}<br>
+
+            <strong>Email:</strong>
+            {{ email or '' }}<br>
+
+            <strong>Address:</strong>
+            {{ address or '' }}
+        </div>
+
+        <h2>Order Summary</h2>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Package</th>
+                        <th class="number">Qty</th>
+                        <th class="number">Unit Price</th>
+                        <th class="number">Subtotal</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% if items %}
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.product_name }}</td>
+                            <td>{{ item.package_name }}</td>
+                            <td class="number">{{ item.quantity }}</td>
+                            <td class="number">
+                                ${{ "{:,.2f}".format(item.unit_price|float) }}
+                            </td>
+                            <td class="number">
+                                ${{ "{:,.2f}".format(item.subtotal|float) }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    {% elif cart %}
+                        {% for item in cart %}
+                        <tr>
+                            <td>{{ item.product_name }}</td>
+                            <td>{{ item.package_name }}</td>
+                            <td class="number">{{ item.quantity }}</td>
+                            <td class="number">
+                                ${{ "{:,.2f}".format(item.unit_price|float) }}
+                            </td>
+                            <td class="number">
+                                ${{ "{:,.2f}".format(item.subtotal|float) }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    {% else %}
+                        <tr>
+                            <td>{{ package or 'Product' }}</td>
+                            <td>{{ package or '-' }}</td>
+                            <td class="number">{{ quantity or 1 }}</td>
+                            <td class="number">
+                                ${{ "{:,.2f}".format((price or 0)|float) }}
+                            </td>
+                            <td class="number">
+                                ${{ "{:,.2f}".format((total_amount or price or 0)|float) }}
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="4" class="number">TOTAL PAYMENT</td>
+                        <td class="number">
+                            ${{ "{:,.2f}".format((total_amount or 0)|float) }}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="notice">
+            <strong>Important:</strong>
+            Please keep your order number for future reference.
+            You can view your invoice and continue to the payment page
+            using the buttons below.
+        </div>
+
+        <div class="actions">
+            <a class="btn btn-primary"
+               href="{{ url_for('invoice', order_number=order_number) }}">
+                View Invoice
+            </a>
+
+            <a class="btn btn-secondary"
+               href="{{ url_for('payment', order_number=order_number) }}">
+                Proceed to Payment
+            </a>
+        </div>
+
+        <div class="footer">
+            © {{ now.year if now is defined else '' }} Kemiphan.
+            All rights reserved.
+        </div>
 
     </div>
-
 </div>
-
 </body>
 </html>
