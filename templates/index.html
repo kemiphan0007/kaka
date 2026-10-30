@@ -335,51 +335,37 @@ button, input { font: inherit; }
 }
 .product-option a:hover { transform: translateY(-2px); color: #fff; border-color: var(--blue); background: var(--blue); }
 
-/* Company information */
-.company-identity { width: min(1120px, calc(100% - 48px)); margin: 0 auto 100px; padding: 0; scroll-margin-top: 110px; }
-.company-identity-card {
-  padding: clamp(28px, 5vw, 58px);
-  border: 1px solid rgba(15,23,42,.07);
-  border-radius: var(--radius-xl);
-  background: #fff;
-  box-shadow: var(--shadow-soft);
-}
-.company-identity-label, .contact-label, .shipping-label {
-  display: block;
-  margin-bottom: 15px;
-  color: var(--blue);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .22em;
-  text-align: center;
-}
-.company-identity h2 { margin: 0 0 12px; color: var(--ink); font-size: clamp(24px, 3vw, 34px); font-weight: 600; letter-spacing: -.04em; line-height: 1.3; text-align: center; }
-.company-identity-intro { max-width: 680px; margin: 0 auto 30px; color: var(--muted); font-size: 13px; line-height: 1.8; text-align: center; }
-.company-details { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; max-width: 820px; margin: 0 auto 28px; }
-.company-detail { min-width: 0; padding: 18px; border: 1px solid #e9edf5; border-radius: 14px; background: #f8faff; }
-.company-detail span { display: block; margin-bottom: 8px; color: #818b9d; font-size: 9px; font-weight: 750; letter-spacing: .1em; }
-.company-detail strong { display: block; color: #172033; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
-.company-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-.company-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 46px;
-  padding: 12px 19px;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  color: #fff;
-  background: var(--ink);
-  font-size: 11px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform .2s ease, background .2s ease, border-color .2s ease;
-}
-.company-action:hover { transform: translateY(-2px); border-color: var(--blue); background: var(--blue); }
-.company-action.secondary { color: var(--ink); background: #fff; border-color: #dce2ed; }
-.company-action.secondary:hover { color: var(--blue); border-color: var(--blue); background: #f7f9ff; }
-.company-disclaimer { max-width: 760px; margin: 20px auto 0; color: #929aaa; font-size: 10px; line-height: 1.7; text-align: center; }
-
+/* Company identity — premium corporate dossier */
+.company-identity { width: min(1240px, calc(100% - 48px)); margin: 0 auto 104px; padding: 0; scroll-margin-top: 110px; }
+.company-identity-card { position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.04fr) minmax(380px,.96fr); gap:clamp(28px,5vw,68px); padding:clamp(30px,5vw,66px); border:1px solid rgba(255,255,255,.12); border-radius:32px; color:#fff; background:linear-gradient(122deg,#080d1b 0%,#101a34 58%,#142b61 100%); box-shadow:0 32px 90px rgba(8,18,45,.2); }
+.company-identity-card::before { content:""; position:absolute; z-index:-1; width:580px; height:580px; right:-145px; top:-260px; border:1px solid rgba(108,151,255,.17); border-radius:50%; box-shadow:0 0 0 44px rgba(91,133,230,.035),0 0 0 92px rgba(91,133,230,.025),0 0 0 145px rgba(91,133,230,.018); }
+.company-identity-card::after { content:""; position:absolute; z-index:-1; inset:0; opacity:.17; pointer-events:none; background-image:linear-gradient(30deg,transparent 49.7%,rgba(145,177,255,.22) 50%,transparent 50.3%),linear-gradient(150deg,transparent 49.7%,rgba(145,177,255,.16) 50%,transparent 50.3%); background-size:110px 190px; mask-image:linear-gradient(90deg,transparent 25%,#000 100%); }
+.company-identity-main { align-self:center; min-width:0; }
+.company-identity-label { display:inline-flex; align-items:center; gap:10px; margin-bottom:24px; color:#8eafff; font-size:10px; font-weight:850; letter-spacing:.23em; }
+.company-identity-label::before { content:""; width:26px; height:1px; background:#5d89ff; box-shadow:0 0 12px #5d89ff; }
+.company-identity h2 { max-width:620px; margin:0 0 18px; color:#fff; font-size:clamp(27px,3.6vw,46px); font-weight:650; letter-spacing:-.045em; line-height:1.32; text-align:left; }
+.company-identity-intro { max-width:510px; margin:0 0 32px; color:rgba(225,233,250,.68); font-size:14px; line-height:1.9; text-align:left; }
+.company-identity-mark { display:flex; align-items:center; gap:12px; color:rgba(224,234,255,.58); font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.company-identity-mark span { display:block; width:34px; height:34px; border:1px solid rgba(139,171,255,.38); border-radius:11px; background:linear-gradient(145deg,rgba(71,117,255,.28),rgba(255,255,255,.035)); position:relative; }
+.company-identity-mark span::before,.company-identity-mark span::after { content:""; position:absolute; background:#8eafff; border-radius:2px; }
+.company-identity-mark span::before { width:14px;height:1px;left:9px;top:16px;transform:rotate(-35deg); }
+.company-identity-mark span::after { width:1px;height:14px;left:16px;top:9px;transform:rotate(-35deg); }
+.company-identity-panel { align-self:stretch; padding:clamp(22px,3vw,34px); border:1px solid rgba(255,255,255,.15); border-radius:24px; background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.045)); box-shadow:inset 0 1px 0 rgba(255,255,255,.08); backdrop-filter:blur(14px); }
+.company-panel-top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:22px; border-bottom:1px solid rgba(255,255,255,.13); }
+.company-panel-top span:first-child { color:rgba(224,233,251,.66); font-size:9px; font-weight:800; letter-spacing:.17em; }
+.company-status { display:inline-flex; align-items:center; gap:7px; padding:7px 10px; border:1px solid rgba(103,224,176,.28); border-radius:999px; color:#8ce4bf; background:rgba(33,174,119,.1); font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.company-status::before { content:""; width:6px;height:6px;border-radius:50%;background:#65dba8;box-shadow:0 0 10px rgba(101,219,168,.7); }
+.company-registration { padding:22px 0 20px; }
+.company-registration span,.company-fact span { display:block; margin-bottom:8px; color:rgba(210,223,250,.54); font-size:9px; font-weight:750; letter-spacing:.14em; }
+.company-registration strong { display:block; color:#fff; font-size:clamp(25px,3vw,35px); font-weight:650; letter-spacing:.045em; font-variant-numeric:tabular-nums; }
+.company-facts { display:grid; grid-template-columns:1fr 1fr; gap:18px 16px; padding-top:20px; border-top:1px solid rgba(255,255,255,.13); }
+.company-fact strong { display:block; color:#f4f7ff; font-size:13px; font-weight:650; line-height:1.55; }
+.company-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+.company-action { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:12px 17px; border:1px solid rgba(255,255,255,.2); border-radius:999px; color:#fff; background:#2457ff; font-size:10px; font-weight:750; text-decoration:none; transition:transform .2s ease,background .2s ease,border-color .2s ease; }
+.company-action:hover { transform:translateY(-2px); border-color:#83a4ff; background:#3d6dff; }
+.company-action.secondary { color:#e8eeff; background:rgba(255,255,255,.055); border-color:rgba(255,255,255,.2); }
+.company-action.secondary:hover { color:#fff; background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.42); }
+.company-disclaimer { grid-column:1/-1; margin:0; padding-top:20px; border-top:1px solid rgba(255,255,255,.11); color:rgba(215,226,249,.48); font-size:9px; line-height:1.8; }
 /* Support and shipping — editorial premium treatment */
 .contact-section, .shipping-section {
   position: relative; isolation: isolate; overflow: hidden;
@@ -686,6 +672,25 @@ body > * { position: relative; z-index: 1; }
   .catalog-footnote span { display: block; margin-bottom: 5px; }
 }
 
+
+@media (max-width: 900px) {
+  .company-identity-card { grid-template-columns:1fr; gap:28px; }
+  .company-identity-main { max-width:700px; }
+  .company-identity-intro { max-width:650px; }
+}
+@media (max-width: 700px) {
+  .company-identity { width:calc(100% - 32px); margin-bottom:70px; }
+  .company-identity-card { padding:28px 20px 22px; border-radius:24px; gap:24px; }
+  .company-identity-label { margin-bottom:18px; font-size:9px; letter-spacing:.16em; }
+  .company-identity h2 { font-size:clamp(25px,7vw,34px); }
+  .company-identity-intro { margin-bottom:22px; font-size:12px; }
+  .company-identity-panel { padding:21px 17px; border-radius:19px; }
+  .company-registration strong { font-size:clamp(23px,7vw,30px); }
+  .company-facts { gap:16px 10px; }
+  .company-actions { flex-direction:column; align-items:stretch; }
+  .company-action { width:100%; min-height:46px; }
+  .company-disclaimer { font-size:9px; }
+}
 </style>
 </head>
 <body>
@@ -1074,96 +1079,35 @@ if (option) {
      COMPANY IDENTITY — STAGE 1
 ===================================== -->
 
-<section class="company-identity"
-         id="company-profile"
-         aria-labelledby="company-identity-title">
-
-    <div class="company-identity-card">
-
-        <span class="company-identity-label">
-            COMPANY INFORMATION
-        </span>
-
-        <h2 id="company-identity-title">
-            บริษัท เกษตร เคมีภัณฑ์ จำกัด
-        </h2>
-
-        <p class="company-identity-intro">
-            Company registration information for
-            บริษัท เกษตร เคมีภัณฑ์ จำกัด,
-            a company registered in Thailand.
-        </p>
-
-        <div class="company-details">
-
-            <div class="company-detail">
-                <span>COMPANY REGISTRATION NUMBER</span>
-                <strong>0705556001565</strong>
-            </div>
-
-            <div class="company-detail">
-                <span>REGISTRATION STATUS</span>
-                <strong>Operating</strong>
-            </div>
-
-            <div class="company-detail">
-                <span>DATE OF REGISTRATION</span>
-                <strong>15 October 2013</strong>
-            </div>
-
-            <div class="company-detail">
-                <span>REGISTERED COUNTRY</span>
-                <strong>Thailand</strong>
-            </div>
-
-        </div>
-
-        <div class="company-actions">
-
-            <!-- WHATSAPP -->
-
-            <a class="company-action"
-               href="https://wa.me/66813589621"
-               target="_blank"
-               rel="noopener noreferrer">
-
-                Contact us on WhatsApp
-
-            </a>
-
-            <!-- VIEW PDF -->
-
-            <a class="company-action secondary"
-               href="{{ url_for('static', filename='Company_Profile.pdf') }}"
-               target="_blank"
-               rel="noopener noreferrer">
-
-                View Company Registration PDF
-
-            </a>
-
-            <!-- DOWNLOAD PDF -->
-
-            <a class="company-action secondary"
-               href="{{ url_for('static', filename='Company_Profile.pdf') }}"
-               download="Company_Profile.pdf">
-
-                Download PDF
-
-            </a>
-
-        </div>
-
-        <p class="company-disclaimer">
-            Registration details are presented from the
-            company information record supplied by the
-            website owner. Records may change; please refer
-            to the latest information published by the
-            relevant Thai authority.
-        </p>
-
+<section class="company-identity" id="company-profile" aria-labelledby="company-identity-title">
+  <div class="company-identity-card">
+    <div class="company-identity-main">
+      <span class="company-identity-label">THE COMPANY BEHIND KEMIPHAN</span>
+      <h2 id="company-identity-title">บริษัท เกษตร เคมีภัณฑ์ จำกัด</h2>
+      <p class="company-identity-intro">Company registration information for บริษัท เกษตร เคมีภัณฑ์ จำกัด, a company registered in Thailand.</p>
+      <div class="company-identity-mark"><span aria-hidden="true"></span> Corporate identity · Thailand</div>
     </div>
-
+    <div class="company-identity-panel">
+      <div class="company-panel-top">
+        <span>COMPANY REGISTRY DETAILS</span>
+        <span class="company-status">Operating</span>
+      </div>
+      <div class="company-registration">
+        <span>COMPANY REGISTRATION NUMBER</span>
+        <strong>0705556001565</strong>
+      </div>
+      <div class="company-facts">
+        <div class="company-fact"><span>DATE OF REGISTRATION</span><strong>15 October 2013</strong></div>
+        <div class="company-fact"><span>REGISTERED COUNTRY</span><strong>Thailand</strong></div>
+      </div>
+      <div class="company-actions">
+        <a class="company-action" href="https://wa.me/66813589621" target="_blank" rel="noopener noreferrer">Contact us on WhatsApp</a>
+        <a class="company-action secondary" href="{{ url_for('static', filename='Company_Profile.pdf') }}" target="_blank" rel="noopener noreferrer">View Registration PDF</a>
+        <a class="company-action secondary" href="{{ url_for('static', filename='Company_Profile.pdf') }}" download="Company_Profile.pdf">Download PDF</a>
+      </div>
+    </div>
+    <p class="company-disclaimer">Registration details are presented from the company information record supplied by the website owner. Records may change; please refer to the latest information published by the relevant Thai authority.</p>
+  </div>
 </section>
 
 <section class="contact-section" aria-labelledby="support-heading">
