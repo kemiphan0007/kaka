@@ -1,438 +1,298 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - Ke-miphan</title>
+    <title>Bitcoin Payment - Kemiphan.com</title>
 
     <style>
 
-:root{--navy:#080d19;--blue:#285cff;--blue2:#6f91ff;--ink:#111827;--muted:#667085;--line:#e6eaf2;--page:#f3f6fc;--white:#fff}
+:root{--navy:#080d19;--blue:#285cff;--blue-soft:#edf2ff;--ink:#111827;--muted:#667085;--line:#e7ebf2;--page:#f3f6fc}
 *{box-sizing:border-box}
-body{margin:0;padding:28px 16px 50px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 50% 0%,rgba(40,92,255,.11),transparent 38rem),var(--page);color:var(--ink);-webkit-font-smoothing:antialiased}
-.checkout-container{max-width:920px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;color:#53617a;text-decoration:none;font-size:12px;font-weight:700}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(ellipse at 50% 0%,rgba(40,92,255,.11),transparent 38rem),var(--page);color:var(--ink);-webkit-font-smoothing:antialiased}
+.page{width:min(920px,calc(100% - 48px));margin:0 auto;padding:35px 0 32px}
+.back-link{display:inline-flex;align-items:center;gap:8px;margin:0 0 44px;color:#53617a;font-size:12px;font-weight:700;text-decoration:none}
 .back-link:hover{color:var(--blue)}
-.checkout-card{padding:42px;background:rgba(255,255,255,.96);border:1px solid #e3e8f1;border-radius:24px;box-shadow:0 24px 70px rgba(20,35,75,.08)}
-h1{margin:0 0 9px;font-size:clamp(30px,5vw,42px);line-height:1.05;letter-spacing:-.045em;font-weight:780;color:#101828}
-.subtitle{margin:0 0 32px;color:var(--muted);font-size:14px;line-height:1.7}
-h2{margin:34px 0 14px;font-size:17px;font-weight:760;letter-spacing:-.02em;color:#172033}
-.product-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;padding:19px 0;border-bottom:1px solid var(--line)}
-.product-name{font-weight:750;font-size:14px;color:#172033;overflow-wrap:anywhere}
-.product-price{margin-top:7px;color:#738096;font-size:12px;line-height:1.6}
-.quantity-controls{display:flex;align-items:center;gap:8px}
-.quantity-controls button{width:34px;height:34px;border:1px solid #dce3ef;background:#fff;color:#23365f;border-radius:9px;cursor:pointer;font-size:17px;transition:.18s}
-.quantity-controls button:hover{border-color:#9db4ff;background:#f2f5ff}
-.quantity-value{min-width:25px;text-align:center;font-size:13px;font-weight:750}
-.remove-button{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-left:2px;padding:0;border:1px solid #f0d6d6;border-radius:9px;background:#fff;color:#c43b3b;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
-.remove-button:hover{background:#fff0f0;border-color:#e6aaaa;transform:translateY(-1px)}
-.remove-button svg{width:17px;height:17px;display:block}
-.remove-button:focus-visible{outline:2px solid #c43b3b;outline-offset:2px}
-.add-product{display:flex;gap:10px;margin-top:20px}
-select,input,textarea{width:100%;padding:13px 14px;border:1px solid #dce3ef;border-radius:10px;background:#fff;color:#202b40;font:inherit;font-size:13px;outline:none;transition:border-color .2s,box-shadow .2s}
-select:focus,input:focus,textarea:focus{border-color:#7898ff;box-shadow:0 0 0 3px rgba(40,92,255,.10)}
-.add-product select{flex:1;min-width:0}
-.add-button{padding:0 20px;border:0;border-radius:10px;background:var(--navy);color:#fff;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.08em;white-space:nowrap;transition:background .2s,transform .2s}
-.add-button:hover{background:#1b2e58;transform:translateY(-1px)}
-.summary{margin-top:26px;padding:23px;background:linear-gradient(135deg,#f5f7ff,#eef3ff);border:1px solid #dfe7ff;border-radius:15px}
-.summary-line{display:flex;justify-content:space-between;gap:10px;margin-bottom:13px;color:#68758d;font-size:13px}
-.summary-line strong{color:#273653}
-.summary-total{display:flex;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid #d8e1f5;color:#14264d;font-size:20px;font-weight:850}
-.form-group{margin-bottom:17px}
-.form-group label{display:block;margin-bottom:8px;color:#344054;font-size:12px;font-weight:750}
-textarea{min-height:110px;resize:vertical}
-.submit-button{width:100%;margin-top:19px;padding:17px;border:0;border-radius:11px;background:linear-gradient(100deg,#285cff,#4778ff);color:#fff;font-size:12px;font-weight:850;letter-spacing:.12em;cursor:pointer;box-shadow:0 10px 22px rgba(40,92,255,.20);transition:transform .2s,box-shadow .2s,opacity .2s}
-.submit-button:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(40,92,255,.25)}
-.submit-button:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
-.empty-cart{padding:28px 12px;color:#8993a5;text-align:center;font-size:13px;background:#fafbfe;border:1px dashed #dce3ef;border-radius:12px}
-.notice{margin:19px 0 0;color:#8993a5;font-size:11px;line-height:1.7;text-align:center}
-@media(max-width:650px){body{padding:14px 12px 30px}.checkout-container{width:100%}.back-link{margin:5px 0 17px}.checkout-card{padding:26px 19px;border-radius:19px}h1{font-size:29px}.subtitle{margin-bottom:25px;font-size:13px}h2{margin-top:29px;font-size:16px}.add-product{flex-direction:column}.add-button{padding:14px}.product-row{grid-template-columns:1fr;gap:12px}.quantity-controls{justify-content:flex-start}.summary{padding:19px}.summary-total{font-size:18px}}
+.header{text-align:center;margin:0 auto 38px;max-width:700px}
+.label{display:inline-block;margin-bottom:17px;color:#4168e8;font-size:10px;font-weight:850;letter-spacing:.22em}
+.header h1{margin:0 0 15px;color:#101828;font-size:clamp(36px,6vw,54px);font-weight:780;letter-spacing:-.055em;line-height:1.05}
+.header p{max-width:610px;margin:0 auto;color:#667085;font-size:14px;line-height:1.8}
+.payment-card{padding:42px;background:rgba(255,255,255,.96);border:1px solid #e3e8f1;border-radius:24px;box-shadow:0 24px 70px rgba(20,35,75,.08)}
+.payment-title{text-align:center;margin-bottom:30px}
+.btc-symbol{width:62px;height:62px;margin:0 auto 17px;border-radius:19px;background:linear-gradient(145deg,#101a31,#285cff);color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800;box-shadow:0 12px 25px rgba(40,92,255,.20)}
+.payment-title h2{margin:0 0 8px;font-size:24px;letter-spacing:-.03em;color:#121c30}
+.payment-title p{margin:0;color:#7b879a;font-size:13px}
+.order-summary{background:linear-gradient(135deg,#f5f7ff,#edf2ff);border:1px solid #dce5ff;border-radius:15px;padding:23px;margin-bottom:29px}
+.summary-label,.amount-label{color:#74819a;font-size:10px;font-weight:850;letter-spacing:.16em;margin-bottom:8px}
+.order-number{font-size:14px;font-weight:800;color:#25385f;overflow-wrap:anywhere;margin-bottom:20px}
+.amount{font-size:clamp(27px,5vw,36px);font-weight:850;color:#2454d6;letter-spacing:-.04em;overflow-wrap:anywhere}
+.amount-note{margin-top:8px;font-size:12px;color:#77839a;line-height:1.65}
+.address-label{display:block;margin-bottom:10px;font-size:10px;font-weight:850;letter-spacing:.16em;color:#74819a}
+.address-box{display:flex;align-items:center;gap:10px;padding:14px;background:#f8faff;border:1px solid #dfe6f2;border-radius:12px}
+.address{flex:1;min-width:0;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:#243653;line-height:1.6}
+.copy-button{border:0;background:#101a31;color:#fff;padding:12px 16px;border-radius:9px;cursor:pointer;font-size:10px;font-weight:850;letter-spacing:.08em;white-space:nowrap;transition:background .2s}
+.copy-button:hover{background:#285cff}
+.qr-section{text-align:center;margin-top:22px;padding:25px 15px;background:#fafbff;border:1px solid #e8edf6;border-radius:14px}
+#qrcode{display:flex;justify-content:center;align-items:center;margin:15px auto}
+#qrcode img{width:280px;max-width:100%;height:auto;display:block;border-radius:10px}
+#qrcode canvas{max-width:100%;height:auto!important;border-radius:10px}
+.qr-caption{color:#77839a;font-size:12px;line-height:1.7}
+.notice{margin-top:19px;padding:18px 20px;background:#f5f7fb;border:1px solid #e7ebf2;border-radius:12px;color:#68758b;font-size:12px;line-height:1.8}
+.notice strong{color:#293956}
+.proof-button{display:block;margin-top:20px;padding:16px 20px;background:linear-gradient(100deg,#285cff,#4778ff);color:#fff;text-align:center;text-decoration:none;font-size:11px;font-weight:850;letter-spacing:.12em;border-radius:10px;box-shadow:0 10px 22px rgba(40,92,255,.18);transition:transform .2s,box-shadow .2s}
+.proof-button:hover{transform:translateY(-1px);box-shadow:0 14px 26px rgba(40,92,255,.24)}
+.section{padding:30px 0;border-top:1px solid var(--line);margin-top:31px}
+.section h2{margin:0 0 13px;font-size:19px;letter-spacing:-.025em;color:#172033}
+.section p{margin:0 0 12px;color:#68758b;font-size:13px;line-height:1.85}
+.section p strong{color:#344766}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:20px}
+.step{padding:19px;background:#f7f9ff;border:1px solid #e7ecf7;border-radius:12px}
+.step-number{display:block;margin-bottom:10px;font-size:9px;font-weight:850;letter-spacing:.16em;color:#4168e8}
+.step strong{display:block;margin-bottom:7px;font-size:13px;color:#263653}
+.step span:last-child{color:#77839a;font-size:12px;line-height:1.7}
+.warning{margin-top:17px;padding:17px 18px;border:1px solid #f0dfbd;border-radius:12px;background:#fffaf0;color:#806b47;font-size:12px;line-height:1.75}
+.footer{margin-top:32px;text-align:center;color:#98a2b3;font-size:11px}
+@media(max-width:700px){.page{width:calc(100% - 28px);padding:24px 0}.back-link{margin-bottom:36px}.header{margin-bottom:28px}.header h1{font-size:36px}.header p{font-size:13px}.payment-card{padding:27px 19px;border-radius:19px}.address-box{flex-direction:column;align-items:stretch}.copy-button{width:100%}.steps{grid-template-columns:1fr}.amount{font-size:29px}.section{padding:25px 0;margin-top:26px}}
 
     </style>
 </head>
 
 <body>
-
-<div class="checkout-container">
+<main class="page">
 
     <a href="/" class="back-link">← Back to Store</a>
 
-    <div class="checkout-card">
+    <header class="header">
+        <span class="label">PAYMENT METHOD</span>
 
-        <h1>Checkout</h1>
+        <h1>Simple. Direct. Secure.</h1>
 
-        <p class="subtitle">
-            Review your products and complete your order.
+        <p>
+            We accept Bitcoin (BTC) to provide a fast and streamlined
+            payment experience for our customers.
         </p>
+    </header>
 
-        <h2>Your Shopping Cart</h2>
+    <section class="payment-card">
 
-        <div id="cartItems"></div>
-
-        <div class="add-product">
-
-            <select id="productSelector">
-                <option value="">Select another product</option>
-                <option value="SR17018 - 50g Sample">SR17018 - 50g Sample ($350)</option>
-                <option value="SR17018 - 1kg Bulk">SR17018 - 1kg Bulk ($4,650)</option>
-                <option value="Moringa Powder - 100g Sample">Moringa Powder - 100g Sample ($100)</option>
-                <option value="Moringa Powder - 1kg Bulk">Moringa Powder - 1kg Bulk ($750)</option>
-                <option value="Spatholobus littoralis Powder - 100g Sample">Spatholobus littoralis - 100g Sample ($250)</option>
-                <option value="Spatholobus littoralis Powder - 1kg Bulk">Spatholobus littoralis - 1kg Bulk ($2,150)</option>
-                <option value="MIT 88% Alkaloids 97% - 100g Sample">MIT 88% - 100g Sample ($250)</option>
-                <option value="MIT 88% Alkaloids 97% - 1kg Bulk">MIT 88% - 1kg Bulk ($2,050)</option>
-                <option value="SR-14968 - 100g Sample">SR-14968 - 100g Sample ($500)</option>
-                <option value="SR-14968 - 1kg Bulk">SR-14968 - 1kg Bulk ($4,500)</option>
-            </select>
-
-            <button
-                type="button"
-                class="add-button"
-                onclick="addProduct()">
-                + ADD
-            </button>
-
+        <div class="payment-title">
+            <div class="btc-symbol">₿</div>
+            <h2>Bitcoin (BTC)</h2>
+            <p>Our primary cryptocurrency payment method.</p>
         </div>
 
-        <div class="summary">
+        {% if order %}
 
-            <div class="summary-line">
-                <span>Total Product Types</span>
-                <strong id="productCount">0</strong>
+        <div class="order-summary">
+            <div class="summary-label">ORDER NUMBER</div>
+            <div class="order-number">{{ order.order_number }}</div>
+
+            <div class="amount-label">TOTAL AMOUNT DUE</div>
+            <div class="amount">
+                ${{ "{:,.2f}".format(order.total_amount|float) }} USD
             </div>
 
-            <div class="summary-line">
-                <span>Total Quantity</span>
-                <strong id="totalQuantity">0</strong>
+            <div class="amount-note">
+                Please send the Bitcoin equivalent of this USD invoice
+                using the current BTC exchange rate at the time of payment.
             </div>
-
-            <div class="summary-total">
-                <span>Total</span>
-                <span id="grandTotal">$0</span>
-            </div>
-
         </div>
 
-        <h2>Customer Information</h2>
+        {% endif %}
 
-        <form
-            id="checkoutForm"
-            action="/place-order"
-            method="POST"
-            onsubmit="return prepareCheckout()">
+        <span class="address-label">BTC PAYMENT ADDRESS</span>
 
-            <input
-                type="hidden"
-                name="cart_json"
-                id="cartJson">
-
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    autocomplete="name"
-                    placeholder="Enter your full name">
+        <div class="address-box">
+            <div class="address" id="btcAddress">
+                bc1qx8s2ch385tn3fm05elan67ahy0exj2t5z4y27p
             </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    autocomplete="email"
-                    placeholder="Enter your email">
-            </div>
-
-            <div class="form-group">
-                <label for="address">Shipping Address</label>
-                <textarea
-                    id="address"
-                    name="address"
-                    required
-                    autocomplete="street-address"
-                    placeholder="Enter your complete shipping address"></textarea>
-            </div>
-
-            <button
-                type="submit"
-                class="submit-button"
-                id="submitButton">
-                PLACE ORDER
+            <button class="copy-button" type="button" onclick="copyAddress()">
+                COPY ADDRESS
             </button>
+        </div>
 
-        </form>
+        <div class="qr-section">
+            <strong>SCAN TO PAY</strong>
 
-        <p class="notice">
-            Please review your order carefully before submitting.
-            Product prices are calculated by the store server.
-        </p>
+           <div id="qrcode">
+    <img
+        src="{{ url_for('static', filename='payment_codeqr.jpeg') }}"
+        alt="Bitcoin Payment QR Code"
+    >
+</div>
+            <div class="qr-caption">
+                Scan to open the Bitcoin payment address in your wallet.
+                Enter the BTC equivalent of your USD invoice manually.
+            </div>
+        </div>
 
+        <div class="notice">
+            <strong>Payment amount:</strong>
+            Your invoice is displayed in USD. Since Bitcoin prices fluctuate,
+            calculate the equivalent BTC amount using your wallet or exchange
+            at the time you make the payment.
+
+            <br><br>
+
+            <strong>Network:</strong>
+            Please send BTC only through the Bitcoin network to the address
+            shown above.
+        </div>
+
+        {% if order %}
+        <a href="/payment-proof/{{ order.order_number }}" class="proof-button">
+            UPLOAD PAYMENT PROOF
+        </a>
+        {% endif %}
+
+        <div class="section">
+            <h2>Why Bitcoin?</h2>
+
+            <p>
+                International SWIFT bank transfers typically take
+                <strong>1–3 days</strong>, while credit card (CC) payments
+                may take <strong>up to one week</strong> to process.
+                In contrast, Bitcoin payments can typically be received
+                within approximately <strong>30 minutes</strong>.
+            </p>
+
+            <p>
+                This faster payment process allows us to confirm your order
+                sooner, speed up order processing, and arrange shipment on
+                the <strong>same day</strong>, helping you receive your
+                products sooner.
+            </p>
+
+            <p>
+                Bitcoin also allows us to receive and verify payments
+                directly, without relying on traditional bank transfer
+                processing times. Our Bitcoin payment process has been part
+                of our standard payment procedure since
+                <strong>2021</strong>, helping us maintain a faster and more
+                consistent order-processing workflow.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>How It Works</h2>
+
+            <div class="steps">
+
+                <div class="step">
+                    <span class="step-number">STEP 01</span>
+                    <strong>Send BTC</strong>
+                    <span>
+                        Send the BTC equivalent of your USD invoice
+                        to the payment address provided above.
+                    </span>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">STEP 02</span>
+                    <strong>Payment Confirmation</strong>
+                    <span>
+                        Upload your transaction proof. We verify the
+                        transaction and confirm receipt of payment.
+                    </span>
+                </div>
+
+                <div class="step">
+                    <span class="step-number">STEP 03</span>
+                    <strong>Order Processing</strong>
+                    <span>
+                        Once payment is confirmed, we proceed with
+                        order verification and shipment preparation.
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Important</h2>
+
+            <p>
+                Before sending your payment, carefully verify the payment
+                address and network. Cryptocurrency transactions are
+                generally irreversible once confirmed on the network.
+            </p>
+
+            <div class="warning">
+                We cannot be responsible for funds sent to an incorrect
+                address or through an unsupported network.
+
+                Please ensure that the BTC amount sent matches the USD
+                invoice equivalent. Any shortfall may require an
+                additional payment.
+            </div>
+        </div>
+
+    </section>
+
+    <div class="footer">
+        © Ke-miphan (เคมีภัณฑ์) Thailand
     </div>
 
-</div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <script>
-
-const PRODUCT_PRICES = {
-    "SR17018 - 50g Sample": 350,
-    "SR17018 - 1kg Bulk": 4650,
-
-    "Moringa Powder - 100g Sample": 100,
-    "Moringa Powder - 1kg Bulk": 750,
-
-    "Spatholobus littoralis Powder - 100g Sample": 250,
-    "Spatholobus littoralis Powder - 1kg Bulk": 2150,
-
-    "MIT 88% Alkaloids 97% - 100g Sample": 250,
-    "MIT 88% Alkaloids 97% - 1kg Bulk": 2050,
-
-    "SR-14968 - 100g Sample": 500,
-    "SR-14968 - 1kg Bulk": 4500
-};
-
-let cart = [];
-
-
-function formatMoney(value) {
-    return "$" + Number(value).toLocaleString("en-US");
-}
-
-
-function addProduct() {
-
-    const selector = document.getElementById("productSelector");
-    const product = selector.value;
-
-    if (!product || !PRODUCT_PRICES[product]) {
-        alert("Please select a valid product.");
-        return;
-    }
-
-    const existing = cart.find(item => item.product === product);
-
-    if (existing) {
-        existing.quantity += 1;
-    } else {
-        cart.push({
-            product: product,
-            quantity: 1
-        });
-    }
-
-    selector.value = "";
-
-    renderCart();
-}
-
-
-function changeQuantity(index, amount) {
-
-    if (!cart[index]) return;
-
-    cart[index].quantity += amount;
-
-    if (cart[index].quantity <= 0) {
-        cart.splice(index, 1);
-    }
-
-    renderCart();
-}
-
-
-function removeProduct(index) {
-
-    cart.splice(index, 1);
-
-    renderCart();
-}
-
-
-function renderCart() {
-
-    const container = document.getElementById("cartItems");
-
-    container.innerHTML = "";
-
-    let total = 0;
-    let totalQuantity = 0;
-
-    if (cart.length === 0) {
-
-        container.innerHTML = `
-            <div class="empty-cart">
-                Your cart is empty.
-                Please add a product to continue.
-            </div>
-        `;
-
-    }
-
-    cart.forEach((item, index) => {
-
-        const price = PRODUCT_PRICES[item.product];
-        const subtotal = price * item.quantity;
-
-        total += subtotal;
-        totalQuantity += item.quantity;
-
-        const row = document.createElement("div");
-        row.className = "product-row";
-
-        const details = document.createElement("div");
-
-        const productName = document.createElement("div");
-        productName.className = "product-name";
-        productName.textContent = item.product;
-
-        const priceText = document.createElement("div");
-        priceText.className = "product-price";
-        priceText.textContent =
-            formatMoney(price) + " each · Subtotal: " +
-            formatMoney(subtotal);
-
-        details.appendChild(productName);
-        details.appendChild(priceText);
-
-        const controls = document.createElement("div");
-        controls.className = "quantity-controls";
-
-        const minus = document.createElement("button");
-        minus.type = "button";
-        minus.textContent = "−";
-        minus.setAttribute("aria-label", "Decrease quantity");
-        minus.addEventListener("click", () => changeQuantity(index, -1));
-
-        const quantity = document.createElement("span");
-        quantity.className = "quantity-value";
-        quantity.textContent = item.quantity;
-
-        const plus = document.createElement("button");
-        plus.type = "button";
-        plus.textContent = "+";
-        plus.setAttribute("aria-label", "Increase quantity");
-        plus.addEventListener("click", () => changeQuantity(index, 1));
-
-        const remove = document.createElement("button");
-        remove.type = "button";
-        remove.className = "remove-button";
-        remove.setAttribute("aria-label", "Remove " + item.product + " from cart");
-        remove.setAttribute("title", "Remove product");
-        remove.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true">
-                <path d="M3 6h18"></path>
-                <path d="M8 6V4h8v2"></path>
-                <path d="m19 6-1 14H6L5 6"></path>
-                <path d="M10 11v5"></path>
-                <path d="M14 11v5"></path>
-            </svg>
-        `;
-        remove.addEventListener("click", () => removeProduct(index));
-
-        controls.appendChild(minus);
-        controls.appendChild(quantity);
-        controls.appendChild(plus);
-        controls.appendChild(remove);
-
-        row.appendChild(details);
-        row.appendChild(controls);
-
-        container.appendChild(row);
-
-    });
-
-    document.getElementById("productCount").textContent = cart.length;
-
-    document.getElementById("totalQuantity").textContent =
-        totalQuantity;
-
-    document.getElementById("grandTotal").textContent =
-        formatMoney(total);
-
-    document.getElementById("submitButton").disabled =
-        cart.length === 0;
-
-}
-
-
-function prepareCheckout() {
-
-    if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return false;
-    }
-
-    const cartJson = cart.map(item => ({
-        product: item.product,
-        quantity: item.quantity
-    }));
-
-    document.getElementById("cartJson").value =
-        JSON.stringify(cartJson);
-
-    return true;
-}
-
-
-// Load initial product from the existing store link.
-function loadInitialProduct() {
-
-    const params = new URLSearchParams(window.location.search);
-
-    const packageName = params.get("package");
-
-    if (!packageName) {
-        renderCart();
-        return;
-    }
-
-    let productKey = packageName;
-
-    if (
-        !PRODUCT_PRICES[productKey] &&
-        PRODUCT_PRICES[packageName + " Sample"]
-    ) {
-        productKey = packageName + " Sample";
-    }
-
-    if (PRODUCT_PRICES[productKey]) {
-
-        cart.push({
-            product: productKey,
-            quantity: 1
-        });
-
-    } else {
-
-        // Compatibility with links that pass only package names.
-        const matching = Object.keys(PRODUCT_PRICES).find(key => {
-            return key === packageName ||
-                   key.endsWith(" - " + packageName);
-        });
-
-        if (matching) {
-            cart.push({
-                product: matching,
-                quantity: 1
-            });
+    const btcAddress =
+        "bc1qx8s2ch385tn3fm05elan67ahy0exj2t5z4y27p";
+
+    function copyAddress() {
+        const button = document.querySelector(".copy-button");
+
+        function copied() {
+            button.innerText = "COPIED";
+            setTimeout(() => {
+                button.innerText = "COPY ADDRESS";
+            }, 2000);
         }
 
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(btcAddress)
+                .then(copied)
+                .catch(() => fallbackCopy());
+        } else {
+            fallbackCopy();
+        }
+
+        function fallbackCopy() {
+            const input = document.createElement("textarea");
+            input.value = btcAddress;
+            document.body.appendChild(input);
+            input.select();
+
+            try {
+                document.execCommand("copy");
+                copied();
+            } catch (error) {
+                button.innerText = "COPY FAILED";
+            }
+
+            document.body.removeChild(input);
+        }
     }
 
-    renderCart();
+    const qrContainer = document.getElementById("qrcode");
 
-}
+    if (typeof QRCode !== "undefined") {
+        qrContainer.innerHTML = "";
 
-
-loadInitialProduct();
-
+        new QRCode(qrContainer, {
+            text: "bitcoin:" + btcAddress,
+            width: 180,
+            height: 180,
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    } else {
+        qrContainer.innerHTML =
+            '<span class="qr-caption">QR Code unavailable. Please copy the BTC address above.</span>';
+    }
 </script>
 
 </body>
