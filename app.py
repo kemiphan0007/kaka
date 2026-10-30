@@ -48,9 +48,9 @@ PRODUCT_CATALOG = {
         "package_name": "10g Sample",
         "unit_price": Decimal("850"),
     },
-    "R&D System AT121 - 1kg Bulk": {
+    "R&D System AT121 - 100g Bulk": {
         "product_name": "R&D System™ AT121",
-        "package_name": "1kg Bulk",
+        "package_name": "100g Bulk",
         "unit_price": Decimal("6800"),
     },
     "SR17018 - 50g Sample": {
