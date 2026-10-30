@@ -494,6 +494,160 @@ color: #222;
     }
 
 }
+       /* =========================================
+   COMPANY IDENTITY — STAGE 1
+========================================= */
+
+.company-identity {
+    max-width: 1100px;
+    margin: 55px auto 0;
+    padding: 0 20px;
+}
+
+.company-identity-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+    padding: 34px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.company-identity-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #571a93;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.company-identity h2 {
+    margin: 0 0 10px;
+    color: #222;
+    font-size: 25px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.company-identity-intro {
+    max-width: 680px;
+    margin: 0 auto 26px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.company-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto 26px;
+}
+
+.company-detail {
+    padding: 16px;
+    background: #f8f8fa;
+    border: 1px solid #ededf0;
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.company-detail span {
+    display: block;
+    margin-bottom: 7px;
+    color: #777;
+    font-size: 11px;
+    letter-spacing: .5px;
+}
+
+.company-detail strong {
+    display: block;
+    color: #222;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.company-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.company-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 20px;
+    border: 1px solid #222;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.company-action:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+
+.company-action.secondary {
+    background: #fff;
+    color: #222;
+}
+
+.company-action.secondary:hover {
+    background: #f3f3f3;
+}
+
+.company-disclaimer {
+    max-width: 760px;
+    margin: 18px auto 0;
+    color: #888;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .company-identity {
+        margin-top: 35px;
+        padding: 0 14px;
+    }
+
+    .company-identity-card {
+        padding: 24px 17px;
+    }
+
+    .company-identity h2 {
+        font-size: 21px;
+    }
+
+    .company-details {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .company-actions {
+        flex-direction: column;
+    }
+
+    .company-action {
+        width: 100%;
+    }
+
+}
     </style>
 <header class="site-header">
 
@@ -816,6 +970,102 @@ if (option) {
 }
 </style>
 </div>
+
+<!-- =====================================
+     COMPANY IDENTITY — STAGE 1
+===================================== -->
+
+<section class="company-identity"
+         aria-labelledby="company-identity-title">
+
+    <div class="company-identity-card">
+
+        <span class="company-identity-label">
+            COMPANY INFORMATION
+        </span>
+
+        <h2 id="company-identity-title">
+            บริษัท เกษตร เคมีภัณฑ์ จำกัด
+        </h2>
+
+        <p class="company-identity-intro">
+            Company registration information for
+            บริษัท เกษตร เคมีภัณฑ์ จำกัด,
+            a company registered in Thailand.
+        </p>
+
+        <div class="company-details">
+
+            <div class="company-detail">
+                <span>COMPANY REGISTRATION NUMBER</span>
+                <strong>0705556001565</strong>
+            </div>
+
+            <div class="company-detail">
+                <span>REGISTRATION STATUS</span>
+                <strong>Operating</strong>
+            </div>
+
+            <div class="company-detail">
+                <span>DATE OF REGISTRATION</span>
+                <strong>15 October 2013</strong>
+            </div>
+
+            <div class="company-detail">
+                <span>REGISTERED COUNTRY</span>
+                <strong>Thailand</strong>
+            </div>
+
+        </div>
+
+        <div class="company-actions">
+
+            <!-- WHATSAPP -->
+
+            <a class="company-action"
+               href="https://wa.me/66813589621"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                Contact us on WhatsApp
+
+            </a>
+
+            <!-- VIEW PDF -->
+
+            <a class="company-action secondary"
+               href="{{ url_for('static', filename='Company_Profile.pdf') }}"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                View Company Registration PDF
+
+            </a>
+
+            <!-- DOWNLOAD PDF -->
+
+            <a class="company-action secondary"
+               href="{{ url_for('static', filename='Company_Profile.pdf') }}"
+               download="Company_Profile.pdf">
+
+                Download PDF
+
+            </a>
+
+        </div>
+
+        <p class="company-disclaimer">
+            Registration details are presented from the
+            company information record supplied by the
+            website owner. Records may change; please refer
+            to the latest information published by the
+            relevant Thai authority.
+        </p>
+
+    </div>
+
+</section>
+
 <section class="contact-section">
 
     <div class="contact-content">
