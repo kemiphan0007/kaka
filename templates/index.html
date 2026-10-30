@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Ke-miphan เคมีภัณฑ์ - Thailand</title>
-    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='Logo.jpeg') }}">
-
+<link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='Logo.jpeg') }}">
     <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -100,23 +105,22 @@
         }
 
         .option {
-            flex: 1;
-            border: 2px solid #ddd;
-            border-radius: 15px;
-            padding: 25px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    padding: 25px;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-        .option input {
-            display: none;
-        }
+.option input {
+    display: none;
+}
 
-        .option:has(input:checked) {
-            border-color: #111;
-            background: #f5f5f5;
-        }
-
+.option:has(input:checked) {
+    border-color: #111;
+    background: #f5f5f5;
+}
         .option:hover {
             border-color: #111;
         }
@@ -156,6 +160,7 @@
         }
 
         @media (max-width: 700px) {
+
             .product {
                 padding: 20px;
             }
@@ -176,476 +181,503 @@
                 width: 33%;
             }
         }
-
-        /* CONTACT */
-
         .contact-section {
-            margin-top: 80px;
-            padding: 40px 20px 60px;
-            text-align: center;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-label {
-            display: block;
-            margin-bottom: 12px;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2.5px;
-            color: #571a93;
-        }
-
-        .contact-section h2 {
-            margin: 0 0 12px;
-            font-size: 26px;
-            font-weight: 600;
-        }
-
-        .contact-section p {
-            margin: 0 0 18px;
-            color: #0a0909;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .contact-email {
-            color: #29167e;
-            font-size: 15px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .contact-email:hover {
-            text-decoration: underline;
-        }
-
-        /* SHIPPING */
-
-        .shipping-section {
-            margin-top: 60px;
-            padding: 60px 25px;
-            border-top: 1px solid #e5e5e5;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .shipping-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .shipping-label {
-            display: block;
-            margin-bottom: 12px;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 2.5px;
-            color: #530505;
-        }
-
-        .shipping-section h2 {
-            margin: 0 0 15px;
-            font-size: 30px;
-            font-weight: 600;
-        }
-
-        .shipping-intro {
-            max-width: 550px;
-            margin: 0 auto 40px;
-            color: #451515;
-            line-height: 1.6;
-        }
-
-        .shipping-features {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            text-align: center;
-        }
-
-        .shipping-item {
-            padding: 10px;
-        }
-
-        .shipping-item strong {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .shipping-item span {
-            display: block;
-            color: #750606;
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .shipping-note {
-            margin-top: 35px;
-            color: #531616;
-            font-size: 11px;
-        }
-
-        @media (max-width: 700px) {
-            .shipping-features {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* SUPPORT LINKS */
-
-        .support-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 35px;
-        }
-
-        .support-card {
-            width: 240px;
-            min-height: 130px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: #ffffff;
-            border: 1px solid #d8d8d8;
-            border-radius: 14px;
-            text-decoration: none;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-            transition: all 0.2s ease;
-        }
-
-        .support-card:hover {
-            transform: translateY(-3px);
-            border-color: #412626;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
-        }
-
-        .support-card span {
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            color: #392828;
-        }
-
-        .support-card strong {
-            margin-top: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #222;
-        }
-
-        @media (max-width: 600px) {
-            .support-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .support-card {
-                width: 100%;
-                max-width: 340px;
-            }
-        }
-
-        /* FOOTER */
-
-        .site-footer {
-            width: 100%;
-            margin-top: 70px;
-            padding: 35px 20px;
-            border-top: 1px solid #e5e5e5;
-            background: #f8f8f9;
-            box-sizing: border-box;
-        }
-
-        .footer-content {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-brand {
-            margin-bottom: 18px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #222;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 20px;
-        }
-
-        .footer-links a {
-            color: #411bcc;
-            font-size: 12px;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: #222;
-            text-decoration: underline;
-        }
-
-        .footer-copy {
-            color: #462e2e;
-            font-size: 11px;
-        }
-
-        @media (max-width: 600px) {
-            .footer-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        /* HEADER */
-
-        .site-header {
-            width: 100%;
-            padding: 0.5px 120px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand-logo {
-            display: inline-block;
-        }
-
-        .brand-logo img {
-            display: block;
-            width: 208px;
-            height: 140px;
-        }
-
-        .header-nav {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-right: 165px;
-        }
-
-        .header-nav a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 115px;
-            height: 40px;
-            padding: 0 18px;
-            text-decoration: none;
-            color: #222;
-            background: #f7f7f7;
-            border: 1px solid #e5e5e5;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.2px;
-            transition: all 0.2s ease;
-        }
-
-        .header-nav a:hover {
-            background: #222;
-            color: #fff;
-            border-color: #222;
-        }
-
-        @media (max-width: 600px) {
-            .site-header {
-                padding: 15px 12px;
-            }
-
-            .brand-logo img {
-                width: 150px;
-                height: 120px;
-            }
-
-            .header-nav {
-                gap: 16px;
-                margin-right: 12px;
-            }
-
-            .header-nav a {
-                min-width: auto;
-                height: 36px;
-                padding: 0 10px;
-                font-size: 9px;
-                letter-spacing: 0.7px;
-            }
-        }
-
-        /* COMPANY IDENTITY */
-
-        .company-identity {
-            max-width: 1100px;
-            margin: 55px auto 0;
-            padding: 0 20px;
-        }
-
-        .company-identity-card {
-            background: #fff;
-            border: 1px solid #e5e5e5;
-            border-radius: 18px;
-            padding: 34px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-        }
-
-        .company-identity-label {
-            display: block;
-            margin-bottom: 12px;
-            color: #571a93;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-
-        .company-identity h2 {
-            margin: 0 0 10px;
-            color: #222;
-            font-size: 25px;
-            line-height: 1.4;
-            text-align: center;
-        }
-
-        .company-identity-intro {
-            max-width: 680px;
-            margin: 0 auto 26px;
-            color: #666;
-            font-size: 14px;
-            line-height: 1.7;
-            text-align: center;
-        }
-
-        .company-details {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
-            max-width: 760px;
-            margin: 0 auto 26px;
-        }
-
-        .company-detail {
-            padding: 16px;
-            background: #f8f8fa;
-            border: 1px solid #ededf0;
-            border-radius: 10px;
-            min-width: 0;
-        }
-
-        .company-detail span {
-            display: block;
-            margin-bottom: 7px;
-            color: #777;
-            font-size: 11px;
-            letter-spacing: .5px;
-        }
-
-        .company-detail strong {
-            display: block;
-            color: #222;
-            font-size: 14px;
-            line-height: 1.5;
-            overflow-wrap: anywhere;
-        }
-
-        .company-actions {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .company-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 46px;
-            padding: 12px 20px;
-            border: 1px solid #222;
-            border-radius: 8px;
-            background: #222;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: background .2s ease, transform .2s ease;
-        }
-
-        .company-action:hover {
-            background: #444;
-            transform: translateY(-2px);
-        }
-
-        .company-action.secondary {
-            background: #fff;
-            color: #222;
-        }
-
-        .company-action.secondary:hover {
-            background: #f3f3f3;
-        }
-
-        .company-disclaimer {
-            max-width: 760px;
-            margin: 18px auto 0;
-            color: #888;
-            font-size: 11px;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            .company-identity {
-                margin-top: 35px;
-                padding: 0 14px;
-            }
-
-            .company-identity-card {
-                padding: 24px 17px;
-            }
-
-            .company-identity h2 {
-                font-size: 21px;
-            }
-
-            .company-details {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .company-actions {
-                flex-direction: column;
-            }
-
-            .company-action {
-                width: 100%;
-            }
-        }
+    margin-top: 80px;
+    padding: 40px 20px 60px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    color: #571a93;
+}
+
+.contact-section h2 {
+    margin: 0 0 12px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.contact-section p {
+    margin: 0 0 18px;
+    color: #0a0909;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-email {
+    color: #29167e;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-email:hover {
+    text-decoration: underline;
+}
+.shipping-section {
+    margin-top: 60px;
+    padding: 60px 25px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.shipping-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.shipping-label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    color: #530505;
+}
+
+.shipping-section h2 {
+    margin: 0 0 15px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.shipping-intro {
+    max-width: 550px;
+    margin: 0 auto 40px;
+    color: #451515;
+    line-height: 1.6;
+}
+
+.shipping-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.shipping-item {
+    padding: 10px;
+}
+
+.shipping-item strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.shipping-item span {
+    display: block;
+    color: #750606;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.shipping-note {
+    margin-top: 35px;
+    color: #531616;
+    font-size: 11px;
+}
+@media (max-width: 700px) {
+
+.shipping-features {
+    grid-template-columns: 1fr 1fr;
+}
+
+}
+
+
+.support-links {
+display: flex;
+justify-content: center;
+gap: 20px;
+margin-top: 35px;
+}
+
+.support-card {
+width: 240px;
+min-height: 130px;
+padding: 24px;
+
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
+background: #ffffff;
+border: 1px solid #d8d8d8;
+border-radius: 14px;
+
+text-decoration: none;
+
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+
+transition: all 0.2s ease;
+}
+
+.support-card:hover {
+transform: translateY(-3px);
+border-color: #412626;
+box-shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+}
+
+.support-card span {
+font-size: 10px;
+font-weight: bold;
+letter-spacing: 2px;
+color: #392828;
+}
+
+.support-card strong {
+margin-top: 25px;
+font-size: 14px;
+font-weight: 600;
+color: #222;
+}
+
+
+@media (max-width: 600px) {
+
+    .support-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .support-card {
+        width: 100%;
+        max-width: 340px;
+    }
+
+}
+
+
+/* FOOTER */
+
+.site-footer {
+    width: 100%;
+    margin-top: 70px;
+    padding: 35px 20px;
+    border-top: 1px solid #e5e5e5;
+    background: #f8f8f9;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-brand {
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #411bcc;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #222;
+    text-decoration: underline;
+}
+
+.footer-copy {
+    color: #462e2e;
+    font-size: 11px;
+}
+
+
+/* FOOTER MOBILE */
+
+@media (max-width: 600px) {
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+     .site-header {
+    width: 100%;
+    padding: 0,5px 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-logo {
+    display: inline-block;
+}
+
+.brand-logo img {
+    display: block;
+    width: 208px;
+    height: 140px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 165px;
+}
+
+.header-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 115px;
+    height: 40px;
+    padding: 0 18px;
+
+    text-decoration: none;
+    color: #222;
+    background: #f7f7f7;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+
+    transition: all 0.2s ease;
+}
+
+.header-nav a:hover {
+    background: #222;
+    color: #fff;
+    border-color: #222;
+}
+
+@media (max-width: 600px) {
+
+    .site-header {
+        padding: 15px 12px;
+    }
+
+    .brand-logo img {
+        width: 150px;
+        height: 120px;
+    }
+
+    .header-nav {
+        gap: 6px;
+        margin-right: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .header-nav a {
+        min-width: auto;
+        height: 34px;
+        padding: 0 8px;
+        font-size: 8px;
+        letter-spacing: 0.4px;
+    }
+
+}
+       /* =========================================
+   COMPANY IDENTITY — STAGE 1
+========================================= */
+
+.company-identity {
+    max-width: 1100px;
+    margin: 55px auto 0;
+    padding: 0 20px;
+    scroll-margin-top: 30px;
+}
+
+.company-identity-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+    padding: 34px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.company-identity-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #571a93;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.company-identity h2 {
+    margin: 0 0 10px;
+    color: #222;
+    font-size: 25px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.company-identity-intro {
+    max-width: 680px;
+    margin: 0 auto 26px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.company-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto 26px;
+}
+
+.company-detail {
+    padding: 16px;
+    background: #f8f8fa;
+    border: 1px solid #ededf0;
+    border-radius: 10px;
+    min-width: 0;
+}
+
+.company-detail span {
+    display: block;
+    margin-bottom: 7px;
+    color: #777;
+    font-size: 11px;
+    letter-spacing: .5px;
+}
+
+.company-detail strong {
+    display: block;
+    color: #222;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.company-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.company-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 20px;
+    border: 1px solid #222;
+    border-radius: 8px;
+    background: #222;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.company-action:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+
+.company-action.secondary {
+    background: #fff;
+    color: #222;
+}
+
+.company-action.secondary:hover {
+    background: #f3f3f3;
+}
+
+.company-disclaimer {
+    max-width: 760px;
+    margin: 18px auto 0;
+    color: #888;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .company-identity {
+        margin-top: 35px;
+        padding: 0 14px;
+    }
+
+    .company-identity-card {
+        padding: 24px 17px;
+    }
+
+    .company-identity h2 {
+        font-size: 21px;
+    }
+
+    .company-details {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .company-actions {
+        flex-direction: column;
+    }
+
+    .company-action {
+        width: 100%;
+    }
+
+}
     </style>
-</head>
-
-<body>
-
 <header class="site-header">
+
     <a href="/" class="brand-logo">
         <img src="{{ url_for('static', filename='Logo.jpeg') }}" alt="Ke-miphan Thailand">
     </a>
 
     <nav class="header-nav">
-        <a href="/track-order">TRACK ORDER</a>
-        <a href="#orders" class="cart-button">CART</a>
+
+        <a href="#company-profile">
+            COMPANY PROFILE
+        </a>
+
+        <a href="/track-order">
+            TRACK ORDER
+        </a>
+
+        <a href="#orders" class="cart-button">
+            CART
+        </a>
+
     </nav>
+
 </header>
 
 <div class="container">
@@ -655,33 +687,37 @@
         <!-- SPOILER CARDS -->
 
         <div class="spoilers-title">
+
             <h2>Ke-miphan (เคมีภัณฑ์)</h2>
 
             <p>
-                has been a recognized name in the market since 2021, best known for our kratom-based products.
-                We previously also offered extract MIT.
+                has been a recognized name in the market since 2021, best known for our kratom-based products. 
+                We previously also offered extract MIT. 
                 Today, we are entering a new chapter with the launch of SR17018, developed after nearly a year of dedicated research and market study, and supported by our new investment partner.
             </p>
-        </div>
-
-        <div class="spoilers">
-
-            <div class="spoiler-card">
-                <img src="{{ url_for('static', filename='img01.jpeg') }}"
-                     alt="Ke-miphan Thailand">
-            </div>
-
-            <div class="spoiler-card">
-                <img src="{{ url_for('static', filename='img02.jpeg') }}"
-                     alt="Ke-miphan Thailand">
-            </div>
-
-            <div class="spoiler-card">
-                <img src="{{ url_for('static', filename='img03.jpeg') }}"
-                     alt="Ke-miphan Thailand">
-            </div>
 
         </div>
+
+       <div class="spoilers">
+
+    <div class="spoiler-card">
+        <img src="{{ url_for('static', filename='img01.jpeg') }}"
+             alt="Ke-miphan Thailand">
+    </div>
+
+    <div class="spoiler-card">
+        <img src="{{ url_for('static', filename='img02.jpeg') }}"
+             alt="Ke-miphan Thailand">
+    </div>
+
+    <div class="spoiler-card">
+        <img src="{{ url_for('static', filename='img03.jpeg') }}"
+             alt="Ke-miphan Thailand">
+    </div>
+
+</div>
+        </div>
+
 
         <!-- PRODUCT -->
 
@@ -690,7 +726,7 @@
             <h1>SR17018</h1>
 
             <div class="subtitle">
-                Origin From Thailand, made using synthetic researched methode, learned from expert chemist in China.
+                Origin From Thailand, made using synthetic researched methode, learned from expert chemist in China. 
             </div>
 
             <p class="description">
@@ -698,524 +734,507 @@
                 We test regularly and publish fresh lab results every month.
             </p>
 
+
             <!-- OPTIONS -->
 
-            <div class="options">
+           <!-- OPTIONS -->
 
-                <label class="option">
-                    <input type="radio" name="package" value="50">
+<div class="options">
 
-                    <div class="option-content">
-                        <h2>50g Sample</h2>
+    <label class="option">
+        <input type="radio" name="package" value="50">
 
-                        <div class="price">
-                            $350
-                        </div>
+        <div class="option-content">
+            <h2>50g Sample</h2>
 
-                        <p>
-                            50g SR17018 Powder
-                        </p>
-                    </div>
-                </label>
-
-                <label class="option" id="orders">
-                    <input type="radio" name="package" value="4650">
-
-                    <div class="option-content">
-                        <h2>1kg Bulk</h2>
-
-                        <div class="price">
-                            $4650
-                        </div>
-
-                        <p>
-                            1kg SR17018 Powder Bulk
-                        </p>
-
-                        <div class="bonus">
-                            + Get a FREE Bonus Pack (100g)
-                        </div>
-                    </div>
-                </label>
-
+            <div class="price">
+                $350
             </div>
-
-        </div>
-
-        <!-- BUY -->
-
-        <button type="button" class="buy-button" onclick="buyNow()">
-            BUY NOW
-        </button>
-
-        <script>
-            function buyNow() {
-                const selected = document.querySelector('input[name="package"]:checked');
-
-                if (!selected) {
-                    alert("Please select a package first.");
-                    return;
-                }
-
-                const option = selected.closest(".option");
-
-                if (option) {
-                    const title = option.querySelector("h2").innerText;
-                    const price = option.querySelector(".price").innerText;
-
-                    window.location.href =
-                        "/checkout?package=" +
-                        encodeURIComponent(title) +
-                        "&price=" +
-                        encodeURIComponent(price);
-                }
-            }
-        </script>
-
-    </div>
-
-    <!-- PRODUCT CATALOG -->
-
-    <section class="product-catalog">
-
-        <h2>PRODUCT CATALOG</h2>
-        <p class="catalog-subtitle">KEMIPHAN · PRODUCTS &amp; PRICING</p>
-
-        <!-- NEW PRODUCT: AT121 -->
-
-        <div class="catalog-item">
-
-            <h3>
-                R&amp;D System™ AT121
-                <span class="new-product-badge">NEW PRODUCT</span>
-            </h3>
-
-            <p class="description">R&amp;D System</p>
-
-            <div class="product-option">
-                <span>Sample · 10g</span>
-                <strong>$850</strong>
-                <a href="/checkout?package=R%26D%20System%20AT121%20-%2010g%20Sample&amp;price=850">
-                    ORDER NOW
-                </a>
-            </div>
-
-            <div class="product-option">
-                <span>Bulk · 1kg</span>
-                <strong>$6,800</strong>
-                <a href="/checkout?package=R%26D%20System%20AT121%20-%201kg%20Bulk&amp;price=6800">
-                    ORDER NOW
-                </a>
-            </div>
-
-        </div>
-
-        <!-- MORINGA -->
-
-        <div class="catalog-item">
-
-            <h3>Moringa Powder</h3>
-            <p class="description">Organic</p>
-
-            <div class="product-option">
-                <span>Sample · 100g</span>
-                <strong>$100</strong>
-                <a href="/checkout?package=Moringa%20Powder%20-%20100g%20Sample&amp;price=100">
-                    ORDER NOW
-                </a>
-            </div>
-
-            <div class="product-option">
-                <span>Bulk · 1kg</span>
-                <strong>$750</strong>
-                <a href="/checkout?package=Moringa%20Powder%20-%201kg%20Bulk&amp;price=750">
-                    ORDER NOW
-                </a>
-            </div>
-
-        </div>
-
-        <!-- SPATHOLOBUS -->
-
-        <div class="catalog-item">
-
-            <h3>Spatholobus littoralis Powder</h3>
-            <p class="description">Flavonoids, saponins, tannins</p>
-
-            <div class="product-option">
-                <span>Sample · 100g</span>
-                <strong>$250</strong>
-                <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%20100g%20Sample&amp;price=250">
-                    ORDER NOW
-                </a>
-            </div>
-
-            <div class="product-option">
-                <span>Bulk · 1kg</span>
-                <strong>$2,150</strong>
-                <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%201kg%20Bulk&amp;price=2150">
-                    ORDER NOW
-                </a>
-            </div>
-
-        </div>
-
-        <!-- MIT -->
-
-        <div class="catalog-item">
-
-            <h3>MIT 88% Alkaloids 97%</h3>
-            <p class="description">Research chemical</p>
-
-            <div class="product-option">
-                <span>Sample · 100g</span>
-                <strong>$250</strong>
-                <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%20100g%20Sample&amp;price=250">
-                    ORDER NOW
-                </a>
-            </div>
-
-            <div class="product-option">
-                <span>Bulk · 1kg</span>
-                <strong>$2,050</strong>
-                <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%201kg%20Bulk&amp;price=2050">
-                    ORDER NOW
-                </a>
-            </div>
-
-        </div>
-
-        <!-- SR-14968 -->
-
-        <div class="catalog-item">
-
-            <h3>SR-14968</h3>
-            <p class="description">Research chemical</p>
-
-            <div class="product-option">
-                <span>Sample · 100g</span>
-                <strong>$500</strong>
-                <a href="/checkout?package=SR-14968%20-%20100g%20Sample&amp;price=500">
-                    ORDER NOW
-                </a>
-            </div>
-
-            <div class="product-option">
-                <span>Bulk · 1kg</span>
-                <strong>$4,500</strong>
-                <a href="/checkout?package=SR-14968%20-%201kg%20Bulk&amp;price=4500">
-                    ORDER NOW
-                </a>
-            </div>
-
-        </div>
-
-    </section>
-
-    <style>
-        /* PRODUCT CATALOG */
-
-        .product-catalog {
-            max-width: 850px;
-            margin: 50px auto;
-            padding: 25px;
-            color: #222;
-            font-family: Arial, sans-serif;
-        }
-
-        .product-catalog h2 {
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-        }
-
-        .catalog-subtitle {
-            color: #888;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            margin-bottom: 30px;
-        }
-
-        .catalog-item {
-            padding: 22px 0;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .catalog-item h3 {
-            margin: 0 0 8px;
-            font-size: 19px;
-        }
-
-        /* NEW PRODUCT BADGE */
-
-        .new-product-badge {
-            display: inline-block;
-            margin-left: 9px;
-            padding: 5px 9px;
-            background: #e8f5ed;
-            color: #176b43;
-            border-radius: 20px;
-            font-size: 9px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            vertical-align: middle;
-            white-space: nowrap;
-        }
-
-        .product-catalog .description {
-            color: #777;
-            font-size: 13px;
-            margin: 0 0 16px;
-        }
-
-        .product-option {
-            display: grid;
-            grid-template-columns: 1fr auto auto;
-            align-items: center;
-            gap: 18px;
-            padding: 12px 0;
-            border-top: 1px solid #f0f0f0;
-            font-size: 14px;
-        }
-
-        .product-option strong {
-            white-space: nowrap;
-        }
-
-        .product-option a {
-            display: inline-block;
-            padding: 10px 13px;
-            background: #222;
-            color: #fff;
-            text-decoration: none;
-            font-size: 11px;
-            letter-spacing: .5px;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-
-        .product-option a:hover {
-            background: #444;
-        }
-
-        @media (max-width: 520px) {
-
-            .product-catalog {
-                padding: 18px;
-            }
-
-            .product-option {
-                grid-template-columns: 1fr auto;
-                gap: 10px;
-            }
-
-            .product-option a {
-                grid-column: 1 / -1;
-                text-align: center;
-            }
-
-            .new-product-badge {
-                margin-left: 5px;
-                font-size: 8px;
-                padding: 4px 7px;
-            }
-        }
-    </style>
-
-    <!-- COMPANY IDENTITY -->
-
-    <section class="company-identity"
-             aria-labelledby="company-identity-title">
-
-        <div class="company-identity-card">
-
-            <span class="company-identity-label">
-                COMPANY INFORMATION
-            </span>
-
-            <h2 id="company-identity-title">
-                บริษัท เกษตร เคมีภัณฑ์ จำกัด
-            </h2>
-
-            <p class="company-identity-intro">
-                Company registration information for
-                บริษัท เกษตร เคมีภัณฑ์ จำกัด,
-                a company registered in Thailand.
-            </p>
-
-            <div class="company-details">
-
-                <div class="company-detail">
-                    <span>COMPANY REGISTRATION NUMBER</span>
-                    <strong>0705556001565</strong>
-                </div>
-
-                <div class="company-detail">
-                    <span>REGISTRATION STATUS</span>
-                    <strong>Operating</strong>
-                </div>
-
-                <div class="company-detail">
-                    <span>DATE OF REGISTRATION</span>
-                    <strong>15 October 2013</strong>
-                </div>
-
-                <div class="company-detail">
-                    <span>REGISTERED COUNTRY</span>
-                    <strong>Thailand</strong>
-                </div>
-
-            </div>
-
-            <div class="company-actions">
-
-                <a class="company-action"
-                   href="https://wa.me/66813589621"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    Contact us on WhatsApp
-                </a>
-
-                <a class="company-action secondary"
-                   href="{{ url_for('static', filename='Company_Profile.pdf') }}"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    View Company Registration PDF
-                </a>
-
-                <a class="company-action secondary"
-                   href="{{ url_for('static', filename='Company_Profile.pdf') }}"
-                   download="Company_Profile.pdf">
-                    Download PDF
-                </a>
-
-            </div>
-
-            <p class="company-disclaimer">
-                Registration details are presented from the
-                company information record supplied by the
-                website owner. Records may change; please refer
-                to the latest information published by the
-                relevant Thai authority.
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- CUSTOMER SUPPORT -->
-
-    <section class="contact-section">
-
-        <div class="contact-content">
-
-            <span class="contact-label">
-                CUSTOMER SUPPORT
-            </span>
-
-            <h2>
-                We're Here to Help.
-            </h2>
 
             <p>
-                Have a question about your order or otherwise?
-                <br>
-                Our customer service team is available online 24 hours a day.
+                50g SR17018 Powder
+            </p>
+        </div>
+    </label>
+
+
+    <label class="option" id="orders">
+        <input type="radio" name="package" value="4650">
+
+        <div class="option-content">
+            <h2>1kg Bulk</h2>
+
+            <div class="price">
+                $4650
+            </div>
+
+            <p>
+                1kg SR17018 Powder Bulk
             </p>
 
-            <div class="support-links">
-
-                <a href="/refund" class="support-card">
-                    <span>REFUND &amp; RETURNS</span>
-                    <strong>View our policy →</strong>
-                </a>
-
-                <a href="/payment" class="support-card">
-                    <span>PAYMENT METHOD</span>
-                    <strong>Bitcoin (BTC) →</strong>
-                </a>
-
+            <div class="bonus">
+                + Get a FREE Bonus Pack (100g)
             </div>
-
         </div>
-
-    </section>
-
-    <!-- INTERNATIONAL SHIPPING -->
-
-    <section class="shipping-section">
-
-        <div class="shipping-content">
-
-            <span class="shipping-label">
-                INTERNATIONAL SHIPPING
-            </span>
-
-            <h2>
-                Delivered Worldwide.
-            </h2>
-
-            <p class="shipping-intro">
-                Every order is carefully packed and shipped
-                through DHL Express by air.
-            </p>
-
-            <div class="shipping-features">
-
-                <div class="shipping-item">
-                    <strong>DHL Express</strong>
-                    <span>Air delivery with tracking</span>
-                </div>
-
-                <div class="shipping-item">
-                    <strong>Up to 5 Business Days*</strong>
-                    <span>Estimated international delivery</span>
-                </div>
-
-                <div class="shipping-item">
-                    <strong>Shipping Covered</strong>
-                    <span>Shipping costs are covered by us</span>
-                </div>
-
-                <div class="shipping-item">
-                    <strong>Duties &amp; Taxes Covered</strong>
-                    <span>Covered by our store</span>
-                </div>
-
-            </div>
-
-            <p class="shipping-note">
-                *Estimated delivery time may vary depending on destination
-                and customs clearance.
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer class="site-footer">
-
-        <div class="footer-content">
-
-            <div class="footer-brand">
-                Ke-miphan (เคมีภัณฑ์) Thailand
-            </div>
-
-            <div class="footer-links">
-                <a href="/refund">Refund &amp; Returns</a>
-                <a href="/payment">Payment Method</a>
-            </div>
-
-            <div class="footer-copy">
-                © 2026 Ke-miphan (เคมีภัณฑ์) Thailand. All rights reserved.
-            </div>
-
-        </div>
-
-    </footer>
+    </label>
 
 </div>
 
+
+            <!-- BUY -->
+
+            <script>
+                function buyNow() {
+                
+                    const selected = document.querySelector('input[name="package"]:checked');
+                
+                    if (!selected) {
+                        alert("Please select a package first.");
+                        return;
+                    }
+                
+                    const option = selected.closest(".option");
+                
+                    if (option) {
+                        const title = option.querySelector("h2").innerText;
+                        const price = option.querySelector(".price").innerText;
+                
+                        alert("You selected: " + title + " — " + price);
+                    }
+                }
+                </script>
+
+        </div>
+<!-- BUY -->
+
+<button type="button" class="buy-button" onclick="buyNow()">
+    BUY NOW
+</button>
+
+<script>
+function buyNow() {
+
+const selected = document.querySelector('input[name="package"]:checked');
+
+if (!selected) {
+    alert("Please select a package first.");
+    return;
+}
+
+const option = selected.closest(".option");
+
+if (option) {
+    const title = option.querySelector("h2").innerText;
+    const price = option.querySelector(".price").innerText;
+
+    window.location.href =
+        "/checkout?package=" +
+        encodeURIComponent(title) +
+        "&price=" +
+        encodeURIComponent(price);
+}
+}
+</script>
+    </div>
+<section class="product-catalog">
+    <h2>PRODUCT CATALOG</h2>
+    <p class="catalog-subtitle">KEMIPHAN · PRODUCTS &amp; PRICING</p>
+
+    <div class="catalog-item">
+        <h3>
+            R&amp;D System™ AT121
+            <span class="new-product-badge">NEW PRODUCT</span>
+        </h3>
+        <p class="description">R&amp;D System</p>
+
+        <div class="product-option">
+            <span>Sample · 10g</span>
+            <strong>$850</strong>
+            <a href="/checkout?package=R%26D%20System%20AT121%20-%2010g%20Sample&amp;price=850">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$6,800</strong>
+            <a href="/checkout?package=R%26D%20System%20AT121%20-%201kg%20Bulk&amp;price=6800">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>Moringa Powder</h3>
+        <p class="description">Organic</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$100</strong>
+            <a href="/checkout?package=Moringa%20Powder%20-%20100g%20Sample&amp;price=100">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$750</strong>
+            <a href="/checkout?package=Moringa%20Powder%20-%201kg%20Bulk&amp;price=750">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>Spatholobus littoralis Powder</h3>
+        <p class="description">Flavonoids, saponins, tannins</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$250</strong>
+            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%20100g%20Sample&amp;price=250">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$2,150</strong>
+            <a href="/checkout?package=Spatholobus%20littoralis%20Powder%20-%201kg%20Bulk&amp;price=2150">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>MIT 88% Alkaloids 97%</h3>
+        <p class="description">Research chemical</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$250</strong>
+            <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%20100g%20Sample&amp;price=250">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$2,050</strong>
+            <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%201kg%20Bulk&amp;price=2050">ORDER NOW</a>
+        </div>
+    </div>
+
+    <div class="catalog-item">
+        <h3>SR-14968</h3>
+        <p class="description">Research chemical</p>
+
+        <div class="product-option">
+            <span>Sample · 100g</span>
+            <strong>$500</strong>
+            <a href="/checkout?package=SR-14968%20-%20100g%20Sample&amp;price=500">ORDER NOW</a>
+        </div>
+
+        <div class="product-option">
+            <span>Bulk · 1kg</span>
+            <strong>$4,500</strong>
+            <a href="/checkout?package=SR-14968%20-%201kg%20Bulk&amp;price=4500">ORDER NOW</a>
+        </div>
+    </div>
+</section>
+
+<style>
+.product-catalog {
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 25px;
+    color: #222;
+    font-family: Arial, sans-serif;
+}
+.product-catalog h2 {
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+.catalog-subtitle {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 30px;
+}
+.catalog-item {
+    padding: 22px 0;
+    border-top: 1px solid #e5e5e5;
+}
+.catalog-item h3 {
+    margin: 0 0 8px;
+    font-size: 19px;
+}
+
+.new-product-badge {
+    display: inline-block;
+    margin-left: 9px;
+    padding: 5px 9px;
+    background: #e8f5ed;
+    color: #176b43;
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.description {
+    color: #777;
+    font-size: 13px;
+    margin: 0 0 16px;
+}
+.product-option {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 0;
+    border-top: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+.product-option strong {
+    white-space: nowrap;
+}
+.product-option a {
+    display: inline-block;
+    padding: 10px 13px;
+    background: #222;
+    color: #fff;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: .5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+.product-option a:hover {
+    background: #444;
+}
+@media (max-width: 520px) {
+    .product-catalog {
+        padding: 18px;
+    }
+    .product-option {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+    }
+    .product-option a {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+
+    .new-product-badge {
+        margin-left: 5px;
+        padding: 4px 7px;
+        font-size: 8px;
+    }
+}
+</style>
+</div>
+
+<!-- =====================================
+     COMPANY IDENTITY — STAGE 1
+===================================== -->
+
+<section class="company-identity"
+         id="company-profile"
+         aria-labelledby="company-identity-title">
+
+    <div class="company-identity-card">
+
+        <span class="company-identity-label">
+            COMPANY INFORMATION
+        </span>
+
+        <h2 id="company-identity-title">
+            บริษัท เกษตร เคมีภัณฑ์ จำกัด
+        </h2>
+
+        <p class="company-identity-intro">
+            Company registration information for
+            บริษัท เกษตร เคมีภัณฑ์ จำกัด,
+            a company registered in Thailand.
+        </p>
+
+        <div class="company-details">
+
+            <div class="company-detail">
+                <span>COMPANY REGISTRATION NUMBER</span>
+                <strong>0705556001565</strong>
+            </div>
+
+            <div class="company-detail">
+                <span>REGISTRATION STATUS</span>
+                <strong>Operating</strong>
+            </div>
+
+            <div class="company-detail">
+                <span>DATE OF REGISTRATION</span>
+                <strong>15 October 2013</strong>
+            </div>
+
+            <div class="company-detail">
+                <span>REGISTERED COUNTRY</span>
+                <strong>Thailand</strong>
+            </div>
+
+        </div>
+
+        <div class="company-actions">
+
+            <!-- WHATSAPP -->
+
+            <a class="company-action"
+               href="https://wa.me/66813589621"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                Contact us on WhatsApp
+
+            </a>
+
+            <!-- VIEW PDF -->
+
+            <a class="company-action secondary"
+               href="{{ url_for('static', filename='Company_Profile.pdf') }}"
+               target="_blank"
+               rel="noopener noreferrer">
+
+                View Company Registration PDF
+
+            </a>
+
+            <!-- DOWNLOAD PDF -->
+
+            <a class="company-action secondary"
+               href="{{ url_for('static', filename='Company_Profile.pdf') }}"
+               download="Company_Profile.pdf">
+
+                Download PDF
+
+            </a>
+
+        </div>
+
+        <p class="company-disclaimer">
+            Registration details are presented from the
+            company information record supplied by the
+            website owner. Records may change; please refer
+            to the latest information published by the
+            relevant Thai authority.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="contact-section">
+
+    <div class="contact-content">
+
+        <span class="contact-label">
+            CUSTOMER SUPPORT
+        </span>
+
+        <h2>
+            We're Here to Help.
+        </h2>
+
+        <p>
+            Have a question about your order or otherwise?
+            <br>
+            Our customer service team is available online 24 hours a day.
+        </p>
+
+        <div class="support-links">
+
+            <a href="/refund" class="support-card">
+
+                <span>
+                    REFUND & RETURNS
+                </span>
+
+                <strong>
+                    View our policy →
+                </strong>
+
+            </a>
+
+
+            <a href="/payment" class="support-card">
+
+                <span>
+                    PAYMENT METHOD
+                </span>
+
+                <strong>
+                    Bitcoin (BTC) →
+                </strong>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="shipping-section">
+
+    <div class="shipping-content">
+
+        <span class="shipping-label">
+            INTERNATIONAL SHIPPING
+        </span>
+
+        <h2>
+            Delivered Worldwide.
+        </h2>
+
+        <p class="shipping-intro">
+            Every order is carefully packed and shipped
+            through DHL Express by air.
+        </p>
+
+        <div class="shipping-features">
+
+            <div class="shipping-item">
+                <strong>DHL Express</strong>
+                <span>Air delivery with tracking</span>
+            </div>
+
+            <div class="shipping-item">
+                <strong>Up to 5 Business Days*</strong>
+                <span>Estimated international delivery</span>
+            </div>
+
+            <div class="shipping-item">
+                <strong>Shipping Covered</strong>
+                <span>Shipping costs are covered by us</span>
+            </div>
+
+            <div class="shipping-item">
+                <strong>Duties & Taxes Covered</strong>
+                <span>Covered by our store</span>
+            </div>
+
+        </div>
+
+        <p class="shipping-note">
+            *Estimated delivery time may vary depending on destination
+            and customs clearance.
+        </p>
+
+    </div>
+
+</section>
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            Ke-miphan (เคมีภัณฑ์) Thailand
+        </div>
+
+        <div class="footer-links">
+            <a href="/refund">Refund & Returns</a>
+            <a href="/payment">Payment Method</a>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 Ke-miphan (เคมีภัณฑ์) Thailand. All rights reserved.
+        </div>
+
+    </div>
+</footer>
 </body>
 </html>
