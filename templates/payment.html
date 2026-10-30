@@ -203,19 +203,19 @@
         }
 
         #qrcode {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 170px;
-            margin: 15px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 15px auto;
         }
 
-        #qrcode img,
-        #qrcode canvas {
-            max-width: 100%;
-            height: auto;
+        #qrcode img {
+        width: 280px;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
         }
-
         .qr-caption {
             color: #777;
             font-size: 12px;
@@ -410,10 +410,12 @@
         <div class="qr-section">
             <strong>SCAN TO PAY</strong>
 
-            <div id="qrcode">
-                <span class="qr-caption">Loading QR Code...</span>
-            </div>
-
+           <div id="qrcode">
+    <img
+        src="{{ url_for('static', filename='payment_codeqr.jpeg') }}"
+        alt="Bitcoin Payment QR Code"
+    >
+</div>
             <div class="qr-caption">
                 Scan to open the Bitcoin payment address in your wallet.
                 Enter the BTC equivalent of your USD invoice manually.
