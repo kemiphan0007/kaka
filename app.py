@@ -112,6 +112,25 @@ PRODUCT_CATALOG = {
 
 
 # ============================================================
+# COA / PRODUCT SPECIFICATION DATA
+# Nilai berikut adalah spesifikasi yang dinyatakan oleh Kemiphan,
+# bukan hasil uji laboratorium independen.
+# ============================================================
+
+COA_DOCUMENT_DATE = "29 October 2026"
+
+COA_SPECIFICATIONS = {
+    "R&D System™ PZM21": "99.4%",
+    "AT121 Research Chemical": "99.63%",
+    "RO64-6198 Research Chemical": "99.12%",
+    "SR17018": "99.867%",
+    "MIT 88% Alkaloids 97%": "88%",
+    "SR-14968": "99.22%",
+    "Moringa Powder": "80%",
+}
+
+
+# ============================================================
 # DATABASE
 # ============================================================
 
@@ -620,6 +639,56 @@ def invoice(order_number):
         order=order,
         items=items,
         order_items=items,
+    )
+
+
+# ============================================================
+# COA — AUTOMATIC PRODUCT SPECIFICATION DOCUMENT
+# ============================================================
+
+@app.route("/coa/<order_number>", methods=["GET"])
+def coa(order_number):
+    """
+    Membuat dokumen COA berdasarkan item pesanan.
+    Persentase ditampilkan sebagai spesifikasi yang dinyatakan penjual,
+    bukan sebagai hasil pengujian laboratorium independen.
+    """
+    try:
+        order = get_order(order_number)
+        if order:
+            items = get_order_items(order_number)
+        else:
+            items = []
+    except Exception:
+        app.logger.exception("Gagal mengambil data COA untuk %s", order_number)
+        return "Dokumen COA gagal dibuat.", 500
+
+    if not order:
+        abort(404)
+
+    # Kompatibilitas untuk pesanan lama tanpa baris order_items.
+    if not items:
+        items = [{
+            "product_name": order.get("product_name") or order.get("package_name") or "Product",
+            "package_name": order.get("package_name") or "",
+            "quantity": order.get("quantity", 1),
+        }]
+
+    coa_items = []
+    for item in items:
+        product_name = str(item.get("product_name") or "Product").strip()
+        coa_items.append({
+            "analyte": product_name,
+            "package_name": item.get("package_name") or "",
+            "quantity": item.get("quantity", 1),
+            "declared_value": COA_SPECIFICATIONS.get(product_name),
+        })
+
+    return render_template(
+        "coa.html",
+        order=order,
+        coa_items=coa_items,
+        document_date=COA_DOCUMENT_DATE,
     )
 
 
