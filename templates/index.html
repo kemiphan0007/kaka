@@ -511,6 +511,158 @@ body > * { position: relative; z-index: 1; }
     }
 }
 
+
+
+/* ==========================================
+   KEMIPHAN EDITORIAL CATALOG — HYBRID LUXURY
+   ========================================== */
+.editorial-catalog {
+  position: relative;
+  isolation: isolate;
+  width: min(1160px, calc(100% - 48px));
+  margin: 112px auto 118px;
+  padding: 0;
+}
+.catalog-heading {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 245px;
+  margin-bottom: 68px;
+  padding: clamp(30px, 5vw, 58px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 28px;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 83% 40%, rgba(45,105,255,.19), transparent 36%),
+    linear-gradient(122deg, #080d18 0%, #0c1729 57%, #08101d 100%);
+  box-shadow: 0 24px 65px rgba(8,18,40,.14);
+}
+.catalog-heading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='260' viewBox='0 0 360 260' fill='none'%3E%3Cg stroke='%2399BFFF' stroke-width='1'%3E%3Cpath d='M190 42l44 25v50l-44 25-44-25V67zM234 67l43-25m-43 75 43 25M146 67l-42-25m42 75-42 25M277 42l39 23v45l-39 27'/%3E%3C/g%3E%3Cg fill='%23AFCBFF'%3E%3Ccircle cx='190' cy='42' r='2'/%3E%3Ccircle cx='277' cy='42' r='2'/%3E%3Ccircle cx='104' cy='42' r='2'/%3E%3Ccircle cx='104' cy='142' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2% center;
+  background-size: 390px auto;
+}
+.catalog-heading-copy { position: relative; z-index: 1; max-width: 650px; }
+.catalog-eyebrow, .catalog-group-kicker {
+  display: block;
+  color: #8daeff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+.catalog-heading h2 {
+  max-width: 650px;
+  margin: 18px 0 14px;
+  color: #fff;
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 540;
+  line-height: 1.04;
+  letter-spacing: -.055em;
+}
+.catalog-intro { max-width: 520px; margin: 0; color: rgba(235,241,252,.67); font-size: 13px; line-height: 1.85; }
+.catalog-heading-mark { position: absolute; right: 7%; top: 50%; width: 190px; height: 170px; transform: translateY(-50%); opacity: .32; }
+.mark-orbit { position: absolute; border: 1px solid rgba(145,178,255,.4); border-radius: 50%; transform: rotate(-28deg); }
+.mark-orbit-one { inset: 25px 5px; }
+.mark-orbit-two { inset: 5px 35px; transform: rotate(48deg); }
+.mark-node { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: #9ebdff; box-shadow: 0 0 14px rgba(100,150,255,.55); }
+.mark-node-one { left: 20px; top: 48px; }
+.mark-node-two { right: 24px; top: 55px; }
+.mark-node-three { left: 92px; bottom: 14px; }
+.mark-link { position: absolute; height: 1px; background: rgba(145,178,255,.52); transform-origin: left center; }
+.mark-link-one { width: 86px; left: 25px; top: 53px; transform: rotate(18deg); }
+.mark-link-two { width: 78px; left: 94px; top: 112px; transform: rotate(-55deg); }
+.catalog-group-heading { display: flex; align-items: center; gap: 18px; margin: 0 0 24px; }
+.catalog-group-number { color: #2b61f0; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+.catalog-group-heading > div { flex: 0 0 auto; }
+.catalog-group-kicker { margin-bottom: 6px; color: #7c879b; font-size: 8px; }
+.catalog-group-heading h3 { margin: 0; color: #111a2b; font-size: clamp(22px, 2.5vw, 30px); font-weight: 570; letter-spacing: -.04em; }
+.catalog-group-rule { height: 1px; flex: 1; margin-left: 12px; background: linear-gradient(90deg, rgba(31,52,89,.18), transparent); }
+.editorial-product-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+.editorial-product-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  padding: 26px 27px 22px;
+  border: 1px solid rgba(19,37,68,.09);
+  border-radius: 20px;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 12px 34px rgba(14,29,55,.045);
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+.editorial-product-card:hover { transform: translateY(-3px); border-color: rgba(42,91,220,.22); box-shadow: 0 20px 48px rgba(14,29,55,.09); }
+.featured-card { grid-column: 1 / -1; }
+.editorial-card-topline { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 16px; padding-bottom: 17px; border-bottom: 1px solid rgba(18,36,68,.09); color: #71809a; font-size: 8px; font-weight: 800; letter-spacing: .16em; }
+.editorial-index { color: #9aa5b7; font-variant-numeric: tabular-nums; }
+.editorial-card-body { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(190px,.72fr) minmax(0,1.28fr); align-items: center; gap: 30px; padding-top: 22px; }
+.editorial-product-copy { position: relative; z-index: 1; min-width: 0; }
+.editorial-product-type { display: block; margin-bottom: 11px; color: #315fce; font-size: 8px; font-weight: 850; letter-spacing: .16em; }
+.editorial-product-copy h4 { margin: 0 0 8px; color: #101a2c; font-size: clamp(19px, 2vw, 25px); font-weight: 650; line-height: 1.2; letter-spacing: -.035em; overflow-wrap: anywhere; }
+.editorial-product-copy p { margin: 0; color: #7a8495; font-size: 11px; line-height: 1.65; }
+.editorial-badge { display: inline-flex; margin-top: 15px; padding: 6px 9px; border: 1px solid rgba(43,94,225,.13); border-radius: 999px; color: #315fce; background: #f0f4ff; font-size: 7px; font-weight: 850; letter-spacing: .12em; }
+.editorial-package-list { position: relative; z-index: 1; min-width: 0; }
+.editorial-package-row { display: grid; grid-template-columns: minmax(70px,1fr) auto auto; align-items: center; gap: 14px; min-height: 66px; padding: 10px 0; border-top: 1px solid rgba(18,36,68,.08); }
+.editorial-package-row:first-child { border-top: 0; }
+.editorial-package-row > div { display: flex; flex-direction: column; gap: 4px; }
+.package-kind { color: #8994a6; font-size: 7px; font-weight: 800; letter-spacing: .13em; }
+.editorial-package-row > div strong { color: #202b3e; font-size: 13px; font-weight: 700; }
+.editorial-price { color: #111a2b; font-size: 18px; font-weight: 750; letter-spacing: -.035em; white-space: nowrap; }
+.editorial-package-row a { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-width: 93px; padding: 11px 13px; border: 1px solid #14213a; border-radius: 999px; color: #fff; background: #101a2c; text-decoration: none; font-size: 8px; font-weight: 850; letter-spacing: .12em; white-space: nowrap; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.editorial-package-row a span { color: #9bb8ff; font-size: 13px; line-height: 8px; }
+.editorial-package-row a:hover { transform: translateY(-1px); border-color: #2457ff; background: #2457ff; }
+.editorial-card-watermark { position: absolute; right: 18px; bottom: -21px; color: rgba(38,85,190,.045); font-size: clamp(66px, 11vw, 125px); font-weight: 850; letter-spacing: -.08em; pointer-events: none; }
+.pzm-card { color: #fff; border-color: rgba(255,255,255,.08); background: linear-gradient(118deg,#0a1221 0%,#101e35 65%,#0b1527 100%); box-shadow: 0 20px 48px rgba(8,18,40,.13); }
+.pzm-card .editorial-card-topline { border-color: rgba(255,255,255,.13); color: #a9bce2; }
+.pzm-card .editorial-index { color: rgba(220,231,255,.48); }
+.pzm-card .editorial-product-type { color: #9dbaff; }
+.pzm-card .editorial-product-copy h4, .pzm-card .editorial-package-row > div strong, .pzm-card .editorial-price { color: #fff; }
+.pzm-card .editorial-product-copy p { color: rgba(229,237,252,.6); }
+.pzm-card .editorial-package-row { border-color: rgba(255,255,255,.13); }
+.pzm-card .package-kind { color: #9aabc7; }
+.pzm-card .editorial-package-row a { border-color: #4776ff; background: #315ff0; }
+.pzm-card .editorial-package-row a:hover { background: #1747ed; }
+.pzm-card .editorial-badge { color: #bfd0ff; border-color: rgba(160,187,255,.22); background: rgba(92,127,220,.14); }
+.pzm-card .editorial-card-watermark { color: rgba(170,196,255,.055); }
+.at121-card { background: linear-gradient(135deg,#fff 0%,#f6f8ff 100%); }
+.botanical-heading { margin-top: 76px; }
+.botanical-card { background: rgba(255,255,255,.78); }
+.sold-out-card { background: #f5f6f8; }
+.sold-out-card .editorial-product-copy h4 { color: #596273; }
+.sold-out-editorial-badge { color: #9b3440; border-color: rgba(155,52,64,.12); background: #fff0f1; }
+.unavailable-row .editorial-price { color: #8992a1; }
+.editorial-unavailable { display: inline-flex; justify-content: center; min-width: 93px; padding: 10px 9px; border: 1px solid #e8cfd2; border-radius: 999px; color: #a13e48; background: #fff6f6; font-size: 7px; font-weight: 850; letter-spacing: .1em; }
+.catalog-footnote { display: flex; gap: 14px; margin: 30px 2px 0; padding-top: 18px; border-top: 1px solid rgba(18,36,68,.1); color: #818b9b; font-size: 10px; line-height: 1.7; }
+.catalog-footnote span { flex: 0 0 auto; color: #53627c; font-size: 8px; font-weight: 850; letter-spacing: .12em; }
+@media (max-width: 760px) {
+  .editorial-catalog { width: calc(100% - 32px); margin: 76px auto 82px; }
+  .catalog-heading { min-height: 0; margin-bottom: 48px; padding: 30px 24px; border-radius: 22px; }
+  .catalog-heading-mark { right: -36px; opacity: .18; transform: translateY(-50%) scale(.8); }
+  .catalog-heading h2 { max-width: 460px; font-size: clamp(32px, 8vw, 44px); }
+  .catalog-intro { max-width: 390px; font-size: 12px; }
+  .editorial-product-grid { grid-template-columns: 1fr; gap: 13px; }
+  .featured-card { grid-column: auto; }
+  .editorial-card-body { grid-template-columns: 1fr; gap: 20px; }
+  .editorial-product-card { padding: 22px 20px 18px; border-radius: 17px; }
+  .editorial-product-copy h4 { font-size: 21px; }
+  .botanical-heading { margin-top: 56px; }
+}
+@media (max-width: 430px) {
+  .editorial-package-row { grid-template-columns: minmax(54px,1fr) auto; gap: 8px 12px; }
+  .editorial-package-row a, .editorial-unavailable { grid-column: 1 / -1; width: 100%; }
+  .editorial-price { font-size: 17px; }
+  .catalog-footnote { display: block; }
+  .catalog-footnote span { display: block; margin-bottom: 5px; }
+}
+
 </style>
 </head>
 <body>
@@ -671,135 +823,226 @@ if (option) {
 }
 </script>
     </div>
-<section class="product-catalog">
-    <h2>PRODUCT CATALOG</h2>
-    <p class="catalog-subtitle">KEMIPHAN · PRODUCTS &amp; PRICING</p>
-
-    <div class="catalog-item">
-        <h3>
-            R&amp;D System™ PZM21
-            <span class="new-product-badge">NEW PRODUCT</span>
-            <span class="limited-badge">LIMITED</span>
-        </h3>
-        <p class="description">R&amp;D System</p>
-
-        <div class="product-option">
-            <span>Bulk · 50g</span>
-            <strong>$3,700</strong>
-            <a href="/checkout?package=R%26D%20System%20PZM21%20-%2050g%20Bulk&amp;price=3700">ORDER NOW</a>
+<section class="product-catalog editorial-catalog" id="product-catalog" aria-labelledby="catalog-title">
+    <div class="catalog-heading">
+        <div class="catalog-heading-copy">
+            <span class="catalog-eyebrow">KEMIPHAN / PRODUCT PORTFOLIO</span>
+            <h2 id="catalog-title">Research, thoughtfully presented.</h2>
+            <p class="catalog-intro">Explore the current Kemiphan collection, with available formats and listed prices presented clearly in one place.</p>
+        </div>
+        <div class="catalog-heading-mark" aria-hidden="true">
+            <span class="mark-orbit mark-orbit-one"></span>
+            <span class="mark-orbit mark-orbit-two"></span>
+            <span class="mark-node mark-node-one"></span>
+            <span class="mark-node mark-node-two"></span>
+            <span class="mark-node mark-node-three"></span>
+            <span class="mark-link mark-link-one"></span>
+            <span class="mark-link mark-link-two"></span>
         </div>
     </div>
 
-    <div class="catalog-item">
-        <h3>
-            AT121 Research Chemical
-            <span class="new-product-badge">NEW PRODUCT</span>
-        </h3>
-        <p class="description">Research chemical</p>
-
-        <div class="product-option">
-            <span>Sample · 10g</span>
-            <strong>$900</strong>
-            <a href="/checkout?package=AT121%20Research%20Chemical%20-%2010g%20Sample&amp;price=900">ORDER NOW</a>
+    <div class="catalog-group-heading">
+        <span class="catalog-group-number">01</span>
+        <div>
+            <span class="catalog-group-kicker">THE COLLECTION</span>
+            <h3>Research Collection</h3>
         </div>
-
-        <div class="product-option">
-            <span>Bulk · 50g</span>
-            <strong>$4,100</strong>
-            <a href="/checkout?package=AT121%20Research%20Chemical%20-%2050g%20Bulk&amp;price=4100">ORDER NOW</a>
-        </div>
-
-        <div class="product-option">
-            <span>Bulk · 100g</span>
-            <strong>$7,000</strong>
-            <a href="/checkout?package=AT121%20Research%20Chemical%20-%20100g%20Bulk&amp;price=7000">ORDER NOW</a>
-        </div>
+        <span class="catalog-group-rule"></span>
     </div>
 
-    <div class="catalog-item">
-        <h3>
-            RO64-6198 Research Chemical
-            <span class="new-product-badge">NEW PRODUCT</span>
-        </h3>
-        <p class="description">Research chemical</p>
+    <div class="editorial-product-grid">
+        <article class="editorial-product-card featured-card pzm-card">
+            <div class="editorial-card-topline">
+                <span>R&amp;D SYSTEMS</span>
+                <span class="editorial-index">01 / 08</span>
+            </div>
+            <div class="editorial-card-body">
+                <div class="editorial-product-copy">
+                    <span class="editorial-product-type">R&amp;D SYSTEM™</span>
+                    <h4>R&amp;D System™ PZM21</h4>
+                    <p>R&amp;D System</p>
+                    <span class="editorial-badge">NEW COLLECTION</span>
+                </div>
+                <div class="editorial-package-list">
+                    <div class="editorial-package-row">
+                        <div><span class="package-kind">BULK FORMAT</span><strong>50g</strong></div>
+                        <strong class="editorial-price">$3,700</strong>
+                        <a href="/checkout?package=R%26D%20System%20PZM21%20-%2050g%20Bulk&amp;price=3700" aria-label="Order R&D System PZM21, 50g Bulk">ORDER <span>↗</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="editorial-card-watermark" aria-hidden="true">PZM21</div>
+        </article>
 
-        <div class="product-option">
-            <span>Bulk · 50g</span>
-            <strong>$5,600</strong>
-            <a href="/checkout?package=RO64-6198%20Research%20Chemical%20-%2050g%20Bulk&amp;price=5600">ORDER NOW</a>
-        </div>
+        <article class="editorial-product-card featured-card at121-card">
+            <div class="editorial-card-topline">
+                <span>RESEARCH CHEMICAL</span>
+                <span class="editorial-index">02 / 08</span>
+            </div>
+            <div class="editorial-card-body">
+                <div class="editorial-product-copy">
+                    <span class="editorial-product-type">RESEARCH COLLECTION</span>
+                    <h4>AT121 Research Chemical</h4>
+                    <p>Research chemical</p>
+                    <span class="editorial-badge">NEW COLLECTION</span>
+                </div>
+                <div class="editorial-package-list">
+                    <div class="editorial-package-row">
+                        <div><span class="package-kind">SAMPLE</span><strong>10g</strong></div>
+                        <strong class="editorial-price">$900</strong>
+                        <a href="/checkout?package=AT121%20Research%20Chemical%20-%2010g%20Sample&amp;price=900" aria-label="Order AT121 Research Chemical, 10g Sample">ORDER <span>↗</span></a>
+                    </div>
+                    <div class="editorial-package-row">
+                        <div><span class="package-kind">BULK FORMAT</span><strong>50g</strong></div>
+                        <strong class="editorial-price">$4,100</strong>
+                        <a href="/checkout?package=AT121%20Research%20Chemical%20-%2050g%20Bulk&amp;price=4100" aria-label="Order AT121 Research Chemical, 50g Bulk">ORDER <span>↗</span></a>
+                    </div>
+                    <div class="editorial-package-row">
+                        <div><span class="package-kind">BULK FORMAT</span><strong>100g</strong></div>
+                        <strong class="editorial-price">$7,000</strong>
+                        <a href="/checkout?package=AT121%20Research%20Chemical%20-%20100g%20Bulk&amp;price=7000" aria-label="Order AT121 Research Chemical, 100g Bulk">ORDER <span>↗</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="editorial-card-watermark" aria-hidden="true">AT121</div>
+        </article>
+
+        <article class="editorial-product-card">
+            <div class="editorial-card-topline"><span>RESEARCH CHEMICAL</span><span class="editorial-index">03 / 08</span></div>
+            <div class="editorial-product-copy">
+                <span class="editorial-product-type">RESEARCH COLLECTION</span>
+                <h4>RO64-6198 Research Chemical</h4>
+                <p>Research chemical</p>
+                <span class="editorial-badge">NEW COLLECTION</span>
+            </div>
+            <div class="editorial-package-list">
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">BULK FORMAT</span><strong>50g</strong></div>
+                    <strong class="editorial-price">$5,600</strong>
+                    <a href="/checkout?package=RO64-6198%20Research%20Chemical%20-%2050g%20Bulk&amp;price=5600" aria-label="Order RO64-6198 Research Chemical, 50g Bulk">ORDER <span>↗</span></a>
+                </div>
+            </div>
+        </article>
+
+        <article class="editorial-product-card">
+            <div class="editorial-card-topline"><span>RESEARCH COLLECTION</span><span class="editorial-index">04 / 08</span></div>
+            <div class="editorial-product-copy">
+                <span class="editorial-product-type">RESEARCH COLLECTION</span>
+                <h4>SR17018</h4>
+                <p>SR17018 Powder</p>
+            </div>
+            <div class="editorial-package-list">
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">SAMPLE</span><strong>50g</strong></div>
+                    <strong class="editorial-price">$350</strong>
+                    <a href="/checkout?package=SR17018%20-%2050g%20Sample&amp;price=350" aria-label="Order SR17018, 50g Sample">ORDER <span>↗</span></a>
+                </div>
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">BULK FORMAT</span><strong>1kg</strong></div>
+                    <strong class="editorial-price">$4,650</strong>
+                    <a href="/checkout?package=SR17018%20-%201kg%20Bulk&amp;price=4650" aria-label="Order SR17018, 1kg Bulk">ORDER <span>↗</span></a>
+                </div>
+            </div>
+        </article>
+
+        <article class="editorial-product-card">
+            <div class="editorial-card-topline"><span>RESEARCH CHEMICAL</span><span class="editorial-index">05 / 08</span></div>
+            <div class="editorial-product-copy">
+                <span class="editorial-product-type">RESEARCH COLLECTION</span>
+                <h4>MIT 88% Alkaloids 97%</h4>
+                <p>Research chemical</p>
+            </div>
+            <div class="editorial-package-list">
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">SAMPLE</span><strong>100g</strong></div>
+                    <strong class="editorial-price">$250</strong>
+                    <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%20100g%20Sample&amp;price=250" aria-label="Order MIT 88% Alkaloids 97%, 100g Sample">ORDER <span>↗</span></a>
+                </div>
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">BULK FORMAT</span><strong>1kg</strong></div>
+                    <strong class="editorial-price">$2,050</strong>
+                    <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%201kg%20Bulk&amp;price=2050" aria-label="Order MIT 88% Alkaloids 97%, 1kg Bulk">ORDER <span>↗</span></a>
+                </div>
+            </div>
+        </article>
+
+        <article class="editorial-product-card">
+            <div class="editorial-card-topline"><span>RESEARCH COLLECTION</span><span class="editorial-index">06 / 08</span></div>
+            <div class="editorial-product-copy">
+                <span class="editorial-product-type">RESEARCH COLLECTION</span>
+                <h4>SR-14968</h4>
+                <p>Research chemical</p>
+            </div>
+            <div class="editorial-package-list">
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">SAMPLE</span><strong>100g</strong></div>
+                    <strong class="editorial-price">$500</strong>
+                    <a href="/checkout?package=SR-14968%20-%20100g%20Sample&amp;price=500" aria-label="Order SR-14968, 100g Sample">ORDER <span>↗</span></a>
+                </div>
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">BULK FORMAT</span><strong>1kg</strong></div>
+                    <strong class="editorial-price">$4,500</strong>
+                    <a href="/checkout?package=SR-14968%20-%201kg%20Bulk&amp;price=4500" aria-label="Order SR-14968, 1kg Bulk">ORDER <span>↗</span></a>
+                </div>
+            </div>
+        </article>
     </div>
 
-    <div class="catalog-item">
-        <h3>Moringa Powder</h3>
-        <p class="description">Organic</p>
-
-        <div class="product-option">
-            <span>Sample · 100g</span>
-            <strong>$100</strong>
-            <a href="/checkout?package=Moringa%20Powder%20-%20100g%20Sample&amp;price=100">ORDER NOW</a>
+    <div class="catalog-group-heading botanical-heading">
+        <span class="catalog-group-number">02</span>
+        <div>
+            <span class="catalog-group-kicker">BOTANICAL MATERIALS</span>
+            <h3>Botanical Collection</h3>
         </div>
-
-        <div class="product-option">
-            <span>Bulk · 1kg</span>
-            <strong>$750</strong>
-            <a href="/checkout?package=Moringa%20Powder%20-%201kg%20Bulk&amp;price=750">ORDER NOW</a>
-        </div>
+        <span class="catalog-group-rule"></span>
     </div>
 
-    <div class="catalog-item sold-out-product">
-        <h3>
-            Spatholobus littoralis Powder
-            <span class="sold-out-badge">SOLD OUT</span>
-        </h3>
-        <p class="description">Flavonoids, saponins, tannins</p>
+    <div class="editorial-product-grid botanical-grid">
+        <article class="editorial-product-card botanical-card">
+            <div class="editorial-card-topline"><span>BOTANICAL MATERIAL</span><span class="editorial-index">07 / 08</span></div>
+            <div class="editorial-product-copy">
+                <span class="editorial-product-type">BOTANICAL COLLECTION</span>
+                <h4>Moringa Powder</h4>
+                <p>Organic</p>
+            </div>
+            <div class="editorial-package-list">
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">SAMPLE</span><strong>100g</strong></div>
+                    <strong class="editorial-price">$100</strong>
+                    <a href="/checkout?package=Moringa%20Powder%20-%20100g%20Sample&amp;price=100" aria-label="Order Moringa Powder, 100g Sample">ORDER <span>↗</span></a>
+                </div>
+                <div class="editorial-package-row">
+                    <div><span class="package-kind">BULK FORMAT</span><strong>1kg</strong></div>
+                    <strong class="editorial-price">$750</strong>
+                    <a href="/checkout?package=Moringa%20Powder%20-%201kg%20Bulk&amp;price=750" aria-label="Order Moringa Powder, 1kg Bulk">ORDER <span>↗</span></a>
+                </div>
+            </div>
+        </article>
 
-        <div class="product-option sold-out-option">
-            <span>Sample · 100g</span>
-            <strong>$250</strong>
-            <span class="sold-out-label" aria-label="Sold out">SOLD OUT</span>
-        </div>
-
-        <div class="product-option sold-out-option">
-            <span>Bulk · 1kg</span>
-            <strong>$2,150</strong>
-            <span class="sold-out-label" aria-label="Sold out">SOLD OUT</span>
-        </div>
+        <article class="editorial-product-card botanical-card sold-out-card">
+            <div class="editorial-card-topline"><span>BOTANICAL MATERIAL</span><span class="editorial-index">08 / 08</span></div>
+            <div class="editorial-product-copy">
+                <span class="editorial-product-type">BOTANICAL COLLECTION</span>
+                <h4>Spatholobus littoralis Powder</h4>
+                <p>Flavonoids, saponins, tannins</p>
+                <span class="editorial-badge sold-out-editorial-badge">SOLD OUT</span>
+            </div>
+            <div class="editorial-package-list">
+                <div class="editorial-package-row unavailable-row">
+                    <div><span class="package-kind">SAMPLE</span><strong>100g</strong></div>
+                    <strong class="editorial-price">$250</strong>
+                    <span class="editorial-unavailable">SOLD OUT</span>
+                </div>
+                <div class="editorial-package-row unavailable-row">
+                    <div><span class="package-kind">BULK FORMAT</span><strong>1kg</strong></div>
+                    <strong class="editorial-price">$2,150</strong>
+                    <span class="editorial-unavailable">SOLD OUT</span>
+                </div>
+            </div>
+        </article>
     </div>
 
-    <div class="catalog-item">
-        <h3>MIT 88% Alkaloids 97%</h3>
-        <p class="description">Research chemical</p>
-
-        <div class="product-option">
-            <span>Sample · 100g</span>
-            <strong>$250</strong>
-            <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%20100g%20Sample&amp;price=250">ORDER NOW</a>
-        </div>
-
-        <div class="product-option">
-            <span>Bulk · 1kg</span>
-            <strong>$2,050</strong>
-            <a href="/checkout?package=MIT%2088%25%20Alkaloids%2097%25%20-%201kg%20Bulk&amp;price=2050">ORDER NOW</a>
-        </div>
-    </div>
-
-    <div class="catalog-item">
-        <h3>SR-14968</h3>
-        <p class="description">Research chemical</p>
-
-        <div class="product-option">
-            <span>Sample · 100g</span>
-            <strong>$500</strong>
-            <a href="/checkout?package=SR-14968%20-%20100g%20Sample&amp;price=500">ORDER NOW</a>
-        </div>
-
-        <div class="product-option">
-            <span>Bulk · 1kg</span>
-            <strong>$4,500</strong>
-            <a href="/checkout?package=SR-14968%20-%201kg%20Bulk&amp;price=4500">ORDER NOW</a>
-        </div>
-    </div>
+    <p class="catalog-footnote"><span>PRODUCT INFORMATION</span> Prices and package availability are shown as listed. Please review the selected product and package details at checkout.</p>
 </section>
 
 </div>
