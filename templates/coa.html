@@ -72,7 +72,7 @@
       width:112px;
       height:84px;
       object-fit:contain;
-      filter:grayscale(1) contrast(1.12);
+      filter:none;
     }
     .brand-address { margin-top:9px; color:var(--muted); font-size:10px; line-height:1.55; max-width:430px; }
     .issuer-tag {
@@ -87,13 +87,13 @@
       margin-top:8px;
     }
     .brand-name {
-      color:var(--black);
+      color:var(--navy);
       font-family:Georgia,"Times New Roman",serif;
       font-size:24px;
       letter-spacing:2px;
       font-weight:700;
     }
-    .brand-kicker { color:#4d5259; font-size:10px; letter-spacing:2px; font-weight:800; margin-top:7px; }
+    .brand-kicker { color:var(--blue); font-size:10px; letter-spacing:2px; font-weight:800; margin-top:7px; }
     .brand-note { max-width:300px; text-align:right; color:var(--muted); font-size:10px; line-height:1.7; }
     h1 {
       text-align:center;
@@ -132,29 +132,27 @@
       border-right:0;
     }
     td { padding:11px 9px; border-bottom:1px solid var(--line); border-left:0; border-right:0; vertical-align:top; color:#24282e; }
-    .footer {
-      display:block;
-      margin-top:0;
-      padding-top:12px;
-      border-top:2px solid var(--black);
-      break-inside:avoid;
-    }
-    .footer-disclosure {
+    .notice {
       color:#4e545c;
       font-size:9px;
       line-height:1.65;
-      margin:0 0 12px;
+      margin:0 0 30px;
+      padding:10px 12px;
+      border-left:2px solid #8b9097;
+      background:#f7f7f7;
       text-align:justify;
     }
-    .footer-meta {
+    .footer {
       display:flex;
       justify-content:space-between;
       gap:24px;
       align-items:flex-end;
-      padding-top:9px;
-      border-top:1px solid var(--line);
+      margin-top:0;
+      padding-top:14px;
+      border-top:2px solid var(--black);
+      break-inside:avoid;
     }
-    .footer strong { color:var(--black); font-size:11px; letter-spacing:.35px; }
+    .footer strong { color:var(--navy); font-size:11px; letter-spacing:.35px; }
     .footer small { display:block; color:var(--muted); font-size:9px; line-height:1.7; margin-top:5px; }
     .doc-id { text-align:right; color:var(--muted); font-size:9px; line-height:1.8; }
     .authorization {
@@ -185,9 +183,9 @@
       top:-13px;
       width:82px;
       height:82px;
-      border:2px solid #454a51;
+      border:3px double rgba(23,108,170,.78);
       border-radius:50%;
-      color:#30353b;
+      color:#176caa;
       display:flex;
       flex-direction:column;
       justify-content:center;
@@ -196,7 +194,7 @@
       transform:rotate(-7deg);
       opacity:.9;
       flex-shrink:0;
-      filter:grayscale(1);
+      filter:none;
     }
     .seal strong { font-family:Georgia,"Times New Roman",serif; font-size:10px; letter-spacing:1px; }
     .seal span { font-size:6px; letter-spacing:.8px; margin:4px 0; }
@@ -208,7 +206,7 @@
       .brand-logo { width:86px; height:72px; }
       .brand-note { text-align:left; margin-top:12px; }
       .meta { grid-template-columns:1fr; }
-      .footer-meta { display:block; }
+      .footer { display:block; }
       .doc-id { text-align:left; margin-top:12px; }
       .authorization { min-height:112px; margin-top:26px; margin-bottom:30px; }
       .seal { left:137px; top:-10px; width:76px; height:76px; }
@@ -221,7 +219,7 @@
       body { background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
       .toolbar { display:none; }
       .sheet { width:100%; margin:0; padding:3mm 4mm; border:0; box-shadow:none; overflow:visible; }
-      .brand,.meta,.authorization,.footer { break-inside:avoid; page-break-inside:avoid; }
+      .brand,.meta,.authorization,.notice,.footer { break-inside:avoid; page-break-inside:avoid; }
       .meta-card { break-inside:avoid; }
       table { break-inside:auto; }
       tr { break-inside:avoid; break-after:auto; }
@@ -284,12 +282,12 @@
         <em>COMPANY ISSUED</em>
       </div>
     </section>
+    <div class="notice">
+      <strong>Important disclosure:</strong> Values shown in this document are specifications declared by the seller and supplied for product information. They are not represented as independent laboratory measurements, HPLC results, or certification by a third-party laboratory. No third-party laboratory signature, stamp, or accreditation is implied.
+    </div>
     <footer class="footer">
-      <p class="footer-disclosure"><strong>Important disclosure:</strong> Values shown in this document are specifications declared by the seller and supplied for product information. They are not represented as independent laboratory measurements, HPLC results, or certification by a third-party laboratory. No third-party laboratory signature, stamp, or accreditation is implied.</p>
-      <div class="footer-meta">
-        <div><strong>KEMIPHAN THAILAND RESEARCH</strong><small>111 หมู่ที่ 2 ต.ห้วยไผ่ อ.เมืองราชบุรี จ.ราชบุรี<br>Product Documentation · Document date: {{ document_date }}</small></div>
-        <div class="doc-id">DOCUMENT REFERENCE<br><strong>{{ order.order_number }}</strong><br>Electronically generated company record</div>
-      </div>
+      <div><strong>KEMIPHAN THAILAND RESEARCH</strong><small>111 หมู่ที่ 2 ต.ห้วยไผ่ อ.เมืองราชบุรี จ.ราชบุรี<br>Product Documentation · Document date: {{ document_date }}</small></div>
+      <div class="doc-id">DOCUMENT REFERENCE<br><strong>{{ order.order_number }}</strong><br>Electronically generated company record</div>
     </footer>
   </main>
 </body>
