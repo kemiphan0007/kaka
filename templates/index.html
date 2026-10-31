@@ -1288,6 +1288,36 @@ body {
   .at121-molecule img { width: min(88%, 340px) !important; max-height: 190px !important; }
   .at121-molecule-caption { left: 14px !important; bottom: 12px !important; font-size: 8px !important; }
 }
+
+
+/* Responsive containment repair — preserve all approved visual design. */
+html, body { max-width: 100%; }
+@media (max-width: 760px) {
+  html, body {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  body { position: relative; }
+  /* Keep the original decorative background, but contain its bleed on phones. */
+  .container::before {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+  }
+  .container, .site-header, .product, .editorial-catalog,
+  .product-catalog, .company-identity, .contact-section,
+  .shipping-section, .site-footer {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+  .container {
+    width: calc(100% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 </style>
 </head>
 <body>
@@ -1909,19 +1939,3 @@ if (option) {
 
 </body>
 </html>
-
-/* Mobile viewport guard: preserve the approved layout while preventing
-   decorative full-bleed layers from creating horizontal page scrolling. */
-@media (max-width: 700px) {
-  html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: clip;
-  }
-  body {
-    position: relative;
-  }
-  img, svg, video, canvas, iframe {
-    max-width: 100%;
-  }
-}
