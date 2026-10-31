@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080b12">
-  <title>Ke-miphan เคมีภัณฑ์ - Thailand</title>
+  <title>Kemiphan — Molecular Precision</title>
   <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='Logo.jpeg') }}">
 
   <meta name="description" content="Kemiphan — Molecular Precision. Research, development, and a growing collection shaped by our journey from agriculture to molecular research.">
@@ -1008,6 +1008,22 @@ html { scroll-padding-top: 132px; }
   .shipping-item { min-height: 90px; }
 }
 
+
+/* KEMIPHAN UI REFINEMENT — presentation only */
+:root{color-scheme:light;--kp-page:#f4f7fc;--kp-surface:#fff;--kp-soft:#edf2fa;--kp-text:#101a2b;--kp-muted:#637087;--kp-line:rgba(18,37,67,.12);--kp-blue:#2457ff;--kp-shadow:0 24px 70px rgba(12,31,64,.09)}
+html[data-kp-theme="dark"]{color-scheme:dark;--kp-page:#080d17;--kp-surface:#101a2b;--kp-soft:#17263e;--kp-text:#eef4ff;--kp-muted:#a4b1c7;--kp-line:rgba(205,220,246,.14);--kp-blue:#82a0ff;--kp-shadow:0 24px 70px rgba(0,0,0,.28)}
+body{background:var(--kp-page);color:var(--kp-text);transition:background .25s,color .25s}
+a:focus-visible,button:focus-visible{outline:3px solid rgba(75,123,255,.75);outline-offset:3px}
+.product-catalog{width:min(1240px,calc(100% - 48px));margin:clamp(48px,7vw,92px) auto;padding:clamp(26px,5vw,62px);border:1px solid var(--kp-line);border-radius:30px;background:var(--kp-surface);color:var(--kp-text);box-shadow:var(--kp-shadow)}
+.catalog-heading-copy{max-width:680px}.catalog-eyebrow,.catalog-group-kicker{color:var(--kp-blue);letter-spacing:.18em}.catalog-heading h2{max-width:650px;letter-spacing:-.055em;line-height:1.02}.catalog-intro{max-width:560px;color:var(--kp-muted);line-height:1.8}
+.editorial-product-grid{gap:18px}.editorial-product-card{border:1px solid var(--kp-line)!important;border-radius:22px!important;background:var(--kp-surface)!important;color:var(--kp-text)!important;box-shadow:0 12px 36px rgba(10,28,58,.055);transition:transform .25s,box-shadow .25s,border-color .25s}.editorial-product-card:hover{transform:translateY(-4px);box-shadow:var(--kp-shadow);border-color:rgba(36,87,255,.4)!important}.editorial-product-card p,.editorial-product-card small{color:var(--kp-muted)}.editorial-card-topline,.editorial-package-row{border-color:var(--kp-line)!important}.at121-card{border-color:rgba(36,87,255,.4)!important;box-shadow:0 22px 64px rgba(36,87,255,.1)}
+.company-identity,.contact-section,.shipping-section{width:min(1240px,calc(100% - 48px));margin:34px auto}.company-identity-card,.contact-content,.shipping-content{border:1px solid var(--kp-line);border-radius:28px;background:var(--kp-surface);color:var(--kp-text);box-shadow:var(--kp-shadow)}.company-identity-card{padding:clamp(28px,5vw,58px)}.contact-content,.shipping-content{padding:clamp(30px,5vw,62px)}.company-identity-intro,.company-disclaimer,.contact-content p,.shipping-intro,.shipping-note{color:var(--kp-muted);line-height:1.8}.company-detail{border-color:var(--kp-line)!important}.company-detail span,.contact-label,.shipping-label{color:var(--kp-blue);letter-spacing:.16em}.company-actions{gap:12px}.company-action{border-radius:999px!important}.support-links,.shipping-features{gap:14px;margin-top:28px}.support-card,.shipping-item{padding:22px 24px;border:1px solid var(--kp-line)!important;border-radius:18px!important;background:var(--kp-soft)!important;color:var(--kp-text)!important;transition:transform .2s,border-color .2s}.support-card:hover{transform:translateY(-3px);border-color:rgba(36,87,255,.45)!important}.shipping-item strong{color:var(--kp-text)}.shipping-item span{color:var(--kp-muted)}.site-footer{margin-top:64px;border-top:1px solid var(--kp-line)}
+html[data-kp-theme="dark"] .product-catalog,html[data-kp-theme="dark"] .company-identity-card,html[data-kp-theme="dark"] .contact-content,html[data-kp-theme="dark"] .shipping-content{background:var(--kp-surface);color:var(--kp-text)}html[data-kp-theme="dark"] .editorial-product-card{background:#111d30!important}html[data-kp-theme="dark"] .support-card,html[data-kp-theme="dark"] .shipping-item{background:#17263e!important}html[data-kp-theme="dark"] .catalog-heading h2,html[data-kp-theme="dark"] .catalog-group-heading h3,html[data-kp-theme="dark"] .company-identity-card h2,html[data-kp-theme="dark"] .contact-content h2,html[data-kp-theme="dark"] .shipping-content h2{color:#f2f6ff}
+.theme-toggle{min-height:42px;padding:0 14px;border:1px solid rgba(255,255,255,.24);border-radius:999px;color:#fff;background:rgba(255,255,255,.1);cursor:pointer;font-size:10px;font-weight:750;letter-spacing:.06em}.theme-toggle:hover{background:rgba(255,255,255,.2)}
+@media(max-width:760px){.site-header{width:calc(100% - 24px);top:8px;margin-top:8px;padding:8px 10px 8px 14px;gap:8px}.brand-logo img{width:112px;height:42px}.header-nav{gap:4px}.header-nav a{min-height:36px;padding:0 8px;font-size:9px;letter-spacing:.02em}.theme-toggle{min-height:36px;padding:0 8px;font-size:8px}.container,.product-catalog,.company-identity,.contact-section,.shipping-section{width:calc(100% - 24px)}.product-catalog{margin:32px auto;padding:24px 16px;border-radius:22px}.catalog-heading h2{font-size:clamp(32px,9vw,48px)}.editorial-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}.editorial-product-card{min-width:0;border-radius:16px!important}.editorial-card-topline{font-size:8px}.editorial-product-copy h4{font-size:clamp(14px,3.8vw,19px)}.company-identity-card,.contact-content,.shipping-content{padding:25px 19px;border-radius:22px}.support-links,.shipping-features{grid-template-columns:1fr!important}}
+@media(max-width:390px){.brand-logo img{width:94px}.header-nav a{padding-inline:6px;font-size:8px}.theme-toggle{padding-inline:6px;font-size:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
 </style>
 </head>
 <body>
@@ -1592,5 +1608,10 @@ if (option) {
 
     </div>
 </footer>
+
+<script>
+/* Theme preference only; checkout/cart behavior remains untouched. */
+(function(){const root=document.documentElement;let saved=null;try{saved=localStorage.getItem('kemiphan-theme')}catch(e){}const initial=(saved==='dark'||saved==='light')?saved:((window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');root.setAttribute('data-kp-theme',initial);function mount(){const nav=document.querySelector('.header-nav');if(!nav||nav.querySelector('.theme-toggle'))return;const b=document.createElement('button');b.type='button';b.className='theme-toggle';b.setAttribute('aria-label','Switch color theme');function sync(){const dark=root.getAttribute('data-kp-theme')==='dark';b.textContent=dark?'LIGHT MODE':'DARK MODE';b.setAttribute('aria-pressed',dark?'true':'false')}b.addEventListener('click',function(){const next=root.getAttribute('data-kp-theme')==='dark'?'light':'dark';root.setAttribute('data-kp-theme',next);try{localStorage.setItem('kemiphan-theme',next)}catch(e){}sync()});sync();nav.insertBefore(b,nav.querySelector('.cart-button')||null)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount()})();
+</script>
 </body>
 </html>
