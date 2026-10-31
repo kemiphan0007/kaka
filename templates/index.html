@@ -1909,3 +1909,19 @@ if (option) {
 
 </body>
 </html>
+
+/* Mobile viewport guard: preserve the approved layout while preventing
+   decorative full-bleed layers from creating horizontal page scrolling. */
+@media (max-width: 700px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  body {
+    position: relative;
+  }
+  img, svg, video, canvas, iframe {
+    max-width: 100%;
+  }
+}
