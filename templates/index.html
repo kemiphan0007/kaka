@@ -1290,6 +1290,15 @@ body {
 }
 
 
+/* Desktop horizontal-overflow repair — preserve the full-bleed backdrop,
+   but size it to the viewport instead of extending beyond it. */
+@media (min-width: 761px) {
+  .container::before {
+    left: calc((100vw - 100%) / -2);
+    right: calc((100vw - 100%) / -2);
+  }
+}
+
 /* Responsive containment repair — preserve all approved visual design. */
 html, body { max-width: 100%; }
 @media (max-width: 760px) {
