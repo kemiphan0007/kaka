@@ -1025,6 +1025,134 @@ body{margin:0!important;background:var(--paper)!important;color:var(--ink)!impor
 @media(max-width:600px){.site-header{height:68px!important;min-height:68px!important;padding:0 17px!important}.brand-logo img{width:112px!important;max-height:44px!important}.header-nav{gap:11px!important}.header-nav a{font-size:8px!important;letter-spacing:.08em!important}.header-nav .cart-button{padding:10px 11px!important}.product{padding:48px 19px 64px!important}.spoilers-title h2{font-size:39px!important}.spoilers-title p{font-size:13px!important}.spoilers{min-height:260px!important;gap:8px!important}.product-info{padding:23px 18px!important}.product-info h1{font-size:48px!important}.option{padding:14px!important}.catalog-heading{display:block!important;margin-bottom:48px!important}.catalog-heading-mark{display:none!important}.catalog-heading h2{font-size:39px!important}.catalog-intro{font-size:13px!important}.product-catalog{padding:68px 18px!important}.editorial-product-grid{grid-template-columns:1fr!important;gap:12px!important}.editorial-product-card{padding:22px 19px!important;min-height:220px!important}.editorial-card-body{grid-template-columns:minmax(0,1fr) minmax(112px,.7fr)!important;gap:12px!important;margin-top:32px!important}.editorial-product-copy h4{font-size:18px!important}.editorial-package-list{padding-left:12px!important}.editorial-price{font-size:16px!important}.company-identity,.contact-section,.shipping-section{padding:65px 18px!important}.company-identity-main,.company-identity-panel{padding:27px 22px!important}.company-actions{flex-direction:column!important;align-items:stretch!important}.company-action{width:100%!important;box-sizing:border-box}.support-links{grid-template-columns:1fr!important}.support-card{min-height:125px!important}.shipping-heading{display:block!important}.shipping-intro{margin-top:18px!important}.shipping-visual{padding:25px 20px!important;min-height:0!important;display:block!important}.globe-art{display:block!important;width:100%!important;max-height:170px!important;margin:20px auto 0!important}.shipping-features{grid-template-columns:1fr 1fr!important}.shipping-item{padding:15px 12px!important}.footer-content{flex-direction:column!important;align-items:flex-start!important}.footer-links{gap:17px!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.spoiler-card img,.editorial-product-card,.support-card,.buy-button{transition:none!important}}
 
+
+/* ==========================================================
+   KEMIPHAN — MOLECULAR EMERALD ART DIRECTION
+   Visual-only override: original HTML, copy, links and JS stay intact.
+   ========================================================== */
+:root{
+  --ink:#17251f!important;
+  --ink-soft:#20352c!important;
+  --paper:#f3f0e7!important;
+  --white:#fffdf8!important;
+  --muted:#777d73!important;
+  --line:rgba(26,55,42,.13)!important;
+  --blue:#286653!important;
+  --blue-bright:#c6a66a!important;
+  --blue-soft:#e9eee7!important;
+  --radius-xl:28px!important;
+  --radius-lg:19px!important;
+  --shadow-soft:0 24px 70px rgba(13,35,25,.10)!important;
+}
+body{background:#f3f0e7!important;color:#17251f!important}
+::selection{background:rgba(198,166,106,.32)!important;color:#102720}
+.site-header{
+  border-color:rgba(222,205,164,.22)!important;
+  background:rgba(9,23,19,.84)!important;
+  box-shadow:0 16px 48px rgba(4,18,12,.22)!important;
+  backdrop-filter:blur(24px)!important;
+}
+.header-nav a{color:rgba(247,244,233,.82)!important}
+.header-nav a:hover{background:rgba(198,166,106,.13)!important;color:#fff!important}
+.header-nav .cart-button{background:#c6a66a!important;color:#14251d!important}
+.header-nav .cart-button:hover{background:#e0c58e!important;color:#14251d!important}
+.container{width:min(1280px,calc(100% - 56px))!important}
+.product{
+  background:
+    radial-gradient(ellipse at 76% 45%,rgba(71,130,99,.27),transparent 37%),
+    radial-gradient(ellipse at 9% 100%,rgba(198,166,106,.12),transparent 38%),
+    linear-gradient(128deg,#091713 0%,#102720 54%,#18392d 100%)!important;
+  box-shadow:0 34px 90px rgba(8,29,20,.22)!important;
+  border-radius:0 0 34px 34px!important;
+}
+.product::before{
+  width:650px!important;height:650px!important;right:-185px!important;top:35px!important;
+  border-color:rgba(198,166,106,.18)!important;
+  box-shadow:0 0 0 54px rgba(198,166,106,.035),0 0 0 112px rgba(198,166,106,.025),0 0 0 174px rgba(198,166,106,.014)!important;
+}
+/* Molecular constellation: fine bonds, atom nodes and orbital geometry */
+.product::after{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  width:min(59vw,780px);height:590px;right:-5.5%;top:105px;opacity:.52;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 820 620'%3E%3Cg fill='none' stroke='%23c6a66a' stroke-opacity='.55' stroke-width='1.35'%3E%3Cpath d='M100 300 220 210 350 275 470 170 610 245 720 145M220 210 240 70 390 75 470 170M350 275 390 420 535 470 650 390 610 245M100 300 160 450 390 420M470 170 520 45 680 65 720 145M610 245 760 300'/%3E%3Cellipse cx='470' cy='300' rx='235' ry='105' transform='rotate(-24 470 300)' stroke-opacity='.24'/%3Cellipse cx='470' cy='300' rx='305' ry='145' transform='rotate(34 470 300)' stroke-opacity='.16'/%3E%3C/g%3E%3Cg fill='%23102720' stroke='%23d8bd83' stroke-width='2'%3E%3Ccircle cx='100' cy='300' r='8'/%3E%3Ccircle cx='220' cy='210' r='11'/%3E%3Ccircle cx='350' cy='275' r='7'/%3E%3Ccircle cx='470' cy='170' r='12'/%3E%3Ccircle cx='610' cy='245' r='9'/%3E%3Ccircle cx='720' cy='145' r='7'/%3E%3Ccircle cx='240' cy='70' r='6'/%3E%3Ccircle cx='390' cy='75' r='8'/%3E%3Ccircle cx='390' cy='420' r='10'/%3E%3Ccircle cx='535' cy='470' r='7'/%3E%3Ccircle cx='650' cy='390' r='11'/%3E%3Ccircle cx='160' cy='450' r='6'/%3E%3Ccircle cx='520' cy='45' r='6'/%3E%3Ccircle cx='680' cy='65' r='9'/%3E%3Ccircle cx='760' cy='300' r='6'/%3E%3C/g%3E%3Cg fill='%23f3e6c9' fill-opacity='.75'%3E%3Ccircle cx='220' cy='210' r='2.5'/%3E%3Ccircle cx='470' cy='170' r='3'/%3E%3Ccircle cx='650' cy='390' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 20%,#000 88%,transparent 100%);
+}
+.product>*{position:relative;z-index:1}
+.spoilers-title::before{color:#d6bd88!important;letter-spacing:.25em!important}
+.spoilers-title h2{color:#f7f3e9!important;letter-spacing:-.06em!important}
+.spoilers-title h2::first-letter{color:#c6a66a!important}
+.spoilers-title p{color:rgba(243,240,231,.75)!important}
+.spoiler-card{border-color:rgba(222,205,164,.28)!important;background:#18392d!important;box-shadow:0 22px 55px rgba(0,0,0,.30)!important}
+.spoiler-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(145deg,rgba(198,166,106,.10),transparent 42%,rgba(9,23,19,.22))}
+.option{border-color:rgba(230,220,194,.24)!important;background:rgba(255,253,248,.075)!important}
+.option:hover,.option:has(input:checked){border-color:#c6a66a!important;background:rgba(198,166,106,.13)!important}
+.option h2,.option .price{color:#f5efdf!important}
+.buy-button{background:#c6a66a!important;color:#13251c!important;box-shadow:0 14px 34px rgba(198,166,106,.22)!important}
+.buy-button:hover{background:#e0c58e!important;transform:translateY(-2px)}
+/* Warm porcelain catalog for a premium light/dark rhythm */
+.editorial-catalog,.product-catalog{background:#f3f0e7!important;color:#17251f!important}
+.catalog-heading h2,.catalog-title,.editorial-catalog h2{color:#17251f!important}
+.catalog-heading-copy,.catalog-heading p{color:#73796f!important}
+.catalog-heading-mark{background:#e6dfce!important;color:#806b43!important;border-color:rgba(160,133,82,.18)!important}
+.editorial-product-card{
+  background:#fffdf8!important;border:1px solid rgba(33,67,49,.11)!important;
+  border-radius:23px!important;box-shadow:0 14px 42px rgba(23,49,34,.055)!important;
+  overflow:hidden!important;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease!important;
+}
+.editorial-product-card:hover{transform:translateY(-6px)!important;box-shadow:0 25px 55px rgba(23,49,34,.12)!important;border-color:rgba(198,166,106,.55)!important}
+.editorial-product-copy h3,.editorial-product-copy h4{color:#1b3025!important}
+.editorial-product-type{color:#8b754c!important;letter-spacing:.16em!important}
+.editorial-price{color:#285c45!important}
+.editorial-product-copy p,.editorial-product-copy li{color:#687269!important}
+.editorial-product-card a,.editorial-product-card button{border-radius:999px!important}
+.botanical-heading,.catalog-group-heading{color:#244a38!important}
+/* Corporate identity: forest green panel with restrained metallic details */
+.company-identity{background:#e9e5d9!important;color:#17251f!important}
+.company-identity-card{border:1px solid rgba(198,166,106,.34)!important;border-radius:30px!important;overflow:hidden!important;box-shadow:0 24px 70px rgba(16,39,29,.10)!important}
+.company-identity-main{background:linear-gradient(145deg,#102720,#1b4031)!important;color:#f4f0e7!important}
+.company-identity-main h2,.company-identity-main h3,.company-identity-main p{color:#f4f0e7!important}
+.company-identity-label{color:#d1b77e!important}
+.company-identity-mark{background:rgba(198,166,106,.10)!important;border-color:rgba(198,166,106,.28)!important}
+.company-identity-panel{background:#fffdf8!important;color:#20352a!important}
+.company-identity-panel h3,.company-identity-panel strong{color:#20352a!important}
+.company-identity-panel p,.company-fact{color:#6d756d!important}
+.company-fact{border-color:rgba(30,66,46,.13)!important}
+.company-action{background:#c6a66a!important;color:#17251f!important;border-color:#c6a66a!important}
+.company-action:hover{background:#ddc38e!important}
+/* Support and shipping sections */
+.contact-section{background:#f8f6ef!important;color:#17251f!important}
+.contact-section h2,.contact-section h3{color:#17251f!important}
+.contact-copy,.contact-section p{color:#6f786f!important}
+.support-card{background:#fffdf8!important;border:1px solid rgba(32,69,48,.12)!important;box-shadow:0 14px 36px rgba(16,39,29,.055)!important}
+.support-card:hover{border-color:rgba(198,166,106,.6)!important;transform:translateY(-4px)!important}
+.support-card h3,.support-card strong{color:#203c2c!important}
+.shipping-section{background:linear-gradient(135deg,#0b1d17,#143528 68%,#1d4434)!important;color:#f3f0e7!important;position:relative;overflow:hidden}
+.shipping-section::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 180'%3E%3Cg fill='none' stroke='%23c6a66a' stroke-width='1'%3E%3Cpath d='M20 90 65 64 110 90 155 64 200 90M65 64 65 12M110 90 110 142M155 64 155 12M20 90 20 142 65 168 110 142 155 168 200 142 200 90'/%3E%3C/g%3E%3Cg fill='%23c6a66a'%3E%3Ccircle cx='20' cy='90' r='3'/%3E%3Ccircle cx='65' cy='64' r='3'/%3E%3Ccircle cx='110' cy='90' r='3'/%3E%3Ccircle cx='155' cy='64' r='3'/%3E%3Ccircle cx='200' cy='90' r='3'/%3E%3C/g%3E%3C/svg%3E");background-size:240px 180px}
+.shipping-section>*{position:relative;z-index:1}
+.shipping-section h2,.shipping-section h3,.shipping-section p{color:#f3f0e7!important}
+.shipping-section .shipping-intro,.shipping-section .shipping-item p{color:rgba(243,240,231,.72)!important}
+.shipping-item{border-color:rgba(198,166,106,.24)!important;background:rgba(255,255,255,.045)!important;border-radius:16px!important}
+.shipping-item strong,.shipping-item h4{color:#ddc38e!important}
+.shipping-visual{border-color:rgba(198,166,106,.25)!important;background:rgba(255,255,255,.045)!important;border-radius:24px!important}
+.site-footer{background:#081711!important;color:#f3f0e7!important;border-top:1px solid rgba(198,166,106,.22)!important}
+.site-footer a{color:rgba(243,240,231,.78)!important}
+.site-footer a:hover{color:#ddc38e!important}
+/* Small molecular motif as section punctuation */
+.catalog-heading::after,.company-identity-label::before{color:#b89a5f!important}
+@media(max-width:900px){
+ .product::after{width:92vw;height:390px;right:-24%;top:155px;opacity:.32}
+ .product::before{width:440px!important;height:440px!important;right:-190px!important;top:140px!important}
+}
+@media(max-width:600px){
+ .container{width:calc(100% - 32px)!important}
+ .product{border-radius:0 0 24px 24px!important}
+ .product::after{width:120vw;height:300px;right:-50%;top:165px;opacity:.22}
+ .site-header{background:rgba(9,23,19,.94)!important}
+ .editorial-product-card{border-radius:18px!important}
+}
+@media(prefers-reduced-motion:reduce){.editorial-product-card,.support-card,.buy-button{transition:none!important}}
+
 </style>
 </head>
 <body>
