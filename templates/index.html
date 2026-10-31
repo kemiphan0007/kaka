@@ -691,6 +691,108 @@ body > * { position: relative; z-index: 1; }
   .company-action { width:100%; min-height:46px; }
   .company-disclaimer { font-size:9px; }
 }
+
+
+/* =====================================================
+   KEMIPHAN HOMEPAGE REFINEMENT — VISUAL LAYER ONLY
+   Functional HTML, links, assets and JavaScript unchanged.
+   ===================================================== */
+:root {
+  --ink: #0b1424;
+  --paper: #f5f7fb;
+  --blue: #285cf5;
+  --blue-bright: #4775ff;
+  --line: rgba(18, 35, 65, .10);
+}
+body { background: #f5f7fb; }
+.site-header { border-color: rgba(255,255,255,.13); background: rgba(7,12,23,.82); }
+.header-nav a { letter-spacing: .075em; }
+.product {
+  min-height: 650px;
+  padding-top: 148px;
+  padding-bottom: 68px;
+  border-radius: 0 0 34px 34px;
+  background:
+    radial-gradient(ellipse at 78% 38%, rgba(53,103,255,.24), transparent 34%),
+    radial-gradient(ellipse at 8% 100%, rgba(42,83,190,.17), transparent 38%),
+    linear-gradient(128deg,#070b14 0%,#0c1527 58%,#080e1a 100%);
+}
+.spoilers-title h2 { max-width: 570px; font-size: clamp(40px,5vw,64px); }
+.spoilers-title p { max-width: 500px; }
+.spoilers { gap: 11px; grid-template-rows: 205px 205px; }
+.spoiler-card { border-radius: 18px; }
+.product-info { max-width: 590px; }
+.options { gap: 10px; }
+.option { padding: 17px 18px; border-radius: 15px; }
+.option:focus-within { outline: 2px solid #8daaff; outline-offset: 3px; }
+.buy-button { min-height: 56px; border-radius: 13px; letter-spacing: .14em; }
+
+/* Catalog: clear hierarchy, consistent cards and package actions */
+.editorial-catalog { width: min(1160px, calc(100% - 48px)); margin: 88px auto 104px; }
+.catalog-heading {
+  min-height: 260px;
+  margin-bottom: 62px;
+  padding: clamp(34px,5vw,58px);
+  border: 1px solid rgba(122,157,232,.15);
+  border-radius: 26px;
+  background: linear-gradient(118deg,#0a1222 0%,#101f39 68%,#142d5c 100%);
+  box-shadow: 0 24px 65px rgba(13,30,62,.12);
+}
+.catalog-heading h2 { max-width: 620px; }
+.catalog-intro { max-width: 540px; }
+.catalog-group-heading { margin-bottom: 20px; }
+.editorial-product-grid { gap: 16px; }
+.editorial-product-card {
+  padding: 25px 25px 21px;
+  border-color: rgba(22,43,78,.10);
+  border-radius: 18px;
+  box-shadow: 0 9px 28px rgba(15,31,58,.045);
+}
+.editorial-product-card:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(15,31,58,.085); }
+.editorial-card-body { gap: 23px; }
+.editorial-package-row { min-height: 62px; }
+.editorial-package-row a { min-height: 39px; }
+.featured-card { grid-column: 1 / -1; }
+.botanical-heading { margin-top: 68px; }
+.catalog-footnote { margin-top: 26px; }
+
+/* Company and service sections share a calmer rhythm */
+.company-identity { margin-bottom: 88px; }
+.company-identity-card { border-radius: 27px; }
+.contact-section { border-top: 1px solid rgba(18,35,65,.08); }
+.support-card { border-radius: 18px; }
+.shipping-section { border-top: 1px solid rgba(18,35,65,.06); }
+.site-footer { border-radius: 26px 26px 0 0; }
+
+@media (max-width: 900px) {
+  .product { min-height: 0; padding-inline: 34px; }
+  .spoilers { grid-template-rows: 175px 175px; }
+  .editorial-card-body { grid-template-columns: minmax(160px,.72fr) minmax(0,1.28fr); gap: 18px; }
+}
+@media (max-width: 700px) {
+  .product { padding: 108px 20px 28px; border-radius: 0 0 23px 23px; }
+  .spoilers-title h2 { font-size: clamp(36px,10vw,50px); }
+  .spoilers { grid-template-rows: 138px 138px; }
+  .option { padding: 14px 11px; }
+  .editorial-catalog { width: calc(100% - 28px); margin: 64px auto 76px; }
+  .catalog-heading { margin-bottom: 42px; padding: 29px 22px; border-radius: 19px; }
+  .editorial-product-grid { grid-template-columns: 1fr; gap: 12px; }
+  .featured-card { grid-column: auto; }
+  .editorial-card-body { grid-template-columns: 1fr; gap: 16px; }
+  .editorial-product-card { padding: 21px 18px 17px; border-radius: 16px; }
+  .botanical-heading { margin-top: 48px; }
+  .company-identity { margin-bottom: 58px; }
+  .company-identity-card { border-radius: 21px; }
+  .contact-section, .shipping-section { padding-top: 58px; padding-bottom: 58px; }
+}
+@media (max-width: 430px) {
+  .site-header { width: calc(100% - 16px); padding-left: 10px; }
+  .brand-logo img { width: 88px; }
+  .header-nav a { padding-inline: 6px; font-size: 7px; }
+  .editorial-package-row { grid-template-columns: minmax(0,1fr) auto; }
+  .editorial-package-row a, .editorial-unavailable { grid-column: 1 / -1; width: 100%; }
+}
+
 </style>
 </head>
 <body>
