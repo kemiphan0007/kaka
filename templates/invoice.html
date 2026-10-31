@@ -6,193 +6,373 @@
     <title>Invoice - Ke-miphan Thailand</title>
 
     <style>
+        :root {
+            --ink: #202833;
+            --navy: #10243d;
+            --muted: #687383;
+            --rule: #d9dee5;
+            --paper: #ffffff;
+            --canvas: #eef1f4;
+            --soft: #f7f8fa;
+        }
+
         * { box-sizing: border-box; }
 
         body {
             margin: 0;
-            padding: 30px 15px;
-            background: #f1f2f4;
-            font-family: Arial, sans-serif;
-            color: #222;
+            padding: 38px 16px;
+            background: var(--canvas);
+            color: var(--ink);
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .invoice {
+            width: 100%;
             max-width: 850px;
-            margin: 20px auto;
-            padding: 40px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,.06);
+            min-height: 1050px;
+            margin: 0 auto;
+            padding: 58px 62px 42px;
+            background: var(--paper);
+            box-shadow: 0 12px 38px rgba(20, 32, 48, .08);
+        }
+
+        .top-rule {
+            height: 4px;
+            margin: -58px -62px 42px;
+            background: var(--navy);
         }
 
         .invoice-header {
             display: flex;
             justify-content: space-between;
-            gap: 20px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid #222;
+            align-items: flex-start;
+            gap: 28px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--ink);
         }
 
-        .brand h1 { margin: 0 0 8px; font-size: 25px; }
-        .brand p { margin: 0; color: #777; font-size: 12px; }
-        .invoice-title { text-align: right; }
-        .invoice-title h2 { margin: 0 0 8px; font-size: 27px; }
-        .invoice-title p { margin: 0; color: #777; font-size: 12px; }
-        .section { margin-top: 30px; }
-        .section h3 {
-            margin-bottom: 12px;
-            font-size: 14px;
+        .brand h1 {
+            margin: 0 0 5px;
+            color: var(--navy);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 29px;
+            font-weight: 600;
+            letter-spacing: .3px;
+        }
+
+        .brand .thai {
+            margin: 0 0 13px;
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: .35px;
+        }
+
+        .brand .document-label {
+            margin: 0;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
+        }
+
+        .invoice-title {
+            min-width: 205px;
+            text-align: right;
+        }
+
+        .invoice-title h2 {
+            margin: -5px 0 8px;
+            color: var(--navy);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 31px;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .invoice-title .order-label {
+            margin: 0 0 2px;
+            color: var(--muted);
+            font-size: 10px;
             letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .invoice-title strong {
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .section { margin-top: 34px; }
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 15px;
+            color: var(--navy);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+        }
+
+        .section-heading::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--rule);
         }
 
         .customer-info {
-            padding: 18px;
-            background: #f8f8f8;
-            border-radius: 8px;
-            line-height: 1.8;
-            font-size: 13px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 34px;
+            row-gap: 14px;
+            padding: 20px 22px;
+            background: var(--soft);
+            border: 1px solid #e9edf1;
         }
 
-        .customer-info strong { display: inline-block; min-width: 115px; }
-        .table-wrap { overflow-x: auto; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th {
-            padding: 13px 10px;
-            background: #222;
-            color: white;
+        .info-item { min-width: 0; }
+        .info-label {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--muted);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .info-value {
+            display: block;
+            color: var(--ink);
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .table-wrap { width: 100%; overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        thead th {
+            padding: 12px 9px;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            color: var(--navy);
+            background: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .9px;
             text-align: left;
+            text-transform: uppercase;
             white-space: nowrap;
         }
-        td {
-            padding: 15px 10px;
-            border-bottom: 1px solid #eee;
+
+        tbody td {
+            padding: 16px 9px;
+            border-bottom: 1px solid var(--rule);
+            color: #303a46;
             vertical-align: top;
         }
+
         .right { text-align: right; white-space: nowrap; }
 
+        .total-area {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
         .total-box {
-            max-width: 350px;
-            margin: 25px 0 0 auto;
-            padding: 20px;
-            background: #f7f7f7;
-            border-radius: 8px;
+            width: 100%;
+            max-width: 310px;
+            padding-top: 13px;
+            border-top: 1px solid var(--ink);
         }
 
         .total-line {
             display: flex;
             justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 12px;
-            font-size: 13px;
+            gap: 16px;
+            margin-bottom: 13px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .status {
+            color: var(--ink);
+            font-weight: 700;
+            text-align: right;
+            text-transform: uppercase;
+            letter-spacing: .5px;
         }
 
         .grand-total {
             display: flex;
             justify-content: space-between;
+            align-items: baseline;
             gap: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #ccc;
-            font-size: 19px;
-            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 14px;
+            border-top: 1px solid var(--rule);
+            color: var(--navy);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 20px;
+            font-weight: 700;
         }
 
-        .status {
-            display: inline-block;
-            padding: 7px 12px;
-            background: #fff3cd;
-            color: #856404;
-            border-radius: 5px;
-            font-size: 12px;
-            font-weight: bold;
+        .grand-total span:first-child {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1.4px;
         }
 
         .actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 30px;
+            gap: 10px;
+            margin-top: 38px;
+            padding-top: 22px;
+            border-top: 1px solid var(--rule);
         }
 
         .button {
             flex: 1 1 180px;
             display: block;
-            padding: 15px;
-            border: 0;
-            border-radius: 7px;
-            background: #222;
-            color: white;
+            padding: 13px 15px;
+            border: 1px solid var(--navy);
+            border-radius: 2px;
+            background: var(--navy);
+            color: #fff;
             text-decoration: none;
             text-align: center;
             font-family: inherit;
-            font-size: 13px;
-            font-weight: bold;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .8px;
             cursor: pointer;
         }
 
-        .button.secondary { background: #eee; color: #222; }
-        .button.coa { background: #174ea6; color: #fff; }
-
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #888;
-            text-align: center;
-            font-size: 11px;
-            line-height: 1.7;
+        .button.secondary {
+            background: #fff;
+            color: var(--navy);
         }
 
-        @media(max-width: 600px) {
-            .invoice { padding: 22px 15px; }
-            .invoice-header { flex-direction: column; }
-            .invoice-title { text-align: left; }
+        .button.coa {
+            background: #fff;
+            color: var(--navy);
+            border-color: #9aa6b5;
+        }
+
+        .footer {
+            margin-top: 44px;
+            padding-top: 19px;
+            border-top: 1px solid var(--rule);
+            color: var(--muted);
+            text-align: center;
+            font-size: 10px;
+            line-height: 1.8;
+        }
+
+        .footer .footer-brand {
+            color: var(--navy);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 12px 8px; }
+            .invoice {
+                min-height: 0;
+                padding: 34px 22px 28px;
+            }
+            .top-rule { margin: -34px -22px 30px; }
+            .invoice-header { flex-direction: column; gap: 24px; }
+            .invoice-title { min-width: 0; text-align: left; }
+            .invoice-title h2 { font-size: 27px; }
+            .customer-info { grid-template-columns: 1fr; padding: 17px; }
             .actions { flex-direction: column; }
-            .customer-info strong { min-width: 95px; }
             .button { flex-basis: auto; width: 100%; }
+            .table-wrap table { min-width: 590px; }
         }
 
         @media print {
-            body { padding: 0; background: white; }
+            @page { size: A4; margin: 14mm; }
+            body {
+                padding: 0;
+                background: #fff;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
             .invoice {
                 max-width: none;
+                min-height: 0;
                 margin: 0;
-                padding: 15px;
+                padding: 0;
                 box-shadow: none;
             }
-            .actions { display: none; }
+            .top-rule { margin: 0 0 32px; }
+            .actions { display: none !important; }
+            .section, .total-area, .footer { break-inside: avoid; }
+            thead { display: table-header-group; }
+            tr { break-inside: avoid; }
         }
     </style>
 </head>
 
 <body>
 <div class="invoice">
+    <div class="top-rule"></div>
+
     <div class="invoice-header">
         <div class="brand">
             <h1>Ke-miphan</h1>
-            <p>เคมีภัณฑ์ Thailand</p>
-            <p>Official Order Invoice</p>
+            <p class="thai">เคมีภัณฑ์ Thailand</p>
+            <p class="document-label">Official Order Document</p>
         </div>
 
         <div class="invoice-title">
             <h2>INVOICE</h2>
-            <p>Order Number:</p>
+            <p class="order-label">Order Number</p>
             <strong>{{ order.order_number }}</strong>
         </div>
     </div>
 
     <div class="section">
-        <h3>Customer Information</h3>
+        <h3 class="section-heading">Customer Information</h3>
         <div class="customer-info">
-            <div><strong>Name:</strong> {{ order.customer_name or order.name or '-' }}</div>
-            <div><strong>Email:</strong> {{ order.customer_email or order.email or '-' }}</div>
-            <div><strong>Address:</strong> {{ order.shipping_address or order.address or '-' }}</div>
-            <div><strong>Order Date:</strong> {{ order.created_at or '-' }}</div>
+            <div class="info-item">
+                <span class="info-label">Customer Name</span>
+                <span class="info-value">{{ order.customer_name or order.name or '-' }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Email Address</span>
+                <span class="info-value">{{ order.customer_email or order.email or '-' }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Shipping Address</span>
+                <span class="info-value">{{ order.shipping_address or order.address or '-' }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Order Date</span>
+                <span class="info-value">{{ order.created_at or '-' }}</span>
+            </div>
         </div>
     </div>
 
     <div class="section">
-        <h3>Order Details</h3>
+        <h3 class="section-heading">Order Details</h3>
         <div class="table-wrap">
             <table>
                 <thead>
@@ -229,14 +409,16 @@
         </div>
     </div>
 
-    <div class="total-box">
-        <div class="total-line">
-            <span>Payment Status</span>
-            <span class="status">{{ order.payment_status or order.status or 'Pending' }}</span>
-        </div>
-        <div class="grand-total">
-            <span>TOTAL</span>
-            <span>${{ "{:,.2f}".format(order.total_amount|float) }}</span>
+    <div class="total-area">
+        <div class="total-box">
+            <div class="total-line">
+                <span>Payment Status</span>
+                <span class="status">{{ order.payment_status or order.status or 'Pending' }}</span>
+            </div>
+            <div class="grand-total">
+                <span>TOTAL</span>
+                <span>${{ "{:,.2f}".format(order.total_amount|float) }}</span>
+            </div>
         </div>
     </div>
 
@@ -256,7 +438,7 @@
 
     <div class="footer">
         Thank you for your order.<br>
-        Ke-miphan (เคมีภัณฑ์) Thailand<br>
+        <span class="footer-brand">Ke-miphan (เคมีภัณฑ์) Thailand</span><br>
         Please keep this invoice for your records.
     </div>
 </div>
