@@ -741,6 +741,192 @@ body > * { position: relative; z-index: 1; }
   .catalog-footnote span { display: block; margin-bottom: 5px; }
 }
 
+
+
+/* ==========================================
+   KEMIPHAN SUPPORT + SHIPPING REFINEMENT
+   Scoped visual polish; existing content and
+   functionality intentionally left unchanged.
+   ========================================== */
+.contact-section {
+  position: relative;
+  padding: 112px 24px 92px;
+  scroll-margin-top: 112px;
+}
+.shipping-section {
+  position: relative;
+  padding: 104px 24px 96px;
+  scroll-margin-top: 112px;
+}
+.contact-section::before,
+.shipping-section::before {
+  content: "";
+  position: absolute;
+  inset: 34px 0 auto;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(36,87,255,.13), transparent);
+}
+.contact-content,
+.shipping-content {
+  position: relative;
+  max-width: 980px;
+}
+.contact-section .contact-label,
+.shipping-section .shipping-label {
+  display: inline-block;
+  margin: 0 0 18px;
+  color: var(--blue);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+.contact-section h2,
+.shipping-section h2 {
+  margin: 0 0 16px;
+  font-size: clamp(34px, 4.2vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -.055em;
+}
+.contact-section p,
+.shipping-intro {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.support-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 280px));
+  justify-content: center;
+  gap: 16px;
+  margin-top: 38px;
+}
+.support-card {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 138px;
+  padding: 24px;
+  border-color: #e5eaf3;
+  border-radius: 18px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 14px 38px rgba(12,24,48,.055);
+  text-align: left;
+}
+.support-card span {
+  font-size: 9px;
+  letter-spacing: .16em;
+}
+.support-card strong {
+  margin-top: 28px;
+  font-size: 13px;
+  letter-spacing: -.015em;
+}
+.support-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(36,87,255,.28);
+  box-shadow: 0 22px 48px rgba(12,24,48,.09);
+}
+.shipping-section {
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+}
+.shipping-intro {
+  margin-bottom: 34px;
+}
+.shipping-features {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+.shipping-item {
+  min-height: 116px;
+  padding: 23px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #e6ebf4;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fff 0%, #fbfcff 100%);
+  box-shadow: 0 10px 30px rgba(12,24,48,.035);
+}
+.shipping-item strong {
+  margin-bottom: 9px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.shipping-item span {
+  font-size: 11px;
+  line-height: 1.65;
+}
+.shipping-note {
+  margin: 25px auto 0;
+  max-width: 680px;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .contact-section { padding: 100px 22px 82px; }
+  .shipping-section { padding: 92px 22px 84px; }
+  .shipping-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .contact-section,
+  .shipping-section {
+    width: calc(100% - 32px);
+    padding: 88px 8px 68px;
+    scroll-margin-top: 88px;
+  }
+  .contact-section::before,
+  .shipping-section::before {
+    inset: 24px 0 auto;
+  }
+  .contact-section h2,
+  .shipping-section h2 {
+    font-size: clamp(31px, 9vw, 40px);
+  }
+  .contact-section p,
+  .shipping-intro {
+    font-size: 12px;
+  }
+  .support-links {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .support-card {
+    min-height: 112px;
+    padding: 20px;
+  }
+  .support-card strong { margin-top: 20px; }
+  .shipping-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .shipping-item {
+    min-height: 112px;
+    padding: 17px 12px;
+  }
+  .shipping-item strong { font-size: 11px; }
+  .shipping-item span { font-size: 10px; }
+  .shipping-note { padding: 0 8px; }
+}
+@media (max-width: 380px) {
+  .contact-section,
+  .shipping-section {
+    width: calc(100% - 24px);
+    padding-right: 4px;
+    padding-left: 4px;
+  }
+  .shipping-features { grid-template-columns: 1fr; }
+  .shipping-item { min-height: 90px; }
+}
+
 </style>
 </head>
 <body>
