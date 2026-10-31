@@ -263,8 +263,6 @@ body > * { position: relative; z-index: 1; }
 
 </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <script>
     const btcAddress =
         "bc1qx8s2ch385tn3fm05elan67ahy0exj2t5z4y27p";
@@ -302,22 +300,6 @@ body > * { position: relative; z-index: 1; }
 
             document.body.removeChild(input);
         }
-    }
-
-    const qrContainer = document.getElementById("qrcode");
-
-    if (typeof QRCode !== "undefined") {
-        qrContainer.innerHTML = "";
-
-        new QRCode(qrContainer, {
-            text: "bitcoin:" + btcAddress,
-            width: 180,
-            height: 180,
-            correctLevel: QRCode.CorrectLevel.M
-        });
-    } else {
-        qrContainer.innerHTML =
-            '<span class="qr-caption">QR Code unavailable. Please copy the BTC address above.</span>';
     }
 </script>
 
