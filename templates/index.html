@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-kp-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b12">
+  <meta name="theme-color" content="#07101f">
   <title>Ke-miphan เคมีภัณฑ์ - Thailand</title>
   <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='Logo.jpeg') }}">
 
@@ -767,6 +767,7 @@ body > * { position: relative; z-index: 1; }
    .shipping-heading wrappers; these selectors match its real DOM.
    ========================================================== */
 html { scroll-padding-top: 132px; }
+#product-catalog { scroll-margin-top: 112px; }
 
 .contact-section,
 .shipping-section {
@@ -1177,28 +1178,53 @@ body {
 }
 
 
-/* Optional dark appearance; PZM21 contrast is locked independently above. */
-html[data-kp-theme="dark"] body { background:linear-gradient(180deg,#07101f,#0c1729 55%,#07101f) !important; color:#e8eefb; }
-html[data-kp-theme="dark"] .editorial-product-card:not(.pzm-card) { background:linear-gradient(145deg,#14223a,#0d192c) !important; border-color:rgba(160,184,230,.17) !important; }
-html[data-kp-theme="dark"] .editorial-product-copy h4,
-html[data-kp-theme="dark"] .editorial-package-row > div strong,
-html[data-kp-theme="dark"] .editorial-price,
-html[data-kp-theme="dark"] .catalog-group-heading h3 { color:#f1f5ff !important; }
-html[data-kp-theme="dark"] .editorial-product-copy p,
-html[data-kp-theme="dark"] .package-kind,
-html[data-kp-theme="dark"] .editorial-card-topline { color:#aebbd2 !important; }
-html[data-kp-theme="dark"] .editorial-card-topline,
-html[data-kp-theme="dark"] .editorial-package-row { border-color:rgba(215,228,255,.14) !important; }
-html[data-kp-theme="dark"] .sold-out-card { background:#172033 !important; }
-html[data-kp-theme="dark"] .contact-section { background:#0d192b !important; border-color:rgba(210,225,255,.12) !important; }
-html[data-kp-theme="dark"] .shipping-section { background:#101e32 !important; border-color:rgba(210,225,255,.12) !important; }
-html[data-kp-theme="dark"] .contact-section h2,html[data-kp-theme="dark"] .shipping-section h2,
-html[data-kp-theme="dark"] .contact-section p,html[data-kp-theme="dark"] .shipping-intro,
-html[data-kp-theme="dark"] .shipping-item strong,html[data-kp-theme="dark"] .shipping-item span { color:#edf3ff !important; }
-html[data-kp-theme="dark"] .support-card,html[data-kp-theme="dark"] .shipping-item { background:#14233a !important; border-color:rgba(173,196,240,.16) !important; }
-.theme-toggle { border:1px solid rgba(190,208,245,.3); border-radius:999px; padding:9px 13px; color:#eef4ff; background:rgba(255,255,255,.08); font:700 9px/1 inherit; letter-spacing:.12em; cursor:pointer; }
-.theme-toggle:hover { background:rgba(255,255,255,.16); }
-@media(max-width:760px){.theme-toggle{padding:8px 10px;font-size:8px;}}
+/* Permanent dark appearance. The approved decorative layers remain unchanged. */
+:root {
+  color-scheme: dark;
+  --ink:#eaf0fc;
+  --ink-soft:#14223a;
+  --paper:#07101f;
+  --white:#101d31;
+  --muted:#aab8d0;
+  --line:rgba(180,202,244,.15);
+  --blue-soft:#17294a;
+  --kp-ink:#eaf0fc;
+  --kp-muted:#aab8d0;
+  --kp-paper:#07101f;
+  --kp-line:rgba(180,202,244,.15);
+}
+html, body { color-scheme:dark; background:#07101f !important; color:#e8eefb; }
+body {
+  background:
+    radial-gradient(ellipse at 50% -18%,rgba(58,103,220,.13),transparent 42%),
+    linear-gradient(180deg,#07101f 0%,#0c1729 48%,#07101f 100%) !important;
+}
+.product-catalog { color:#e8eefb; }
+.catalog-item { background:linear-gradient(145deg,#14223a,#0d192c) !important; border-color:rgba(160,184,230,.17) !important; }
+.catalog-item:hover { background:#192b47 !important; }
+.catalog-item h3 { color:#f1f5ff !important; }
+.catalog-item .description { color:#aebbd2 !important; }
+.product-option { border-color:rgba(180,202,244,.16) !important; }
+.product-option strong { color:#eef3ff !important; }
+.company-identity-card { background:linear-gradient(145deg,#101d31,#0c1728) !important; border-color:rgba(180,202,244,.15) !important; }
+.company-identity h2, .company-detail strong { color:#edf3ff !important; }
+.company-identity-intro, .company-disclaimer { color:#aab8d0 !important; }
+.company-detail { background:#14233a !important; border-color:rgba(173,196,240,.16) !important; }
+.company-detail span { color:#a7b6d0 !important; }
+.company-action.secondary { color:#eaf0fc !important; background:#14233a !important; border-color:rgba(180,202,244,.2) !important; }
+.company-action.secondary:hover { color:#fff !important; background:#2457ff !important; }
+.editorial-product-card:not(.pzm-card) { background:linear-gradient(145deg,#14223a,#0d192c) !important; border-color:rgba(160,184,230,.17) !important; }
+.editorial-product-copy h4, .editorial-package-row > div strong, .editorial-price, .catalog-group-heading h3 { color:#f1f5ff !important; }
+.editorial-product-copy p, .package-kind, .editorial-card-topline { color:#aebbd2 !important; }
+.editorial-card-topline, .editorial-package-row { border-color:rgba(215,228,255,.14) !important; }
+.sold-out-card { background:#172033 !important; }
+.sold-out-card .editorial-product-copy h4 { color:#c0cada !important; }
+.contact-section, .shipping-section { background:transparent !important; border-color:rgba(210,225,255,.12) !important; }
+.contact-section h2, .shipping-section h2, .contact-section p, .shipping-intro,
+.shipping-item strong, .shipping-item span { color:#edf3ff !important; }
+.support-card, .shipping-item { background:#14233a !important; border-color:rgba(173,196,240,.16) !important; }
+.support-card strong { color:#edf3ff !important; }
+.shipping-note { color:#aab8d0 !important; }
 
 
 /* ==========================================================
@@ -1251,7 +1277,7 @@ html[data-kp-theme="dark"] .support-card,html[data-kp-theme="dark"] .shipping-it
             TRACK ORDER
         </a>
 
-        <a href="#orders" class="cart-button">
+        <a href="#product-catalog" class="cart-button" aria-label="Go to product catalogue">
             CART
         </a>
 
@@ -1846,22 +1872,6 @@ if (option) {
 </script>
 
 
-<script>
-/* Appearance toggle only; it does not touch cart, checkout or order logic. */
-(function(){
- const root=document.documentElement;let saved=null;
- try{saved=localStorage.getItem('kemiphan-theme')}catch(e){}
- const initial=(saved==='dark'||saved==='light')?saved:((window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
- root.setAttribute('data-kp-theme',initial);
- function mount(){const nav=document.querySelector('.header-nav');if(!nav||nav.querySelector('.theme-toggle'))return;
-  const b=document.createElement('button');b.type='button';b.className='theme-toggle';b.setAttribute('aria-label','Toggle color theme');
-  function sync(){const dark=root.getAttribute('data-kp-theme')==='dark';b.textContent=dark?'LIGHT MODE':'DARK MODE';b.setAttribute('aria-pressed',dark?'true':'false');}
-  b.addEventListener('click',function(){const next=root.getAttribute('data-kp-theme')==='dark'?'light':'dark';root.setAttribute('data-kp-theme',next);try{localStorage.setItem('kemiphan-theme',next)}catch(e){}sync();});
-  sync();nav.insertBefore(b,nav.querySelector('.cart-button')||null);
- }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
-})();
-</script>
 
 </body>
 </html>
