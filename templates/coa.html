@@ -5,50 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Specification Record | Kemiphan</title>
   <style>
-    :root { --navy:#101d35; --blue:#176caa; --muted:#68758b; --line:#dce4ef; --pale:#f3f6fb; --gold:#b69a55; }
-    * { box-sizing: border-box; }
-    body { margin:0; background:#edf1f7; color:#172238; font-family:Arial,Helvetica,sans-serif; }
-    .toolbar { max-width:900px; margin:24px auto 12px; display:flex; justify-content:flex-end; gap:10px; padding:0 18px; }
-    .toolbar button { border:0; border-radius:999px; padding:12px 20px; background:var(--navy); color:white; font-weight:700; cursor:pointer; }
-    .toolbar a { color:var(--navy); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:11px 18px; background:white; font-weight:700; }
-    .sheet { width:min(900px, calc(100% - 36px)); margin:0 auto 36px; background:white; padding:38px 52px 34px; border:1px solid #e6ebf3; box-shadow:0 18px 60px rgba(24,42,72,.09); position:relative; overflow:hidden; }
-    .topline { height:4px; background:linear-gradient(90deg,var(--blue),#7da2ff); margin-bottom:18px; }
-    .brand { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-bottom:14px; border-bottom:1px solid var(--line); }
+    :root {
+      --ink:#20242a;
+      --black:#111317;
+      --muted:#62676f;
+      --line:#cfd2d6;
+      --pale:#f5f5f5;
+      --paper:#ffffff;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      background:#ededed;
+      color:var(--ink);
+      font-family:"Helvetica Neue",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    .toolbar {
+      max-width:900px;
+      margin:24px auto 12px;
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      padding:0 18px;
+    }
+    .toolbar button {
+      border:1px solid var(--black);
+      border-radius:2px;
+      padding:12px 20px;
+      background:var(--black);
+      color:#fff;
+      font-weight:700;
+      letter-spacing:.4px;
+      cursor:pointer;
+    }
+    .toolbar a {
+      color:var(--black);
+      text-decoration:none;
+      border:1px solid #aeb2b8;
+      border-radius:2px;
+      padding:11px 18px;
+      background:#fff;
+      font-weight:700;
+    }
+    .sheet {
+      width:min(900px,calc(100% - 36px));
+      margin:0 auto 36px;
+      background:var(--paper);
+      padding:42px 54px 36px;
+      border:1px solid #d8dadd;
+      box-shadow:0 12px 38px rgba(0,0,0,.07);
+      position:relative;
+      overflow:hidden;
+    }
+    .topline { height:3px; background:var(--black); margin-bottom:20px; }
+    .brand {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--black);
+    }
     .brand-lockup { display:flex; align-items:center; gap:16px; min-width:0; }
-    .brand-logo { width:112px; height:84px; object-fit:contain; }
+    .brand-logo {
+      width:112px;
+      height:84px;
+      object-fit:contain;
+      filter:grayscale(1) contrast(1.12);
+    }
     .brand-address { margin-top:9px; color:var(--muted); font-size:10px; line-height:1.55; max-width:430px; }
-    .issuer-tag { display:inline-block; border:1px solid #b8cbe1; color:#24527e; padding:6px 9px; font-size:8px; font-weight:800; letter-spacing:1.1px; border-radius:3px; margin-top:8px; }
-    .brand-name { color:var(--navy); font-size:24px; letter-spacing:2px; font-weight:800; }
-    .brand-kicker { color:var(--blue); font-size:10px; letter-spacing:2px; font-weight:800; margin-top:7px; }
-    .brand-note { max-width:300px; text-align:right; color:var(--muted); font-size:11px; line-height:1.6; }
-    h1 { text-align:center; margin:12px 0 7px; font-size:25px; letter-spacing:1.5px; color:var(--navy); }
-    .subtitle { text-align:center; color:var(--muted); font-size:11px; letter-spacing:1.2px; margin-bottom:18px; }
-    .meta { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:18px; }
-    .meta-card { background:var(--pale); border:1px solid #e4eaf4; border-radius:10px; padding:10px 13px; min-height:54px; }
-    .label { color:#8290a5; font-size:9px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; margin-bottom:7px; }
-    .value { color:#1b2940; font-size:13px; font-weight:700; overflow-wrap:anywhere; }
-    h2 { font-size:14px; color:var(--navy); margin:18px 0 7px; }
-    .intro { color:#56647a; font-size:12px; line-height:1.65; margin:0 0 12px; }
-    table { width:100%; border-collapse:collapse; font-size:12px; }
-    th { background:#eaf0ff; color:#1d376f; text-align:left; font-size:10px; letter-spacing:.7px; text-transform:uppercase; padding:9px 9px; border:1px solid #d6e0f3; }
-    td { padding:10px 9px; border:1px solid var(--line); vertical-align:top; }
-    .notice { margin-top:15px; padding:10px 13px; border-left:3px solid var(--blue); background:#f5f8ff; color:#53627a; font-size:10px; line-height:1.65; }
-    .footer { display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-top:22px; padding-top:12px; border-top:1px solid var(--line); }
-    .footer strong { color:var(--navy); font-size:12px; }
-    .footer small { display:block; color:var(--muted); font-size:9px; line-height:1.6; margin-top:5px; }
-    .doc-id { text-align:right; color:var(--muted); font-size:9px; line-height:1.7; }
-    .authorization { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-top:22px; }
+    .issuer-tag {
+      display:inline-block;
+      border:1px solid #8b9097;
+      color:#34383e;
+      padding:6px 9px;
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:1.1px;
+      border-radius:0;
+      margin-top:8px;
+    }
+    .brand-name {
+      color:var(--black);
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:24px;
+      letter-spacing:2px;
+      font-weight:700;
+    }
+    .brand-kicker { color:#4d5259; font-size:10px; letter-spacing:2px; font-weight:800; margin-top:7px; }
+    .brand-note { max-width:300px; text-align:right; color:var(--muted); font-size:10px; line-height:1.7; }
+    h1 {
+      text-align:center;
+      margin:22px 0 7px;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:25px;
+      font-weight:600;
+      letter-spacing:1.8px;
+      color:var(--black);
+    }
+    .subtitle { text-align:center; color:#555b63; font-size:9px; letter-spacing:1.35px; margin-bottom:20px; }
+    .meta { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:20px; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+    .meta-card { background:#fff; border:0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); border-radius:0; padding:12px 14px; min-height:58px; }
+    .label { color:#666c74; font-size:8px; font-weight:800; letter-spacing:1.15px; text-transform:uppercase; margin-bottom:6px; }
+    .value { color:var(--black); font-size:12px; font-weight:700; overflow-wrap:anywhere; }
+    h2 {
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:15px;
+      font-weight:600;
+      color:var(--black);
+      margin:22px 0 9px;
+    }
+    .intro { color:#4e545c; font-size:11px; line-height:1.7; margin:0 0 13px; }
+    table { width:100%; border-collapse:collapse; font-size:11px; }
+    th {
+      background:#eeeeee;
+      color:#17191d;
+      text-align:left;
+      font-size:9px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      padding:10px 9px;
+      border-top:1px solid #777c83;
+      border-bottom:1px solid #777c83;
+      border-left:0;
+      border-right:0;
+    }
+    td { padding:11px 9px; border-bottom:1px solid var(--line); border-left:0; border-right:0; vertical-align:top; color:#24282e; }
+    .notice {
+      margin-top:16px;
+      padding:11px 13px;
+      border:1px solid #c9cdd2;
+      border-left:3px solid #33383e;
+      background:#f7f7f7;
+      color:#41464d;
+      font-size:10px;
+      line-height:1.7;
+    }
+    .footer {
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      align-items:flex-end;
+      margin-top:24px;
+      padding-top:14px;
+      border-top:1px solid #777c83;
+    }
+    .footer strong { color:var(--black); font-size:11px; letter-spacing:.35px; }
+    .footer small { display:block; color:var(--muted); font-size:9px; line-height:1.7; margin-top:5px; }
+    .doc-id { text-align:right; color:var(--muted); font-size:9px; line-height:1.8; }
+    .authorization { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-top:25px; }
     .signature { width:48%; color:var(--muted); font-size:9px; }
-    .signature-image { display:block; width:178px; max-width:100%; height:42px; object-fit:contain; object-position:left bottom; margin:0 0 2px 0; }
-    .signature-line { width:230px; max-width:100%; height:1px; border-bottom:1px solid #8996a8; margin:0 0 6px; }
-    .signatory-name { color:var(--navy); font-size:11px; font-weight:800; margin-top:0; }\n    .signatory-title { color:var(--muted); font-size:9px; margin-top:3px; line-height:1.5; }
-    .seal { width:88px; height:88px; border:3px double rgba(23,108,170,.78); border-radius:50%; color:#176caa; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; transform:rotate(-9deg); opacity:.82; flex-shrink:0; }
-    .seal strong { font-size:11px; letter-spacing:1px; }
-    .seal span { font-size:7px; letter-spacing:1px; margin:4px 0; }
-    .seal em { font-size:7px; font-style:normal; font-weight:800; border-top:1px solid currentColor; padding-top:4px; width:78%; }
-    @media (max-width:640px) { .sheet{padding:30px 20px}.brand{display:block}.brand-lockup{align-items:flex-start}.brand-logo{width:86px;height:72px}.brand-note{text-align:left;margin-top:12px}.meta{grid-template-columns:1fr}.footer{display:block}.doc-id{text-align:left;margin-top:16px}.authorization{align-items:flex-start}.seal{width:92px;height:92px}.signature{width:55%}table{font-size:10px}th,td{padding:9px 7px} }
+    .signature-image {
+      display:block;
+      width:178px;
+      max-width:100%;
+      height:42px;
+      object-fit:contain;
+      object-position:left bottom;
+      margin:0 0 2px 0;
+      filter:grayscale(1) brightness(.48) contrast(1.35);
+    }
+    .signature-line { width:230px; max-width:100%; height:1px; border-bottom:1px solid #555a61; margin:0 0 6px; }
+    .signatory-name { color:var(--black); font-family:Georgia,"Times New Roman",serif; font-size:12px; font-weight:700; margin-top:0; }
+    .signatory-title { color:#555b63; font-size:9px; margin-top:3px; line-height:1.5; }
+    .seal {
+      width:88px;
+      height:88px;
+      border:2px solid #454a51;
+      border-radius:50%;
+      color:#30353b;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      transform:rotate(-7deg);
+      opacity:.9;
+      flex-shrink:0;
+      filter:grayscale(1);
+    }
+    .seal strong { font-family:Georgia,"Times New Roman",serif; font-size:10px; letter-spacing:1px; }
+    .seal span { font-size:6px; letter-spacing:.8px; margin:4px 0; }
+    .seal em { font-size:6px; font-style:normal; font-weight:800; border-top:1px solid currentColor; padding-top:4px; width:78%; }
+    @media (max-width:640px) {
+      .sheet { padding:30px 20px; }
+      .brand { display:block; }
+      .brand-lockup { align-items:flex-start; }
+      .brand-logo { width:86px; height:72px; }
+      .brand-note { text-align:left; margin-top:12px; }
+      .meta { grid-template-columns:1fr; }
+      .footer { display:block; }
+      .doc-id { text-align:left; margin-top:16px; }
+      .authorization { align-items:flex-start; }
+      .seal { width:82px; height:82px; }
+      .signature { width:58%; }
+      table { font-size:10px; }
+      th,td { padding:9px 7px; }
+    }
     @page { size:A4; margin:10mm; }
-    @media print { body{background:white}.toolbar{display:none}.sheet{width:100%;margin:0;padding:3mm 4mm;border:0;box-shadow:none;overflow:visible}.brand,.meta,.notice,.authorization,.footer{break-inside:avoid;page-break-inside:avoid}.meta-card{break-inside:avoid}table{break-inside:auto}tr{break-inside:avoid;break-after:auto}h1,h2{break-after:avoid} }
+    @media print {
+      body { background:#fff; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+      .toolbar { display:none; }
+      .sheet { width:100%; margin:0; padding:3mm 4mm; border:0; box-shadow:none; overflow:visible; }
+      .brand,.meta,.notice,.authorization,.footer { break-inside:avoid; page-break-inside:avoid; }
+      .meta-card { break-inside:avoid; }
+      table { break-inside:auto; }
+      tr { break-inside:avoid; break-after:auto; }
+      h1,h2 { break-after:avoid; }
+    }
   </style>
 </head>
 <body>
