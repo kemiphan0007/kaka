@@ -1200,6 +1200,38 @@ html[data-kp-theme="dark"] .support-card,html[data-kp-theme="dark"] .shipping-it
 .theme-toggle:hover { background:rgba(255,255,255,.16); }
 @media(max-width:760px){.theme-toggle{padding:8px 10px;font-size:8px;}}
 
+
+/* ==========================================================
+   MINOR REQUESTED POLISH — keep the approved design intact
+   Mobile hero gallery: three compact images in one row.
+   Introduction copy: justified alignment for a cleaner block.
+   ========================================================== */
+.spoilers-title p,
+.company-identity-intro {
+  text-align: justify !important;
+  text-justify: inter-word;
+}
+@media (max-width: 760px) {
+  .spoilers {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-rows: clamp(76px, 24vw, 112px) !important;
+    gap: 8px !important;
+  }
+  .spoiler-card {
+    min-height: 0 !important;
+    height: 100%;
+    border-radius: 11px !important;
+  }
+  .spoiler-card:first-child {
+    grid-row: auto !important;
+  }
+  .spoiler-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 </style>
 </head>
 <body>
