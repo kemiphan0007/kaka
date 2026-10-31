@@ -48,7 +48,195 @@ a{color:inherit}button,input{font:inherit}::selection{background:rgba(63,131,248
 @media(max-width:380px){.header-nav a{padding-inline:7px;font-size:7px}.brand-logo img{width:96px}.options{grid-template-columns:1fr}.support-links{grid-template-columns:1fr}.shipping-features{grid-template-columns:1fr}.product-option{gap:7px}.editorial-package-row{grid-template-columns:minmax(0,1fr) auto}.editorial-package-row a{grid-column:1/-1;justify-self:start}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
+
+/* Discreet LIMITED pills for featured products */
+.featured-title-line{
+  display:flex;align-items:center;flex-wrap:wrap;gap:12px;
+  margin:0 0 9px;
+}
+.featured-title-line h4{margin:0;}
+.limited-pill{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:23px;padding:5px 10px;border:1px solid rgba(57,128,194,.30);
+  border-radius:999px;color:#245f9b;
+  background:linear-gradient(135deg,#f4f9ff 0%,#e5f1fd 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 3px 10px rgba(24,74,122,.07);
+  font-size:8px;font-weight:900;letter-spacing:.17em;line-height:1;
+  white-space:nowrap;
+}
+@media(max-width:680px){
+  .featured-title-line{gap:9px;margin-bottom:9px}
+  .limited-pill{min-height:22px;padding:5px 9px;font-size:7px}
+}
+
 </style>
+
+<style id="kemiphan-catalog-layout-v2">
+/* KEMIPHAN — PREMIUM SCIENTIFIC PRODUCT PORTFOLIO */
+.product-catalog{
+  width:min(1280px,calc(100% - 56px));
+  margin:clamp(76px,8vw,118px) auto 124px;
+}
+.catalog-heading{
+  grid-template-columns:minmax(0,1fr) 210px;
+  gap:clamp(24px,5vw,72px);
+  margin-bottom:58px;
+  padding-bottom:38px;
+  border-bottom:1px solid #d7e2ef;
+}
+.catalog-eyebrow{color:#347ecb;letter-spacing:.24em}
+.catalog-heading h2,.product-catalog h2{
+  max-width:760px;
+  color:#0b1d34;
+  font-size:clamp(36px,4.2vw,58px);
+  line-height:1.04;
+  letter-spacing:-.06em;
+}
+.catalog-intro{max-width:590px;color:#667991;font-size:14px;line-height:1.9}
+.catalog-heading-mark{transform:scale(1);opacity:.82}
+.catalog-group-heading{gap:18px;margin:0 0 25px}
+.catalog-group-number{
+  display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;
+  border:1px solid #c9d9eb;border-radius:50%;color:#286eaf;background:#f4f8fd;
+  font-size:10px;letter-spacing:.08em;
+}
+.catalog-group-kicker{color:#54708e;font-size:9px;letter-spacing:.22em}
+.catalog-group-heading h3{margin:4px 0 0;color:#10243d;font-size:clamp(23px,2.5vw,30px);font-weight:650;letter-spacing:-.04em}
+.catalog-group-rule{margin-left:8px;background:linear-gradient(90deg,#c5d6e8,transparent)}
+.editorial-product-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:18px;
+  margin-bottom:66px;
+  align-items:stretch;
+}
+.editorial-product-card{
+  grid-column:span 2;
+  display:flex;flex-direction:column;
+  min-height:310px;
+  padding:24px 24px 21px;
+  border:1px solid #dce6f1;border-radius:20px;
+  background:linear-gradient(150deg,#fff 0%,#f8fbff 100%);
+  box-shadow:0 12px 34px rgba(9,34,65,.045);
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+}
+.editorial-product-card:hover{
+  transform:translateY(-4px);border-color:#a9c9eb;
+  box-shadow:0 20px 44px rgba(9,34,65,.10);
+}
+.editorial-product-card:nth-child(1),
+.editorial-product-card:nth-child(2){grid-column:span 3;min-height:360px;padding:29px 30px 25px}
+.editorial-product-card:nth-child(6){grid-column:3 / span 2}
+.editorial-card-topline{
+  margin-bottom:28px;padding-bottom:13px;border-bottom:1px solid rgba(155,180,207,.34);
+}
+.editorial-card-topline>span:first-child{color:#607994;font-size:9px;font-weight:850;letter-spacing:.17em}
+.editorial-index{color:#8b9db2;font-size:9px;letter-spacing:.18em}
+.editorial-card-body{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,.92fr);
+  align-items:end;gap:28px;flex:1;
+}
+.editorial-product-copy{position:relative;z-index:1}
+.editorial-product-type{margin-bottom:13px;color:#347fc8;font-size:9px;letter-spacing:.2em}
+.editorial-product-copy h4{
+  max-width:440px;margin:0 0 9px;color:#102641;
+  font-size:clamp(22px,2.5vw,31px);font-weight:690;line-height:1.12;letter-spacing:-.045em;
+}
+.editorial-product-copy p{margin:0 0 16px;color:#718197;font-size:12px;line-height:1.7}
+.editorial-badge{padding:7px 10px;color:#286eb5;background:#eaf3fc;font-size:8px;letter-spacing:.13em}
+.editorial-package-list{margin-top:auto;padding-top:3px;border-top:1px solid #dce6f0}
+.editorial-package-row{grid-template-columns:minmax(0,1fr) auto auto;gap:12px;padding:13px 0;border-bottom:1px solid #e5edf5}
+.editorial-package-row>div{display:flex;flex-direction:column;gap:5px}
+.package-kind{color:#8494a7;font-size:8px;font-weight:800;letter-spacing:.14em}
+.editorial-package-row>div strong{color:#1b3553;font-size:15px;font-weight:700}
+.editorial-price{color:#102b49;font-size:17px;font-weight:800;letter-spacing:-.025em}
+.editorial-package-row a{
+  min-width:78px;padding:9px 12px;border:1px solid #173e69;border-radius:999px;
+  color:#fff;background:#102e50;font-size:8px;letter-spacing:.12em;
+}
+.editorial-package-row a:hover{border-color:#347fc8;background:#347fc8}
+.editorial-card-watermark{
+  right:-28px;top:56px;width:190px;height:190px;
+  border-color:rgba(65,132,197,.12);
+  box-shadow:0 0 0 28px rgba(65,132,197,.025),0 0 0 58px rgba(65,132,197,.018);
+}
+.featured-card{
+  border-color:#cbdced;
+  background:radial-gradient(circle at 88% 20%,rgba(91,157,220,.12),transparent 31%),linear-gradient(135deg,#f8fbff 0%,#edf5fd 100%);
+}
+.pzm-card:after,.at121-card:after{
+  content:"";position:absolute;z-index:-1;right:8%;top:23%;width:125px;height:125px;
+  border:1px solid rgba(57,128,194,.15);border-radius:50%;
+  box-shadow:0 0 0 17px rgba(57,128,194,.035),0 0 0 36px rgba(57,128,194,.022);
+  pointer-events:none;
+}
+.pzm-card:before,.at121-card:before{
+  content:"";position:absolute;z-index:-1;right:calc(8% + 27px);top:calc(23% + 27px);width:70px;height:70px;
+  border:1px solid rgba(57,128,194,.2);border-radius:50%;transform:rotate(60deg) scaleX(.55);
+  box-shadow:0 0 0 1px rgba(57,128,194,.02);pointer-events:none;
+}
+.pzm-card .editorial-card-watermark,.at121-card .editorial-card-watermark{opacity:.65}
+/* Standard cards keep the information compact and consistently aligned. */
+.editorial-product-card:not(.featured-card) .editorial-card-topline{margin-bottom:25px}
+.editorial-product-card:not(.featured-card) .editorial-product-copy h4{font-size:21px;line-height:1.2}
+.editorial-product-card:not(.featured-card) .editorial-package-list{margin-top:auto;padding-top:2px}
+.editorial-product-card:not(.featured-card) .editorial-package-row{grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.editorial-product-card:not(.featured-card) .editorial-package-row a{grid-column:1/-1;justify-self:start;margin-top:2px}
+.botanical-heading{margin-top:5px}
+.botanical-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:35px}
+.botanical-grid .editorial-product-card{grid-column:auto;min-height:300px;background:linear-gradient(145deg,#fff 0%,#f8fbfa 100%);border-color:#dce7e5}
+.botanical-grid .editorial-product-type{color:#397d79}
+.botanical-grid .editorial-package-row a{border-color:#174c4b;background:#123f43}
+.botanical-grid .editorial-package-row a:hover{border-color:#347f83;background:#347f83}
+.botanical-grid .editorial-card-watermark{border-color:rgba(58,132,128,.13)}
+.sold-out-card{opacity:.86;background:linear-gradient(145deg,#fbfcfd,#f3f5f7)}
+.sold-out-editorial-badge,.editorial-unavailable{color:#9a4650;background:#fff1f2;border-color:#efd5d8}
+.catalog-footnote{
+  margin-top:18px;padding:16px 19px;border-left:2px solid #438bd0;
+  color:#75869b;background:#f0f5fa;font-size:10px;line-height:1.8;
+}
+.catalog-footnote span{margin-right:9px;color:#3b6f9f;font-size:8px;font-weight:850;letter-spacing:.17em}
+@media(max-width:1050px){
+  .editorial-product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+  .editorial-product-card:nth-child(1),.editorial-product-card:nth-child(2){grid-column:span 1;min-height:350px}
+  .editorial-product-card:nth-child(6){grid-column:auto}
+  .editorial-card-body{grid-template-columns:1fr;gap:12px;align-content:start}
+  .editorial-product-card:not(.featured-card) .editorial-package-row{grid-template-columns:minmax(0,1fr) auto auto}
+  .editorial-product-card:not(.featured-card) .editorial-package-row a{grid-column:auto;justify-self:auto;margin-top:0}
+}
+@media(max-width:680px){
+  html,body{overflow-x:clip}
+  .product-catalog{width:calc(100% - 34px);margin:70px auto 78px}
+  .catalog-heading{grid-template-columns:1fr;gap:8px;margin-bottom:38px;padding-bottom:26px}
+  .catalog-heading-mark{display:none}
+  .catalog-heading h2,.product-catalog h2{font-size:clamp(34px,9vw,42px)}
+  .catalog-intro{font-size:13px;line-height:1.8}
+  .catalog-group-heading{gap:12px;margin-bottom:18px}
+  .catalog-group-number{width:34px;height:34px;flex-basis:34px}
+  .catalog-group-heading h3{font-size:23px}
+  .editorial-product-grid,.botanical-grid{grid-template-columns:1fr;gap:12px;margin-bottom:44px}
+  .editorial-product-card,.editorial-product-card:nth-child(1),.editorial-product-card:nth-child(2),.editorial-product-card:nth-child(6),.botanical-grid .editorial-product-card{
+    grid-column:auto;min-height:0;padding:21px 19px 18px;border-radius:17px;
+  }
+  .editorial-card-topline,.editorial-product-card:not(.featured-card) .editorial-card-topline{margin-bottom:22px}
+  .editorial-card-body{grid-template-columns:1fr;gap:12px}
+  .editorial-product-copy h4,.editorial-product-card:not(.featured-card) .editorial-product-copy h4{font-size:22px}
+  .editorial-package-row,.editorial-product-card:not(.featured-card) .editorial-package-row{grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
+  .editorial-product-card:not(.featured-card) .editorial-package-row a{grid-column:auto;justify-self:auto;margin-top:0}
+  .editorial-price{font-size:15px}
+  .editorial-package-row a{min-width:68px;padding:8px 9px;font-size:7px}
+  .editorial-card-watermark{right:0;width:96px;height:96px}
+  .pzm-card:after,.at121-card:after{right:7%;top:20%;width:90px;height:90px}
+  .pzm-card:before,.at121-card:before{right:calc(7% + 20px);top:calc(20% + 20px);width:50px;height:50px}
+  .catalog-footnote{padding:13px 14px}
+}
+@media(max-width:390px){
+  .editorial-package-row,.editorial-product-card:not(.featured-card) .editorial-package-row{grid-template-columns:minmax(0,1fr) auto;}
+  .editorial-package-row a,.editorial-product-card:not(.featured-card) .editorial-package-row a{grid-column:1/-1;justify-self:start;margin-top:3px}
+}
+@media(prefers-reduced-motion:reduce){.editorial-product-card,.editorial-product-card:hover{transition:none;transform:none}}
+</style>
+
 </head>
 <body>
 <header class="site-header">
@@ -244,7 +432,10 @@ if (option) {
             <div class="editorial-card-body">
                 <div class="editorial-product-copy">
                     <span class="editorial-product-type">R&amp;D SYSTEM™</span>
+                    <div class="featured-title-line">
                     <h4>R&amp;D System™ PZM21</h4>
+                    <span class="limited-pill">LIMITED</span>
+                </div>
                     <p>R&amp;D System</p>
                     <span class="editorial-badge">NEW COLLECTION</span>
                 </div>
@@ -267,7 +458,10 @@ if (option) {
             <div class="editorial-card-body">
                 <div class="editorial-product-copy">
                     <span class="editorial-product-type">RESEARCH COLLECTION</span>
+                    <div class="featured-title-line">
                     <h4>AT121 Research Chemical</h4>
+                    <span class="limited-pill">LIMITED</span>
+                </div>
                     <p>Research chemical</p>
                     <span class="editorial-badge">NEW COLLECTION</span>
                 </div>
